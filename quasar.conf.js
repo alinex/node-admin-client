@@ -4,7 +4,6 @@ module.exports = function (ctx) {
   return {
     plugins: [
       'i18n',
-      'axios',
       'feathers'
     ],
     css: [
@@ -29,6 +28,7 @@ module.exports = function (ctx) {
       // analyze: true,
       // extractCSS: false,
       // useNotifier: false,
+      publicPath: ctx.mode.spa ? '/web/' : '/',
       extendWebpack (cfg) {
         cfg.module.rules.push({
           enforce: 'pre',
@@ -36,7 +36,14 @@ module.exports = function (ctx) {
           loader: 'eslint-loader',
           exclude: /(node_modules|quasar)/
         })
-      }
+      },
+      env: ctx.dev
+        ? { // so on dev we'll have
+          API: JSON.stringify('http://localhost:3030')
+        }
+        : { // and on build (production):
+          API: JSON.stringify('http://admin.alinex.de')
+        }
     },
     devServer: {
       // https: true,
