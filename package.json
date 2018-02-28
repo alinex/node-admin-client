@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "quasar dev",
     "lint": "eslint --ext .js,.vue src",
-    "build": "quasar build; quasar build -m electron -T all; cd dist/electron-mat; find . -maxdepth 1 -type d -exec zip -r {}.zip {}/ \\;"
+    "build": "quasar build; quasar build -m electron -T all; cd dist/electron-mat; find . -maxdepth 1 -type d -name Admin\\* -exec zip -r {}.zip {}/ \\;"
   },
   "dependencies": {
     "@feathersjs/client": "^3.4.2",
