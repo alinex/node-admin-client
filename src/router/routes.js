@@ -4,7 +4,9 @@ export default [
     path: '/',
     component: () => import('layouts/default'),
     children: [
-      { path: 'info', component: () => import('pages/info') },
+      { path: 'info',
+        component: () => import('pages/info'),
+        meta: { title: 'Server Information' } },
       { path: '', component: () => import('pages/index') }
     ]
   },

@@ -55,11 +55,16 @@ module.exports = function (ctx) {
     // framework: 'all' --- includes everything; for dev only!
     framework: {
       components: [
+        'QCollapsible',
         'QLayout',
         'QLayoutHeader',
         'QLayoutDrawer',
         'QPageContainer',
         'QPage',
+        'QSearch',
+        'QSelect',
+        'QTable',
+        'QTableColumns',
         'QToolbar',
         'QToolbarTitle',
         'QBtn',

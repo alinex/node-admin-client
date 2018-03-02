@@ -13,7 +13,7 @@
 
         <q-toolbar-title>
           Administration Portal
-          <div slot="subtitle">Running on Quasar v{{ $q.version }}</div>
+          <div slot="subtitle">{{ title }}</div>
         </q-toolbar-title>
       </q-toolbar>
     </q-layout-header>
@@ -27,16 +27,20 @@
         link
         inset-delimiter
       >
-        <q-list-header>Core Tools</q-list-header>
-        <q-item to="/info">
-          <q-item-side icon="info" />
-          <q-item-main label="Info" sublabel="systems information" />
-        </q-item>
-        <q-list-header>System Management</q-list-header>
-        <q-item to="/info">
-          <q-item-side icon="info" />
-          <q-item-main label="Info" sublabel="systems information" />
-        </q-item>
+        <q-collapsible label="Core System">
+          <q-item to="/info">
+            <q-item-side icon="info" />
+            <q-item-main label="Info" sublabel="systems information" />
+          </q-item>
+          <q-item to="/access">
+            <q-item-side icon="vpn key" />
+            <q-item-main label="Access Control" sublabel="User and Rights" />
+          </q-item>
+        </q-collapsible>
+        <q-collapsible label="Server Management">
+        </q-collapsible>
+        <q-collapsible label="Data Analysis">
+        </q-collapsible>
       </q-list>
     </q-layout-drawer>
 
@@ -53,7 +57,16 @@ export default {
   name: 'LayoutDefault',
   data () {
     return {
-      leftDrawerOpen: true
+      leftDrawerOpen: true,
+      title: ''
+    }
+  },
+  mounted () {
+    this.title = this.$route.meta.title
+  },
+  watch: {
+    '$route' () {
+      this.title = this.$route.meta.title
     }
   },
   methods: {
