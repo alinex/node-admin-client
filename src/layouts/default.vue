@@ -37,8 +37,14 @@
             <q-item-main label="Access Control" sublabel="User and Rights" />
           </q-item>
         </q-collapsible>
+
+        <q-collapsible label="Colaborative Tools">
+          <!-- chat -->
+        </q-collapsible>
+
         <q-collapsible label="Server Management">
         </q-collapsible>
+
         <q-collapsible label="Data Analysis">
         </q-collapsible>
       </q-list>
