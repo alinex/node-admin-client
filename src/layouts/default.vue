@@ -7,6 +7,7 @@
           dense
           round
           @click="leftDrawerOpen = !leftDrawerOpen"
+          title="Hide or display left side menu"
         >
           <q-icon name="menu" />
         </q-btn>
@@ -15,6 +16,19 @@
           Administration Portal
           <div slot="subtitle">{{ title }}</div>
         </q-toolbar-title>
+        <q-btn flat round dense icon="lock" title="Login"/>
+        <q-btn-dropdown flat round dense icon="account circle" title="Account">
+          <q-list link>
+            <q-item to="/user">
+              <q-item-side icon="account box" />
+              <q-item-main label="Account Settings" />
+            </q-item>
+            <q-item to="/logout">
+              <q-item-side icon="exit to app" />
+              <q-item-main label="Logout" />
+            </q-item>
+          </q-list>
+        </q-btn-dropdown>
       </q-toolbar>
     </q-layout-header>
 
@@ -35,6 +49,13 @@
           <q-item to="/access">
             <q-item-side icon="vpn key" />
             <q-item-main label="Access Control" sublabel="User and Rights" />
+          </q-item>
+        </q-collapsible>
+
+        <q-collapsible label="Test Pages">
+          <q-item to="/test/secure">
+            <q-item-side icon="lock" />
+            <q-item-main label="Secure Page" />
           </q-item>
         </q-collapsible>
 

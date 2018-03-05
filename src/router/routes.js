@@ -4,6 +4,9 @@ export default [
     path: '/',
     component: () => import('layouts/default'),
     children: [
+      { path: 'test/secure',
+        component: () => import('pages/test/secure'),
+        meta: { title: 'Secure Test Page' } },
       { path: 'info',
         component: () => import('pages/info'),
         meta: { title: 'Server Information' } },
