@@ -76,13 +76,13 @@ export default {
   async created () {
     try {
       const data = await this.$feathers.service('info').find()
-      data.data.push({ group: 'client', name: 'name', value: this.$q.platform.is.name })
-      data.data.push({ group: 'client', name: 'version', value: this.$q.platform.is.version })
-      data.data.push({ group: 'client', name: 'platform', value: this.$q.platform.is.platform })
-      data.data.push({ group: 'client', name: 'touch', value: this.$q.platform.has.touch })
-      data.data.push({ group: 'client', name: 'quasar', value: this.$q.version })
-      data.data.push({ group: 'client', name: 'theme', value: this.$q.theme })
-      this.tableData = data.data.map((e) => {
+      data.push({ group: 'client', name: 'name', value: this.$q.platform.is.name })
+      data.push({ group: 'client', name: 'version', value: this.$q.platform.is.version })
+      data.push({ group: 'client', name: 'platform', value: this.$q.platform.is.platform })
+      data.push({ group: 'client', name: 'touch', value: this.$q.platform.has.touch })
+      data.push({ group: 'client', name: 'quasar', value: this.$q.version })
+      data.push({ group: 'client', name: 'theme', value: this.$q.theme })
+      this.tableData = data.map((e) => {
         if (Array.isArray(e.value)) {
           e.value = e.value.join('\n')
         }
