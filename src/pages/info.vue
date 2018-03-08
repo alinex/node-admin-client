@@ -82,6 +82,7 @@ export default {
       data.push({ group: 'client', name: 'touch', value: this.$q.platform.has.touch })
       data.push({ group: 'client', name: 'quasar', value: this.$q.version })
       data.push({ group: 'client', name: 'theme', value: this.$q.theme })
+      data.push({ group: 'client', name: 'api', value: process.env.API })
       this.tableData = data.map((e) => {
         if (Array.isArray(e.value)) {
           e.value = e.value.join('\n')
