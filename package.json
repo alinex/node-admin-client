@@ -2,14 +2,14 @@
   "name": "alinex-admin-client",
   "version": "1.0.0",
   "description": "Fast and easy web administration panel for IT",
-  "productName": "Administration Panel",
+  "productName": "Administration-Panel",
   "cordovaId": "org.cordova.alinex.app",
   "author": "Alexander Schilling <info@alinex.de>",
   "private": true,
   "scripts": {
     "dev": "quasar dev",
     "lint": "eslint --ext .js,.vue src",
-    "build": "quasar build; quasar build -m electron -T all; cd dist/electron-mat; find . -maxdepth 1 -type d -name Admin\\* -exec zip -r {}.zip {}/ \\;"
+    "build": "quasar build; quasar build -m electron -T all; tar -C dist/electron-mat -czvf dist/electron-mat/Administration-Panel-linux-x64.tgz Administration-Panel-linux-x64; tar -C dist/electron-mat -czvf dist/electron-mat/Administration-Panel-darwin-x64.tgz Administration-Panel-darwin-x64; cd dist/electron-mat; zip -r Administration-Panel-win32-x64.zip Administration-Panel-win32-x64/"
   },
   "dependencies": {
     "@feathersjs/client": "^3.4.2",
