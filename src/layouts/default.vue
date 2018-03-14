@@ -16,7 +16,7 @@
           Administration Portal
           <div slot="subtitle">{{ title }}</div>
         </q-toolbar-title>
-        <q-btn flat round dense icon="lock" title="Login" @click="login()" />
+        <q-btn flat round dense icon="lock" title="Login" @click="loginOpen = true" />
         <q-btn-dropdown flat round dense icon="account circle" title="Account">
           <q-list link>
             <q-item to="/user">
@@ -73,6 +73,14 @@
 
     <q-page-container>
       <router-view />
+      <q-modal v-model="loginOpen">
+        <h4>Login</h4>
+        <q-btn
+          color="primary"
+          @click="loginOpen = false"
+          label="Close"
+          />
+      </q-modal>
     </q-page-container>
   </q-layout>
 </template>
@@ -85,22 +93,12 @@ export default {
   data () {
     return {
       leftDrawerOpen: true,
+      loginOpen: false,
       title: ''
     }
   },
   methods: {
     openURL,
-    login: () => {
-      Dialog.create({
-        title: 'Warning',
-        message: 'Login with your account:',
-        color: 'primary',
-        ok: true,
-        cancel: true
-      })
-        .then(() => false)
-        .catch(() => false)
-    },
     logout: () => {
       Dialog.create({
         title: 'Question',
