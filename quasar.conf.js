@@ -42,7 +42,7 @@ module.exports = function (ctx) {
           API: JSON.stringify('http://localhost:3030')
         }
         : { // and on build (production):
-          API: JSON.stringify('http://192.168.5.194:3030') //admin.alinex.de
+          API: JSON.stringify('http://192.168.5.194:3030') // admin.alinex.de
         }
     },
     devServer: {
@@ -77,7 +77,8 @@ module.exports = function (ctx) {
         'QToolbarTitle'
       ],
       directives: [
-        'Ripple'
+        'Ripple',
+        'CloseOverlay'
       ],
       plugins: [
         'Dialog',

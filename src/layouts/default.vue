@@ -23,7 +23,7 @@
               <q-item-side icon="account box" />
               <q-item-main label="Account Settings" />
             </q-item>
-            <q-item to="/logout">
+            <q-item v-close-overlay @click.native="logout()">
               <q-item-side icon="exit to app" />
               <q-item-main label="Logout" />
             </q-item>
@@ -94,6 +94,17 @@ export default {
       Dialog.create({
         title: 'Warning',
         message: 'Login with your account:',
+        color: 'primary',
+        ok: true,
+        cancel: true
+      })
+        .then(() => false)
+        .catch(() => false)
+    },
+    logout: () => {
+      Dialog.create({
+        title: 'Question',
+        message: 'Do you really want to logout?',
         color: 'primary',
         ok: true,
         cancel: true
