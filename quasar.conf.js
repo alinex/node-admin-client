@@ -55,10 +55,18 @@ module.exports = function (ctx) {
     // framework: 'all' --- includes everything; for dev only!
     framework: {
       components: [
+        'QBtn',
+        'QBtnDropdown',
         'QCollapsible',
+        'QIcon',
+        'QItem',
+        'QItemMain',
+        'QItemSide',
         'QLayout',
         'QLayoutHeader',
         'QLayoutDrawer',
+        'QList',
+        'QListHeader',
         'QPageContainer',
         'QPage',
         'QSearch',
@@ -66,20 +74,13 @@ module.exports = function (ctx) {
         'QTable',
         'QTableColumns',
         'QToolbar',
-        'QToolbarTitle',
-        'QBtn',
-        'QBtnDropdown',
-        'QIcon',
-        'QList',
-        'QListHeader',
-        'QItem',
-        'QItemMain',
-        'QItemSide'
+        'QToolbarTitle'
       ],
       directives: [
         'Ripple'
       ],
       plugins: [
+        'Dialog',
         'Notify'
       ]
     },

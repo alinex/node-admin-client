@@ -16,7 +16,7 @@
           Administration Portal
           <div slot="subtitle">{{ title }}</div>
         </q-toolbar-title>
-        <q-btn flat round dense icon="lock" title="Login"/>
+        <q-btn flat round dense icon="lock" title="Login" @click="login()" />
         <q-btn-dropdown flat round dense icon="account circle" title="Account">
           <q-list link>
             <q-item to="/user">
@@ -78,7 +78,7 @@
 </template>
 
 <script>
-import { openURL } from 'quasar'
+import { openURL, Dialog } from 'quasar'
 
 export default {
   name: 'LayoutDefault',
@@ -88,6 +88,20 @@ export default {
       title: ''
     }
   },
+  methods: {
+    openURL,
+    login: () => {
+      Dialog.create({
+        title: 'Warning',
+        message: 'Login with your account:',
+        color: 'primary',
+        ok: true,
+        cancel: true
+      })
+        .then(() => false)
+        .catch(() => false)
+    }
+  },
   mounted () {
     this.title = this.$route.meta.title
   },
@@ -95,9 +109,6 @@ export default {
     '$route' () {
       this.title = this.$route.meta.title
     }
-  },
-  methods: {
-    openURL
   }
 }
 </script>
