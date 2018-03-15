@@ -1,5 +1,5 @@
 <template>
-  <q-page class="flex flex-center welcome">
+  <q-page class="flex flex-center">
     <div class="container">
       <div class="page">
         <img src="~assets/alinex.svg" alt="Alinex Logo" />
@@ -9,15 +9,15 @@
   </q-page>
 </template>
 
-<style>
-  main.welcome {
+<style scoped>
+  main {
     background: url(~assets/background.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
   }
-  main.welcome .page {
+  .page {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -29,12 +29,12 @@
     opacity: 0.8;
     text-align: center;
   }
-  main.welcome img {
+  img {
     margin: 0 auto;
     width: 370px;
     margin-bottom: 8px;
   }
-  main.welcome h1 {
+  h1 {
     margin: 0;
     color: #f0ad4e;
     font-size: 40px;
