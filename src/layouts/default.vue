@@ -74,12 +74,54 @@
     <q-page-container>
       <router-view />
       <q-modal v-model="loginOpen">
-        <h4>Login</h4>
-        <q-btn
-          color="primary"
-          @click="loginOpen = false"
-          label="Close"
-          />
+        <q-modal-layout
+          header-style="min-height: 100px"
+          content-class="{'bg-primary': isPrimary, 'some-class': someBoolean}"
+          footer-class="bg-primary some-class"
+          footer-style="{fontSize: '24px', fontWeight: 'bold'}"
+        >
+          <q-toolbar slot="header">
+            <q-btn
+              flat
+              round
+              dense
+              v-close-overlay
+              icon="keyboard_arrow_left"
+            />
+            <q-toolbar-title>
+              Login
+            </q-toolbar-title>
+          </q-toolbar>
+          <div class="layout-padding">
+            <q-field
+              label="Email"
+              :error="mailHasError"
+              error-label="We need your registered email"
+              label-width="4"
+            >
+              <q-input v-model.trim="login.email"
+                type="email"
+                placeholder="myname@gmail.com"
+                autofocus
+              />
+            </q-field>
+            <q-field
+              label="Password"
+              :error="mailHasError"
+              error-label="The password is mandatory"
+              label-width="4"
+            >
+              <q-input v-model="login.password" type="password" />
+            </q-field>
+          </div>
+          <div class="layout-padding">
+            <q-btn
+              color="primary"
+              v-close-overlay
+              label="Login"
+            />
+          </div>
+        </q-modal-layout>
       </q-modal>
     </q-page-container>
   </q-layout>
@@ -94,6 +136,10 @@ export default {
     return {
       leftDrawerOpen: true,
       loginOpen: false,
+      login: {
+        email: '',
+        password: null
+      },
       title: ''
     }
   },
