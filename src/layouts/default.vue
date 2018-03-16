@@ -73,7 +73,7 @@
 
     <q-page-container>
       <router-view />
-      <q-modal v-model="loginOpen">
+      <q-modal v-model="loginOpen" @show="focusLogin">
         <q-modal-layout
           header-style="min-height: 100px"
           content-class="{'bg-primary': isPrimary, 'some-class': someBoolean}"
@@ -103,6 +103,7 @@
                 type="email"
                 placeholder="myname@gmail.com"
                 autofocus
+                ref="loginEmail"
               />
             </q-field>
             <q-field
@@ -145,6 +146,9 @@ export default {
   },
   methods: {
     openURL,
+    focusLogin: function () {
+      this.$refs.loginEmail.focus()
+    },
     logout: () => {
       Dialog.create({
         title: 'Question',
