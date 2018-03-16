@@ -2,13 +2,10 @@
   <q-layout view="lHh Lpr lFf">
     <q-layout-header>
       <q-toolbar color="primary" glossy>
-        <q-btn
-          flat
-          dense
-          round
+        <q-btn flat dense round
           @click="leftDrawerOpen = !leftDrawerOpen"
           title="Hide or display left side menu"
-        >
+          >
           <q-icon name="menu" />
         </q-btn>
 
@@ -32,15 +29,8 @@
       </q-toolbar>
     </q-layout-header>
 
-    <q-layout-drawer
-      v-model="leftDrawerOpen"
-      content-class="bg-grey-2"
-    >
-      <q-list
-        no-border
-        link
-        inset-delimiter
-      >
+    <q-layout-drawer v-model="leftDrawerOpen" content-class="bg-grey-2">
+      <q-list no-border link inset-delimiter>
         <q-collapsible label="Core System">
           <q-item to="/info">
             <q-item-side icon="info" />
@@ -73,21 +63,12 @@
 
     <q-page-container>
       <router-view />
-      <q-modal v-model="loginOpen" @show="focusLogin">
-        <q-modal-layout
-          header-style="min-height: 100px"
-          content-class="{'bg-primary': isPrimary, 'some-class': someBoolean}"
-          footer-class="bg-primary some-class"
-          footer-style="{fontSize: '24px', fontWeight: 'bold'}"
+      <q-modal v-model="loginOpen" @show="focusLogin"
+        :content-css="{minWidth: '400px', minHeight: '260px'}"
         >
+        <q-modal-layout>
           <q-toolbar slot="header">
-            <q-btn
-              flat
-              round
-              dense
-              v-close-overlay
-              icon="keyboard_arrow_left"
-            />
+            <q-btn flat round dense v-close-overlay icon="keyboard_arrow_left"/>
             <q-toolbar-title>
               Login
             </q-toolbar-title>
@@ -95,11 +76,11 @@
           <div class="layout-padding">
             <q-field
               label="Email"
-              :error="mailHasError"
+              :error="emailHasError"
               error-label="We need your registered email"
               label-width="4"
-            >
-              <q-input v-model.trim="login.email"
+              >
+              <q-input v-model.trim="loginData.email"
                 type="email"
                 placeholder="myname@gmail.com"
                 autofocus
@@ -108,19 +89,16 @@
             </q-field>
             <q-field
               label="Password"
-              :error="mailHasError"
+              :error="passwordHasError"
               error-label="The password is mandatory"
               label-width="4"
-            >
-              <q-input v-model="login.password" type="password" />
+              >
+              <q-input v-model="loginData.password" type="password" />
             </q-field>
           </div>
           <div class="layout-padding">
-            <q-btn
-              color="primary"
-              v-close-overlay
-              label="Login"
-            />
+            <q-btn color="primary" v-close-overlay label="Login"
+              @click="authenticate(loginData)" />
           </div>
         </q-modal-layout>
       </q-modal>
@@ -130,25 +108,29 @@
 
 <script>
 import { openURL, Dialog } from 'quasar'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'LayoutDefault',
   data () {
     return {
+      title: '',
       leftDrawerOpen: true,
       loginOpen: false,
-      login: {
+      loginData: {
         email: '',
         password: null
       },
-      title: ''
+      emailHasError: false,
+      passwordHasError: false
     }
   },
   methods: {
     openURL,
     focusLogin: function () {
-      this.$refs.loginEmail.focus()
+      this.$refs.loginEmail.select()
     },
+    ...mapActions('auth', ['authenticate']),
     logout: () => {
       Dialog.create({
         title: 'Question',
