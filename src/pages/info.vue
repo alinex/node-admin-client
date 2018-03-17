@@ -99,8 +99,7 @@ export default {
 }
 </script>
 
-<style>
-.q-table tbody td {
-  white-space: pre-wrap;
-}
+<style lang="stylus">
+.q-table tbody td
+  white-space: pre-wrap
 </style>

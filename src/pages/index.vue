@@ -1,7 +1,7 @@
 <template>
   <q-page class="flex flex-center">
     <div class="container">
-      <div class="page">
+      <div class="page layout-padding">
         <img src="~assets/alinex.svg" alt="Alinex Logo" />
         <h1 class="center-text">Administration Panel</h1>
       </div>
@@ -18,11 +18,6 @@
     background-size: cover;
   }
   .page {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 20px;
     border: 3px solid #aaa;
     border-radius: 40px;
     background: #eee;
@@ -30,15 +25,14 @@
     text-align: center;
   }
   img {
-    margin: 0 auto;
-    width: 370px;
+    width: 340px;
     margin-bottom: 8px;
   }
   h1 {
     margin: 0;
     color: #f0ad4e;
-    font-size: 40px;
-    font-weight: bold;
+    font-size: 38px;
+    font-weight: 900;
   }
 </style>
 

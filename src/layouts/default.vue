@@ -13,14 +13,17 @@
           Administration Portal
           <div slot="subtitle">{{ title }}</div>
         </q-toolbar-title>
-        <q-btn flat round dense icon="lock" title="Login" @click="loginOpen = true" />
-        <q-btn-dropdown flat round dense icon="account circle" title="Account">
+        <q-btn-dropdown flat round dense icon="settings" title="Settings">
           <q-list link>
-            <q-item to="/user">
-              <q-item-side icon="account box" />
-              <q-item-main label="Account Settings" />
+            <q-item v-close-overlay @click.native="loginOpen = true">
+              <q-item-side icon="lock" />
+              <q-item-main label="Login" />
             </q-item>
-            <q-item v-close-overlay @click.native="logout()">
+            <q-item to="/user">
+              <q-item-side icon="account circle" />
+              <q-item-main label="Profile" />
+            </q-item>
+            <q-item v-close-overlay @click.native="logout">
               <q-item-side icon="exit to app" />
               <q-item-main label="Logout" />
             </q-item>
@@ -64,7 +67,7 @@
     <q-page-container>
       <router-view />
       <q-modal v-model="loginOpen" @show="focusLogin"
-        :content-css="{minWidth: '400px', minHeight: '260px'}"
+        :content-css="{minWidth: '400px', minHeight: '330px'}"
         >
         <q-modal-layout>
           <q-toolbar slot="header">
@@ -73,32 +76,39 @@
               Login
             </q-toolbar-title>
           </q-toolbar>
-          <div class="layout-padding">
-            <q-field
+          <div class="q-pa-md">
+            <q-field class="q-pb-md"
+              icon="email"
               label="Email"
-              :error="emailHasError"
+              orientation="vertical"
+              :error="$v.loginData.email.$error"
               error-label="We need your registered email"
-              label-width="4"
               >
               <q-input v-model.trim="loginData.email"
                 type="email"
                 placeholder="myname@gmail.com"
                 autofocus
                 ref="loginEmail"
-              />
+                @blur="$v.loginData.email.$touch"
+                />
             </q-field>
             <q-field
+              icon="lock"
               label="Password"
-              :error="passwordHasError"
+              orientation="vertical"
+              :error="$v.loginData.password.$error"
               error-label="The password is mandatory"
-              label-width="4"
               >
-              <q-input v-model="loginData.password" type="password" />
+              <q-input v-model="loginData.password"
+                type="password"
+                @blur="$v.loginData.password.$touch"
+                @keyup.enter="login"
+                />
             </q-field>
-          </div>
-          <div class="layout-padding">
-            <q-btn color="primary" v-close-overlay label="Login"
-              @click="authenticate(loginData)" />
+            <div class="q-pt-md float-right">
+              <q-btn color="primary" label="Login"
+                @click="login" />
+            </div>
           </div>
         </q-modal-layout>
       </q-modal>
@@ -107,8 +117,9 @@
 </template>
 
 <script>
-import { openURL, Dialog } from 'quasar'
+import { openURL } from 'quasar'
 import { mapActions } from 'vuex'
+import { required, email, minLength } from 'vuelidate/lib/validators'
 
 export default {
   name: 'LayoutDefault',
@@ -125,22 +136,34 @@ export default {
       passwordHasError: false
     }
   },
+  validations: {
+    loginData: {
+      email: { required, email },
+      password: { required, minLength: minLength(6) }
+    }
+  },
   methods: {
     openURL,
     focusLogin: function () {
       this.$refs.loginEmail.select()
     },
-    ...mapActions('auth', ['authenticate']),
-    logout: () => {
-      Dialog.create({
-        title: 'Question',
-        message: 'Do you really want to logout?',
-        color: 'primary',
-        ok: true,
-        cancel: true
-      })
-        .then(() => false)
-        .catch(() => false)
+    ...mapActions('auth', ['authenticate', 'logout']),
+    login () {
+      this.$v.loginData.$touch()
+      if (this.$v.loginData.$error) {
+        console.log(this.$v.loginData.$error)
+        this.$q.notify({
+          label: 'Could not send Form',
+          icon: 'error outline',
+          message: 'Could not send Form',
+          detail: 'Please review fields again.'
+        })
+        return
+      }
+      this.authenticate(this.loginData)
+        .then(() => {
+          this.loginOpen = false
+        })
     }
   },
   mounted () {

@@ -4,7 +4,8 @@ module.exports = function (ctx) {
   return {
     plugins: [
       'i18n',
-      'feathers'
+      'feathers',
+      'vuelidate'
     ],
     css: [
       'app.styl'
@@ -54,6 +55,7 @@ module.exports = function (ctx) {
     },
     // framework: 'all' --- includes everything; for dev only!
     framework: {
+      i18n: 'de',
       components: [
         'QBtn',
         'QBtnDropdown',
