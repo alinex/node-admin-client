@@ -15,15 +15,20 @@
         </q-toolbar-title>
         <q-btn-dropdown flat round dense icon="settings" title="Settings">
           <q-list link>
-            <q-item v-close-overlay @click.native="loginOpen = true">
+            <q-item v-close-overlay
+              :class="$store.state.auth.user ? 'hidden' : ''"
+              @click.native="loginOpen = true">
               <q-item-side icon="lock" />
               <q-item-main label="Login" />
             </q-item>
-            <q-item to="/user">
+            <q-item to="/user"
+              :class="$store.state.auth.user ? '' : 'hidden'">
               <q-item-side icon="account circle" />
               <q-item-main label="Profile" />
             </q-item>
-            <q-item v-close-overlay @click.native="logout">
+            <q-item v-close-overlay
+              :class="$store.state.auth.user ? '' : 'hidden'"
+              @click.native="logout">
               <q-item-side icon="exit to app" />
               <q-item-main label="Logout" />
             </q-item>
@@ -163,6 +168,11 @@ export default {
       this.authenticate(this.loginData)
         .then(() => {
           this.loginOpen = false
+          this.$q.notify({
+            color: 'positive',
+            icon: 'check circle',
+            message: 'Successfully authenticated'
+          })
           return Promise.resolve()
         })
         .catch(() => {
