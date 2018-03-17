@@ -12,8 +12,8 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   plugins: [
-    service('todos'),
-    auth()
+    service('users'),
+    auth({ userService: 'users' })
   ],
   modules: {
     test

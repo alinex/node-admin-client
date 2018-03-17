@@ -129,6 +129,7 @@ export default {
       leftDrawerOpen: true,
       loginOpen: false,
       loginData: {
+        strategy: 'local',
         email: '',
         password: null
       },
@@ -153,7 +154,6 @@ export default {
       if (this.$v.loginData.$error) {
         console.log(this.$v.loginData.$error)
         this.$q.notify({
-          label: 'Could not send Form',
           icon: 'error outline',
           message: 'Could not send Form',
           detail: 'Please review fields again.'
@@ -163,6 +163,14 @@ export default {
       this.authenticate(this.loginData)
         .then(() => {
           this.loginOpen = false
+          return Promise.resolve()
+        })
+        .catch(() => {
+          this.$q.notify({
+            icon: 'error outline',
+            message: 'Could not login',
+            detail: this.$store.state.auth.errorOnAuthenticate.message
+          })
         })
     }
   },
