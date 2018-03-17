@@ -28,7 +28,7 @@
             </q-item>
             <q-item v-close-overlay
               :class="$store.state.auth.user ? '' : 'hidden'"
-              @click.native="logout">
+              @click.native="logoutProcess">
               <q-item-side icon="exit to app" />
               <q-item-main label="Logout" />
             </q-item>
@@ -181,6 +181,17 @@ export default {
             message: 'Could not login',
             detail: this.$store.state.auth.errorOnAuthenticate.message
           })
+        })
+    },
+    logoutProcess () {
+      this.logout()
+        .then(() => {
+          this.$q.notify({
+            color: 'positive',
+            icon: 'check circle',
+            message: 'Successfully logged out'
+          })
+          return Promise.resolve()
         })
     }
   },
