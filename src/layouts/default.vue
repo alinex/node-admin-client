@@ -16,19 +16,19 @@
         <q-btn-dropdown flat round dense icon="settings" title="Settings">
           <q-list link>
             <q-item v-close-overlay
-              :class="$store.state.auth.user ? 'hidden' : ''"
+              :class="notAuthenticatedClass()"
               @click.native="loginOpen = true">
               <q-item-side icon="lock" />
               <q-item-main label="Login" />
             </q-item>
             <q-item to="/user"
-              :class="$store.state.auth.user ? '' : 'hidden'">
+              :class="authenticatedClass()">
               <q-item-side icon="account circle" />
               <q-item-main label="Profile" />
             </q-item>
             <q-item v-close-overlay
-              :class="$store.state.auth.user ? '' : 'hidden'"
-              @click.native="logoutProcess">
+              :class="authenticatedClass()"
+              @click.native="logout">
               <q-item-side icon="exit to app" />
               <q-item-main label="Logout" />
             </q-item>
@@ -38,93 +38,21 @@
     </q-layout-header>
 
     <q-layout-drawer v-model="leftDrawerOpen" content-class="bg-grey-2">
-      <q-list no-border link inset-delimiter>
-        <q-collapsible label="Core System">
-          <q-item to="/info">
-            <q-item-side icon="info" />
-            <q-item-main label="Info" sublabel="systems information" />
-          </q-item>
-          <q-item to="/access">
-            <q-item-side icon="vpn key" />
-            <q-item-main label="Access Control" sublabel="User and Rights" />
-          </q-item>
-        </q-collapsible>
-
-        <q-collapsible label="Test Pages">
-          <q-item to="/test/secure">
-            <q-item-side icon="lock" />
-            <q-item-main label="Secure Page" />
-          </q-item>
-        </q-collapsible>
-
-        <q-collapsible label="Colaborative Tools">
-          <!-- chat -->
-        </q-collapsible>
-
-        <q-collapsible label="Server Management">
-        </q-collapsible>
-
-        <q-collapsible label="Data Analysis">
-        </q-collapsible>
-      </q-list>
+      <sidebar-menu />
     </q-layout-drawer>
 
     <q-page-container>
       <router-view />
-      <q-modal v-model="loginOpen" @show="focusLogin"
-        :content-css="{minWidth: '400px', minHeight: '330px'}"
-        >
-        <q-modal-layout>
-          <q-toolbar slot="header">
-            <q-btn flat round dense v-close-overlay icon="keyboard_arrow_left"/>
-            <q-toolbar-title>
-              Login
-            </q-toolbar-title>
-          </q-toolbar>
-          <div class="q-pa-md">
-            <q-field class="q-pb-md"
-              icon="email"
-              label="Email"
-              orientation="vertical"
-              :error="$v.loginData.email.$error"
-              error-label="We need your registered email"
-              >
-              <q-input v-model.trim="loginData.email"
-                type="email"
-                placeholder="myname@gmail.com"
-                autofocus
-                ref="loginEmail"
-                @blur="$v.loginData.email.$touch"
-                />
-            </q-field>
-            <q-field
-              icon="lock"
-              label="Password"
-              orientation="vertical"
-              :error="$v.loginData.password.$error"
-              error-label="The password is mandatory"
-              >
-              <q-input v-model="loginData.password"
-                type="password"
-                @blur="$v.loginData.password.$touch"
-                @keyup.enter="login"
-                />
-            </q-field>
-            <div class="q-pt-md float-right">
-              <q-btn color="primary" label="Login"
-                @click="login" />
-            </div>
-          </div>
-        </q-modal-layout>
-      </q-modal>
+      <login-dialog v-model="loginOpen" />
     </q-page-container>
+
   </q-layout>
 </template>
 
 <script>
-import { openURL } from 'quasar'
-import { mapActions } from 'vuex'
-import { required, email, minLength } from 'vuelidate/lib/validators'
+import { AuthMixin } from '../mixins/auth'
+import SidebarMenu from '../components/sidebarMenu'
+import LoginDialog from '../components/loginDialog'
 
 export default {
   name: 'LayoutDefault',
@@ -132,67 +60,7 @@ export default {
     return {
       title: '',
       leftDrawerOpen: true,
-      loginOpen: false,
-      loginData: {
-        strategy: 'local',
-        email: '',
-        password: null
-      },
-      emailHasError: false,
-      passwordHasError: false
-    }
-  },
-  validations: {
-    loginData: {
-      email: { required, email },
-      password: { required, minLength: minLength(6) }
-    }
-  },
-  methods: {
-    openURL,
-    focusLogin: function () {
-      this.$refs.loginEmail.select()
-    },
-    ...mapActions('auth', ['authenticate', 'logout']),
-    login () {
-      this.$v.loginData.$touch()
-      if (this.$v.loginData.$error) {
-        console.log(this.$v.loginData.$error)
-        this.$q.notify({
-          icon: 'error outline',
-          message: 'Could not send Form',
-          detail: 'Please review fields again.'
-        })
-        return
-      }
-      this.authenticate(this.loginData)
-        .then(() => {
-          this.loginOpen = false
-          this.$q.notify({
-            color: 'positive',
-            icon: 'check circle',
-            message: 'Successfully authenticated'
-          })
-          return Promise.resolve()
-        })
-        .catch(() => {
-          this.$q.notify({
-            icon: 'error outline',
-            message: 'Could not login',
-            detail: this.$store.state.auth.errorOnAuthenticate.message
-          })
-        })
-    },
-    logoutProcess () {
-      this.logout()
-        .then(() => {
-          this.$q.notify({
-            color: 'positive',
-            icon: 'check circle',
-            message: 'Successfully logged out'
-          })
-          return Promise.resolve()
-        })
+      loginOpen: false
     }
   },
   mounted () {
@@ -202,7 +70,9 @@ export default {
     '$route' () {
       this.title = this.$route.meta.title
     }
-  }
+  },
+  components: { SidebarMenu, LoginDialog },
+  mixins: [AuthMixin]
 }
 </script>
 
