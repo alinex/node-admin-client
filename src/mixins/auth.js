@@ -18,6 +18,11 @@ export const AuthMixin = {
           return Promise.resolve()
         })
     },
+    checkAuthentication () {
+      if (!this.isAuthenticated() && !this.$route.meta.public) {
+        this.$router.push('/login')
+      }
+    },
     isAuthenticated () {
       return this.$store.state.auth.user
     },

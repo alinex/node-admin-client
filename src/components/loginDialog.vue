@@ -95,11 +95,16 @@ export default {
       this.$store.dispatch('auth/authenticate', this.loginData)
         .then(() => {
           this.opened = false
-          this.$q.notify({
-            color: 'positive',
-            icon: 'check circle',
-            message: 'Successfully authenticated'
-          })
+          if (window.history.length && this.$route.path === '/login') {
+            // go back after login on login page
+            window.history.back()
+          } else {
+            this.$q.notify({
+              color: 'positive',
+              icon: 'check circle',
+              message: 'Successfully authenticated'
+            })
+          }
           return Promise.resolve()
         })
         .catch(() => {

@@ -59,16 +59,21 @@ export default {
   data () {
     return {
       title: '',
+      public: false,
       leftDrawerOpen: true,
       loginOpen: false
     }
   },
   mounted () {
+    this.checkAuthentication()
     this.title = this.$route.meta.title
+    this.loginOpen = this.$route.path === '/login'
   },
   watch: {
     '$route' () {
+      this.checkAuthentication()
       this.title = this.$route.meta.title
+      this.loginOpen = this.$route.path === '/login'
     }
   },
   components: { SidebarMenu, LoginDialog },
