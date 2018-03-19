@@ -1,7 +1,20 @@
-// This is just an example,
-// so you can safely delete all default props below
+// import info from './info'
 
 export default {
-  failed: 'Action failed',
-  success: 'Action was successful'
+  // modules
+  // info,
+
+  title: 'Administration Panel',
+  // layout settings
+  layout: {
+    menu: {
+      settings: 'Settings',
+      login: 'Login',
+      logout: 'Logout',
+      profile: 'Profile'
+    },
+    sidebar: {
+      hideTitle: 'Hide or display left side menu'
+    }
+  }
 }

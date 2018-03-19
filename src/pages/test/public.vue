@@ -5,6 +5,8 @@
     <p row>Counter: {{ count }}</p>
     <q-btn label="Increment" @click="increment()" />
     <q-btn label="Test" @click="test()" />
+    {{ $t('title') }}
+
   </q-page>
 </template>
 

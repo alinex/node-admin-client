@@ -4,33 +4,43 @@
       <q-toolbar color="primary" glossy>
         <q-btn flat dense round
           @click="leftDrawerOpen = !leftDrawerOpen"
-          title="Hide or display left side menu"
+          :title="$t('layout.sidebar.hideTitle')"
           >
           <q-icon name="menu" />
         </q-btn>
 
         <q-toolbar-title>
-          Administration Portal
+          {{ $t('title') }}
           <div slot="subtitle">{{ title }}</div>
         </q-toolbar-title>
-        <q-btn-dropdown flat round dense icon="settings" title="Settings">
+        <q-btn-dropdown flat round dense icon="settings" :title="$t('layout.menu.settings')">
           <q-list link>
+            <q-item v-close-overlay
+              @click.native="lang = 'en-us'">
+              <q-item-side icon="language" />
+              <q-item-main label="English" />
+            </q-item>
+            <q-item v-close-overlay
+              @click.native="lang = 'de'">
+              <q-item-side icon="language" />
+              <q-item-main label="Deutsch" />
+            </q-item>
             <q-item v-close-overlay
               :class="notAuthenticatedClass()"
               @click.native="loginOpen = true">
               <q-item-side icon="lock" />
-              <q-item-main label="Login" />
+              <q-item-main :label="$t('layout.menu.login')" />
             </q-item>
             <q-item to="/user"
               :class="authenticatedClass()">
               <q-item-side icon="account circle" />
-              <q-item-main label="Profile" />
+              <q-item-main :label="$t('layout.menu.profile')" />
             </q-item>
             <q-item v-close-overlay
               :class="authenticatedClass()"
               @click.native="logout">
               <q-item-side icon="exit to app" />
-              <q-item-main label="Logout" />
+              <q-item-main :label="$t('layout.menu.logout')" />
             </q-item>
           </q-list>
         </q-btn-dropdown>
@@ -61,7 +71,8 @@ export default {
       title: '',
       public: false,
       leftDrawerOpen: true,
-      loginOpen: false
+      loginOpen: false,
+      lang: this.$q.i18n.lang
     }
   },
   mounted () {
@@ -74,6 +85,15 @@ export default {
       this.checkAuthentication()
       this.title = this.$route.meta.title
       this.loginOpen = this.$route.path === '/login'
+    },
+    lang (lang) {
+      // Update application specific i18n (only use major language part)
+      this.$i18n.locale = lang.split('-')[0]
+      // Update quasar components i18n
+      // (dynamic import, so loading on demand only)
+      import(`quasar-framework/i18n/${lang}`).then(lang => {
+        this.$q.i18n.set(lang.default)
+      })
     }
   },
   components: { SidebarMenu, LoginDialog },
