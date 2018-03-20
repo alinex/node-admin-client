@@ -1,20 +1,13 @@
-// import info from './info'
+import layout from './layout'
 
 export default {
   // modules
-  // info,
+  layout,
 
+  // general parts
   title: 'Administration Panel',
-  // layout settings
-  layout: {
-    menu: {
-      settings: 'Settings',
-      login: 'Login',
-      logout: 'Logout',
-      profile: 'Profile'
-    },
-    sidebar: {
-      hideTitle: 'Hide or display left side menu'
-    }
-  }
+  formError: 'Could not send Form',
+  formErrorDetail: 'Please review the red marked fields again.',
+  notFound: 'Sorry, nothing here...',
+  goBack: 'Go Back'
 }

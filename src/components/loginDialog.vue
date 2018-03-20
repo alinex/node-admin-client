@@ -5,17 +5,15 @@
     <q-modal-layout>
       <q-toolbar slot="header">
         <q-btn flat round dense v-close-overlay icon="keyboard_arrow_left"/>
-        <q-toolbar-title>
-          Login
-        </q-toolbar-title>
+        <q-toolbar-title>{{ $t('layout.login.title') }}</q-toolbar-title>
       </q-toolbar>
       <div class="q-pa-md">
         <q-field class="q-pb-md"
           icon="email"
-          label="Email"
+          :label="$t('layout.login.email')"
           orientation="vertical"
           :error="$v.loginData.email.$error"
-          error-label="We need your registered email"
+          :error-label="$t('layout.login.emailError')"
           >
           <q-input v-model.trim="loginData.email"
             type="email"
@@ -27,10 +25,10 @@
         </q-field>
         <q-field
           icon="lock"
-          label="Password"
+          :label="$t('layout.login.password')"
           orientation="vertical"
           :error="$v.loginData.password.$error"
-          error-label="The password is mandatory"
+          :error-label="$t('layout.login.passwordError')"
           >
           <q-input v-model="loginData.password"
             type="password"
@@ -39,7 +37,7 @@
             />
         </q-field>
         <div class="q-pt-md float-right">
-          <q-btn color="primary" label="Login"
+          <q-btn color="primary" :label="$t('layout.login.title')"
             @click="login" />
         </div>
       </div>
@@ -87,8 +85,8 @@ export default {
         console.log(this.$v.loginData.$error)
         this.$q.notify({
           icon: 'error outline',
-          message: 'Could not send Form',
-          detail: 'Please review fields again.'
+          message: this.$t('formError'),
+          detail: this.$t('formErrorDetail')
         })
         return
       }
@@ -102,7 +100,7 @@ export default {
             this.$q.notify({
               color: 'positive',
               icon: 'check circle',
-              message: 'Successfully authenticated'
+              message: this.$t('layout.login.success')
             })
           }
           return Promise.resolve()
@@ -110,7 +108,7 @@ export default {
         .catch(() => {
           this.$q.notify({
             icon: 'error outline',
-            message: 'Could not login',
+            message: this.$t('layout.login.fail'),
             detail: this.$store.state.auth.errorOnAuthenticate.message
           })
         })

@@ -2,8 +2,8 @@
   <q-page class="flex flex-center">
     <div class="container">
       <div class="page layout-padding">
-        <img src="~assets/alinex.jpg" alt="Alinex Logo" />
-        <h1 class="center-text">Administration Panel</h1>
+        <img src="~assets/alinex.png" alt="Alinex Logo" />
+        <h1 class="center-text">{{ $t('title') }}</h1>
       </div>
     </div>
   </q-page>

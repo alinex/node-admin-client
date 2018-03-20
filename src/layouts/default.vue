@@ -4,14 +4,14 @@
       <q-toolbar color="primary" glossy>
         <q-btn flat dense round
           @click="leftDrawerOpen = !leftDrawerOpen"
-          :title="$t('layout.sidebar.hideTitle')"
+          :title="$t('layout.sidebarHide')"
           >
           <q-icon name="menu" />
         </q-btn>
 
         <q-toolbar-title>
           {{ $t('title') }}
-          <div slot="subtitle">{{ title }}</div>
+          <div slot="subtitle">{{ subtitle }}</div>
         </q-toolbar-title>
         <q-btn-dropdown flat round dense icon="settings" :title="$t('layout.menu.settings')">
           <q-list link>
@@ -32,7 +32,7 @@
               <q-item-main :label="$t('layout.menu.login')" />
             </q-item>
             <q-item to="/user"
-              :class="authenticatedClass()">
+              class="hidden" :rclass="authenticatedClass()">
               <q-item-side icon="account circle" />
               <q-item-main :label="$t('layout.menu.profile')" />
             </q-item>
@@ -69,21 +69,27 @@ export default {
   data () {
     return {
       title: '',
+      label: '',
       public: false,
       leftDrawerOpen: true,
       loginOpen: false,
       lang: this.$q.i18n.lang
     }
   },
+  computed: {
+    subtitle () {
+      return this.$route.meta.label
+        ? this.$i18n.t(this.$route.meta.label)
+        : this.$route.meta.title
+    }
+  },
   mounted () {
     this.checkAuthentication()
-    this.title = this.$route.meta.title
     this.loginOpen = this.$route.path === '/login'
   },
   watch: {
     '$route' () {
       this.checkAuthentication()
-      this.title = this.$route.meta.title
       this.loginOpen = this.$route.path === '/login'
     },
     lang (lang) {

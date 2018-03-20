@@ -1,20 +1,13 @@
-// import info from './info'
+import layout from './layout'
 
 export default {
   // modules
-  // info,
+  layout,
 
-  title: 'Administrations Portal',
-  // layout settings
-  layout: {
-    menu: {
-      settings: 'Einstellungen',
-      login: 'Anmelden',
-      logout: 'Abmelden',
-      profile: 'Profil'
-    },
-    sidebar: {
-      hideTitle: 'Verstecken oder einblenden der linken Seitenleiste'
-    }
-  }
+  // general parts
+  title: 'Administrations Panel',
+  formError: 'Formular konnte nicht versendet werden',
+  formErrorDetail: 'Bitte prüfen sie die Angaben in den rot markierten Feldern',
+  notFound: 'Ups, hier wurde nichts gefunden...',
+  goBack: 'Gehe Zurück'
 }

@@ -5,7 +5,8 @@ export default [
     component: () => import('layouts/default'),
     children: [
       { path: 'login',
-        component: () => import('pages/index') },
+        component: () => import('pages/index'),
+        meta: { public: true } },
       { path: 'test/public',
         component: () => import('pages/test/public'),
         meta: { title: 'Public Test Page', public: true } },
@@ -14,8 +15,10 @@ export default [
         meta: { title: 'Secure Test Page' } },
       { path: 'info',
         component: () => import('pages/info'),
-        meta: { title: 'Server Information', public: true } },
-      { path: '', component: () => import('pages/index') }
+        meta: { label: 'layout.module.core.infoSub', public: true } },
+      { path: '',
+        component: () => import('pages/index'),
+        meta: { public: true } }
     ]
   },
 

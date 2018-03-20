@@ -1,17 +1,19 @@
 <template>
   <q-list no-border link inset-delimiter>
-    <q-collapsible label="Core System">
+    <q-collapsible :label="$t('layout.module.core.title')">
       <q-item to="/info">
         <q-item-side icon="info" />
-        <q-item-main label="Info" sublabel="systems information" />
+        <q-item-main
+          :label="$t('layout.module.core.info')"
+          :sublabel="$t('layout.module.core.infoSub')" />
       </q-item>
-      <q-item to="/access">
+      <q-item to="/access" class="hidden">
         <q-item-side icon="vpn key" />
         <q-item-main label="Access Control" sublabel="User and Rights" />
       </q-item>
     </q-collapsible>
 
-    <q-collapsible label="Test Pages">
+    <q-collapsible label="Test">
       <q-item to="/test/public">
         <q-item-side icon="lock open" />
         <q-item-main label="Public Page" />
@@ -23,14 +25,14 @@
       </q-item>
     </q-collapsible>
 
-    <q-collapsible label="Colaborative Tools">
+    <q-collapsible label="Colaborative Tools" class="hidden">
       <!-- chat -->
     </q-collapsible>
 
-    <q-collapsible label="Server Management">
+    <q-collapsible label="Server Management" class="hidden">
     </q-collapsible>
 
-    <q-collapsible label="Data Analysis">
+    <q-collapsible label="Data Analysis" class="hidden">
     </q-collapsible>
   </q-list>
 </template>

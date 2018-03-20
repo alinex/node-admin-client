@@ -13,7 +13,7 @@ export const AuthMixin = {
           this.$q.notify({
             color: 'positive',
             icon: 'check circle',
-            message: 'Successfully logged out'
+            message: this.$t('layout.logout.success')
           })
           return Promise.resolve()
         })
