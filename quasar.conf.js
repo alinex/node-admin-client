@@ -35,8 +35,21 @@ module.exports = function (ctx) {
           enforce: 'pre',
           test: /\.(js|vue)$/,
           loader: 'eslint-loader',
-          exclude: /(node_modules|quasar)/
+          exclude: /(node_modules|quasar)/,
+          options: { fix: true }
         })
+        console.log(cfg.resolve)
+        // cfg.resolve.alias.vue$ = 'vue/dist/vue.common.js'
+        // cfg.module.rules.push({
+        //   test: /\.vue$/,
+        //   loader: 'vue-loader',
+        //   options: {
+        //     loaders: {
+        //       // you need to specify `i18n` loaders key with `vue-i18n-loader` (https://github.com/kazupon/vue-i18n-loader)
+        //       i18n: '@kazupon/vue-i18n-loader'
+        //     }
+        //   }
+        // })
       },
       env: ctx.dev
         ? { // so on dev we'll have

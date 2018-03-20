@@ -19,6 +19,7 @@
     "vuelidate": "^0.6.2"
   },
   "devDependencies": {
+    "@kazupon/vue-i18n-loader": "^0.3.0",
     "babel-eslint": "^8.2.2",
     "devtron": "1.4.0",
     "electron": "^1.8.4",
