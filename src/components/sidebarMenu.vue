@@ -1,11 +1,11 @@
 <template>
   <q-list no-border link inset-delimiter>
-    <q-collapsible :label="$t('layout.module.core.title')">
+    <q-collapsible :label="$t('core.title')">
       <q-item to="/info">
         <q-item-side icon="info" />
         <q-item-main
-          :label="$t('layout.module.core.info')"
-          :sublabel="$t('layout.module.core.infoSub')" />
+          :label="$t('core.info.title')"
+          :sublabel="$t('core.info.subtitle')" />
       </q-item>
       <q-item to="/access" class="hidden">
         <q-item-side icon="vpn key" />

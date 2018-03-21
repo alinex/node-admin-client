@@ -15,7 +15,7 @@ export default [
         meta: { title: 'Secure Test Page' } },
       { path: 'info',
         component: () => import('pages/info'),
-        meta: { label: 'layout.module.core.infoSub', public: true } },
+        meta: { label: 'core.info.subtitle', public: true } },
       { path: '',
         component: () => import('pages/index'),
         meta: { public: true } }

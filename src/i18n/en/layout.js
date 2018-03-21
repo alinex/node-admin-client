@@ -17,12 +17,5 @@ export default {
   logout: {
     success: 'Successfully logged out'
   },
-  sidebarHide: 'Hide or display left side menu',
-  module: {
-    core: {
-      title: 'Core System',
-      info: 'Info',
-      infoSub: 'System Information'
-    }
-  }
+  sidebarHide: 'Hide or display left side menu'
 }

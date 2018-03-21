@@ -1,9 +1,10 @@
 import layout from './layout'
+import core from './core'
 
 export default {
-  // modules
   layout,
-
+  // modules
+  core,
   // general parts
   title: 'Administrations Panel',
   formError: 'Formular konnte nicht versendet werden',

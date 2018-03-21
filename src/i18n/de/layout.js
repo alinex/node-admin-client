@@ -17,12 +17,5 @@ export default {
   logout: {
     success: 'Erfolgreich vom System abgemeldet'
   },
-  sidebarHide: 'Verstecken oder einblenden der linken Seitenleiste',
-  module: {
-    core: {
-      title: 'Basis System',
-      info: 'Info',
-      infoSub: 'System Informationen'
-    }
-  }
+  sidebarHide: 'Verstecken oder einblenden der linken Seitenleiste'
 }
