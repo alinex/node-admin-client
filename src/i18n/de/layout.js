@@ -6,11 +6,12 @@ export default {
     profile: 'Profil'
   },
   login: {
-    title: 'Login',
+    title: 'Anmeldung',
     email: 'Email',
     emailError: 'Eine registrierte Email Adresse ist notwendig',
     password: 'Passwort',
     passwordError: 'Die Eingabe des kompletten Passworts ist notwendig',
+    submit: 'Login',
     success: 'Anmeldung erfolgreich',
     fail: 'Anmeldung nicht möglich!'
   },

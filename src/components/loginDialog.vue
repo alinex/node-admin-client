@@ -4,7 +4,9 @@
     >
     <q-modal-layout>
       <q-toolbar slot="header">
-        <q-btn flat round dense v-close-overlay icon="keyboard_arrow_left"/>
+        <q-btn flat round dense v-close-overlay
+          icon="keyboard_arrow_left"
+          :title="$t('goBack')" />
         <q-toolbar-title>{{ $t('layout.login.title') }}</q-toolbar-title>
       </q-toolbar>
       <div class="q-pa-md">
@@ -37,7 +39,7 @@
             />
         </q-field>
         <div class="q-pt-md float-right">
-          <q-btn color="primary" :label="$t('layout.login.title')"
+          <q-btn color="primary" :label="$t('layout.login.submit')"
             @click="login" />
         </div>
       </div>

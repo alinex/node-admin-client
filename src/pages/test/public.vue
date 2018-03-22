@@ -1,17 +1,3 @@
-<i18n>
-{
-  "en": {
-    "hello": "hello world!"
-  },
-  "de": {
-    "hello": "Hallöle"
-  },
-  "ja": {
-    "hello": "こんにちは、世界！"
-  }
-}
-</i18n>
-
 <template>
   <q-page class="layout-padding">
     <h4 row>Public Page</h4>
@@ -19,7 +5,6 @@
     <p row>Counter: {{ count }}</p>
     <q-btn label="Increment" @click="increment()" />
     <q-btn label="Test" @click="test()" />
-    {{ $t('hello') }}
   </q-page>
 </template>
 
