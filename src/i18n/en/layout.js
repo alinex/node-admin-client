@@ -11,6 +11,7 @@ export default {
     emailError: 'We need your registered email',
     password: 'Password',
     passwordError: 'The password is mandatory',
+    submit: 'Login',
     success: 'Successfully authenticated',
     fail: 'Could not login!'
   },
