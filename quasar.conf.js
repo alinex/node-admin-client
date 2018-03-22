@@ -31,6 +31,7 @@ module.exports = function (ctx) {
       // useNotifier: false,
       publicPath: ctx.mode.spa ? '/web/' : '/',
       extendWebpack (cfg) {
+        cfg.module.rules[0].options.loaders['i18n'] = '@kazupon/vue-i18n-loader'
         cfg.module.rules.push({
           enforce: 'pre',
           test: /\.(js|vue)$/,

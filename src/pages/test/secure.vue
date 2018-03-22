@@ -1,3 +1,14 @@
+<i18n>
+{
+  "en": {
+    "hello": "hhhhhhello world!"
+  },
+  "de": {
+    "hello": "hhhhhhHallo zusammen！"
+  }
+}
+</i18n>
+
 <template>
   <q-page class="layout-padding">
     <h4 row>Secure Page</h4>
@@ -5,6 +16,7 @@
     <p row>Counter: {{ count }}</p>
     <q-btn label="Increment" @click="increment()" />
     <q-btn label="Test" @click="test()" />
+    <p>{{ $t('hello') }}</p>
   </q-page>
 </template>
 
