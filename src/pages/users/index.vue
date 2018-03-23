@@ -3,7 +3,7 @@
 
     <q-breadcrumbs class="q-mb-lg">
       <q-breadcrumbs-el :label="$t('goHome')" icon="home" to="/" />
-      <q-breadcrumbs-el :label="$t('core.users.title')" icon="account box" />
+      <q-breadcrumbs-el :label="$t(`${$route.meta.module}.title`)" icon="account box" />
     </q-breadcrumbs>
 
     <q-table

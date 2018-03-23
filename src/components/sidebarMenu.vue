@@ -8,7 +8,7 @@
           :sublabel="$t('core.info.subtitle')" />
       </q-item>
       <q-item to="/users">
-        <q-item-side icon="vpn key" />
+        <q-item-side icon="account box" />
         <q-item-main
           :label="$t('core.users.title')"
           :sublabel="$t('core.users.subtitle')" />

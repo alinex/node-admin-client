@@ -10,5 +10,6 @@ export default {
   formError: 'Could not send Form',
   formErrorDetail: 'Please review the red marked fields again.',
   notFound: 'Sorry, nothing here...',
-  goBack: 'Go Back'
+  goBack: 'Go Back',
+  goHome: 'Home'
 }

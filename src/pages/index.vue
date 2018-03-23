@@ -1,10 +1,20 @@
 <template>
-  <q-page class="flex flex-center">
-    <div class="container">
+  <q-page padding>
+    <div class="box row title">
       <div class="page layout-padding">
         <img src="~assets/alinex.png" alt="Alinex Logo" />
         <h1 class="center-text">{{ $t('title') }}</h1>
       </div>
+    </div>
+    <div class="box row">
+      <q-btn flat round wait-for-ripple
+        @click="$router.push('/info')"
+        size="48px" icon="info"
+        :title="$t('core.info.title') + '\n' + $t('core.info.subtitle')" />
+      <q-btn flat round wait-for-ripple
+        @click="$router.push('/users')"
+        size="48px" icon="account box"
+        :title="$t('core.users.title') + '\n' + $t('core.users.subtitle')" />
     </div>
   </q-page>
 </template>
@@ -17,16 +27,17 @@
     -o-background-size: cover;
     background-size: cover;
   }
-  .page {
+  .box {
+    display: table;
+    margin: 0 auto;
     border: 3px solid #aaa;
     border-radius: 40px;
     background: #eee;
     opacity: 0.8;
     text-align: center;
   }
-  img {
-    width: 340px;
-    margin-bottom: 8px;
+  .box.title {
+    margin-bottom:40px;
   }
   h1 {
     margin: 0;
