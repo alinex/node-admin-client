@@ -59,6 +59,8 @@ module.exports = function (ctx) {
     framework: {
       i18n: 'de',
       components: [
+        'QBreadcrumbs',
+        'QBreadcrumbsEl',
         'QBtn',
         'QBtnDropdown',
         'QCollapsible',

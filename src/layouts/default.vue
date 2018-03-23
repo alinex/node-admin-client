@@ -13,18 +13,18 @@
           {{ $t('title') }}
           <div slot="subtitle">{{ subtitle }}</div>
         </q-toolbar-title>
-        <q-btn-dropdown flat round dense icon="settings" :title="$t('layout.menu.settings')">
+        <q-btn-dropdown flat round dense icon="language" :title="$t('layout.menu.language')">
           <q-list link>
-            <q-item v-close-overlay
-              @click.native="lang = 'en-us'">
-              <q-item-side icon="language" />
-              <q-item-main label="English" />
+            <q-item v-close-overlay @click.native="lang = 'en-us'">
+              English
             </q-item>
-            <q-item v-close-overlay
-              @click.native="lang = 'de'">
-              <q-item-side icon="language" />
-              <q-item-main label="Deutsch" />
+            <q-item v-close-overlay @click.native="lang = 'de'">
+              Deutsch
             </q-item>
+          </q-list>
+        </q-btn-dropdown>
+        <q-btn-dropdown flat round dense icon="account circle" :title="$t('layout.menu.settings')">
+          <q-list link>
             <q-item v-close-overlay
               :class="notAuthenticatedClass()"
               @click.native="loginOpen = true">
@@ -78,8 +78,8 @@ export default {
   },
   computed: {
     subtitle () {
-      return this.$route.meta.label
-        ? this.$i18n.t(this.$route.meta.label)
+      return this.$route.meta.module
+        ? this.$i18n.t(`${this.$route.meta.module}.title`) + ': ' + this.$i18n.t(`${this.$route.meta.module}.subtitle`)
         : this.$route.meta.title
     }
   },

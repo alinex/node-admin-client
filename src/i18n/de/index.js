@@ -10,5 +10,6 @@ export default {
   formError: 'Formular konnte nicht versendet werden',
   formErrorDetail: 'Bitte prüfen sie die Angaben in den rot markierten Feldern',
   notFound: 'Ups, hier wurde nichts gefunden...',
-  goBack: 'Gehe Zurück'
+  goBack: 'Gehe Zurück',
+  goHome: 'Start'
 }
