@@ -6,7 +6,7 @@
         <h1 class="center-text">{{ $t('title') }}</h1>
       </div>
     </div>
-    <div class="box row">
+    <div class="icons row">
       <q-btn flat round wait-for-ripple
         @click="$router.push('/info')"
         size="48px" icon="info"
@@ -38,6 +38,13 @@
   }
   .box.title {
     margin-bottom:40px;
+  }
+  .icons button {
+    background: #eee;
+    opacity: 0.6;
+    margin: 10px;
+    /* height: 2em;
+    width: 2em; */
   }
   h1 {
     margin: 0;
