@@ -8,13 +8,19 @@
     </div>
     <div class="icons row">
       <q-btn flat round wait-for-ripple
-        @click="$router.push('/info')"
-        size="48px" icon="info"
-        :title="$t('core.info.title') + '\n' + $t('core.info.subtitle')" />
+        @click="$router.push('/info')" icon="info" >
+        <q-tooltip anchor="bottom middle" self="top middle" delay="500" class="q-mt-sm">
+          <b>{{ $t('core.info.title')}}</b><br />
+          {{$t('core.info.subtitle')}}
+        </q-tooltip>
+      </q-btn>
       <q-btn flat round wait-for-ripple
-        @click="$router.push('/users')"
-        size="48px" icon="account box"
-        :title="$t('core.users.title') + '\n' + $t('core.users.subtitle')" />
+        @click="$router.push('/users')" icon="account box" >
+        <q-tooltip anchor="bottom middle" self="top middle" delay="500" class="q-mt-sm">
+          <b>{{ $t('core.users.title')}}</b><br />
+          {{$t('core.users.subtitle')}}
+        </q-tooltip>
+      </q-btn>
     </div>
   </q-page>
 </template>
@@ -37,20 +43,37 @@
     text-align: center;
   }
   .box.title {
-    margin-bottom:40px;
+    margin-bottom: 40px;
+    max-width: 90%;
+  }
+  .icons {
+    justify-content: center;
   }
   .icons button {
     background: #eee;
     opacity: 0.6;
     margin: 10px;
-    /* height: 2em;
-    width: 2em; */
+    font-size: 32px;
+    height: 2.5em;
+    width: 2.5em;
+  }
+  .title img {
+    max-width: 90%;
   }
   h1 {
     margin: 0;
     color: #f0ad4e;
-    font-size: 38px;
+    font-size: 28px;
     font-weight: 900;
+  }
+  @media (min-width: 420px) {
+    .title img { max-width: 90%; }
+    h1 { font-size: 32px; }
+   .icons button { font-size: 48px; }
+  }
+  @media (min-width: 767px) {
+    .title img { max-width: 100%; }
+    h1 { font-size: 36px; }
   }
 </style>
 
