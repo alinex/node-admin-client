@@ -63,7 +63,7 @@
   h1 {
     margin: 0;
     color: #f0ad4e;
-    font-size: 28px;
+    font-size: 26px;
     font-weight: 900;
   }
   @media (min-width: 420px) {

@@ -15,10 +15,12 @@
         </q-toolbar-title>
         <q-btn-dropdown flat round dense icon="language" :title="$t('layout.menu.language')">
           <q-list link>
-            <q-item v-close-overlay @click.native="lang = 'en-us'">
+            <q-item v-close-overlay @click.native="lang = 'en-us'"
+              :disabled="this.$i18n.locale === 'en'">
               English
             </q-item>
-            <q-item v-close-overlay @click.native="lang = 'de'">
+            <q-item v-close-overlay @click.native="lang = 'de'"
+              :disabled="this.$i18n.locale === 'de'">
               Deutsch
             </q-item>
           </q-list>
