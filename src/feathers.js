@@ -16,6 +16,8 @@ const feathersClient = feathers()
   })) // you could use Primus or REST instead
   .configure(authentication({ storage: window.localStorage }))
 
+// login with stored token on start or reconnect
+feathersClient.authenticate()
 socket.on('reconnect', () => { feathersClient.authenticate() })
 
 export default feathersClient
