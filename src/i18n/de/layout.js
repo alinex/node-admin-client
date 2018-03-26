@@ -1,5 +1,6 @@
 export default {
   menu: {
+    language: 'Sprache',
     settings: 'Einstellungen',
     login: 'Anmelden',
     logout: 'Abmelden',
