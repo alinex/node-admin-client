@@ -3,6 +3,7 @@ export default {
     language: 'Sprache',
     settings: 'Einstellungen',
     login: 'Anmelden',
+    loginSub: 'Mit Benutzerkonto',
     logout: 'Abmelden',
     profile: 'Profil'
   },

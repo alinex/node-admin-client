@@ -30,7 +30,7 @@
             <q-item v-close-overlay
               :class="notAuthenticatedClass()"
               @click.native="loginOpen = true">
-              <q-item-side icon="lock" />
+              <q-item-side icon="vpn key" />
               <q-item-main :label="$t('layout.menu.login')" />
             </q-item>
             <q-item to="/user"

@@ -7,7 +7,7 @@
           :label="$t('core.info.title')"
           :sublabel="$t('core.info.subtitle')" />
       </q-item>
-      <q-item to="/users">
+      <q-item to="/users" :class="authenticatedClass()">
         <q-item-side icon="account box" />
         <q-item-main
           :label="$t('core.users.title')"
