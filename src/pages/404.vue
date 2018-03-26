@@ -2,15 +2,19 @@
   <div class="fixed-center text-center">
     <p>
       <img
-        src="~assets/sad.svg"
+        src="~assets/404.jpg"
         style="width:30vw;max-width:150px;"
       >
     </p>
     <p class="text-faded">{{ $t('notFound') }}<strong>(404)</strong></p>
     <q-btn
-      color="secondary"
+      color="primary"
       style="width:200px;"
-      @click="$router.push('/')"
-      v-t="goBack" />
+      @click="$router.push('/')" replace>
+      {{$t('goBack')}}
+    </q-btn>
   </div>
 </template>
+
+<script>
+</script>

@@ -1,50 +1,27 @@
 <template>
-  <q-page class="q-ma-lg">
+  <q-page class="q-pa-lg">
 
     <q-breadcrumbs class="q-mb-lg">
       <q-breadcrumbs-el :label="$t('goHome')" icon="home" to="/" />
       <q-breadcrumbs-el :label="$t(`${$route.meta.module}.title`)" icon="account box" />
     </q-breadcrumbs>
 
-    <q-table
-      :data="tableData"
-      :columns="columns"
-      :filter="filter"
-      row-key="name"
-      :loading="loading"
-      :pagination.sync="pagination"
-    >
-      <template slot="top-left" slot-scope="props">
-        <q-search
-          hide-underline
-          color="secondary"
-          v-model="filter"
-          class="col-6"
-        />
-      </template>
-      <template slot="top-right" slot-scope="props">
-        <q-btn
-          flat round dense
-          :icon="props.inFullscreen ? 'fullscreen_exit' : 'fullscreen'"
-          @click="props.toggleFullscreen"
-        />
-      </template>
-      <div slot="pagination" slot-scope="props" class="row flex-center q-py-sm">
-        <q-btn
-          round dense size="sm" icon="undo" color="secondary" class="q-mr-sm"
-          :disable="props.isFirstPage"
-          @click="props.prevPage"
-        />
-        <div class="q-mr-sm" style="font-size: small">
-          Page {{ props.pagination.page }} / {{ props.pagesNumber }}
-        </div>
-        <q-btn
-          round dense size="sm" icon="redo" color="secondary"
-          :disable="props.isLastPage"
-          @click="props.nextPage"
-        />
-      </div>
-    </q-table>
+    <q-list link separator no-border>
+      <q-list-header>Users</q-list-header>
+      <q-item v-for="user in users" :key="user._id"
+        :to="'/users/' + user._id">
+        <q-item-side :avatar="user.gravatar" />
+        <q-item-main :label="user.email" />
+        <q-item-side right icon="chat_bubble" />
+      </q-item>
+    </q-list>
+
+    <div class="q-pt-md float-right">
+      <q-btn icon="add" label="Add User"
+        color="positive"
+        style="width:200px" />
+    </div>
+
   </q-page>
 </template>
 
@@ -52,32 +29,13 @@
 export default {
   // name: 'PageName',
   data: () => ({
-    columns: [
-      {
-        name: 'name',
-        label: 'Name',
-        field: '_id',
-        align: 'left'
-      },
-      {
-        name: 'email',
-        label: 'Email',
-        field: 'email',
-        align: 'left'
-      }
-    ],
-    tableData: [],
-    loading: true,
-    pagination: {
-      rowsPerPage: 7
-    },
-    filter: ''
+    users: [],
+    loading: true
   }),
   async created () {
     try {
       const response = await this.$feathers.service('users').find()
-      console.log(response)
-      this.tableData = response.data
+      this.users = response.data
     } catch (error) {
       console.error(error.message)
       this.$q.notify('ERROR: ' + error.message + '. Check server connection.')

@@ -9,14 +9,14 @@
     <div class="icons row">
       <q-btn flat round wait-for-ripple
         @click="$router.push('/info')" icon="info" >
-        <q-tooltip anchor="bottom middle" self="top middle" delay="500" class="q-mt-sm">
+        <q-tooltip anchor="bottom middle" self="top middle" :delay="500" class="q-mt-sm">
           <b>{{ $t('core.info.title')}}</b><br />
           {{$t('core.info.subtitle')}}
         </q-tooltip>
       </q-btn>
       <q-btn flat round wait-for-ripple
         @click="$router.push('/users')" icon="account box" >
-        <q-tooltip anchor="bottom middle" self="top middle" delay="500" class="q-mt-sm">
+        <q-tooltip anchor="bottom middle" self="top middle" :delay="500" class="q-mt-sm">
           <b>{{ $t('core.users.title')}}</b><br />
           {{$t('core.users.subtitle')}}
         </q-tooltip>

@@ -1,5 +1,5 @@
 <template>
-  <q-page class="q-ma-lg">
+  <q-page class="q-pa-lg">
 
     <q-breadcrumbs class="q-mb-lg">
       <q-breadcrumbs-el :label="$t('goHome')" icon="home" to="/" />

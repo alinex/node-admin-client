@@ -16,7 +16,10 @@ export default [
         meta: { module: 'core.info', public: true } },
       { path: 'users',
         component: () => import('pages/users/index'),
-        meta: { module: 'core.users', public: true } },
+        meta: { module: 'core.users' } },
+      { path: 'users/:id',
+        component: () => import('pages/users/detail'),
+        meta: { module: 'core.users' } },
 
       { path: 'test/public',
         component: () => import('pages/test/public'),
