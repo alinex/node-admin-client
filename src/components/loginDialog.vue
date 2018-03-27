@@ -26,7 +26,7 @@
             />
         </q-field>
         <q-field
-          icon="lock"
+          icon="vpn key"
           :label="$t('layout.login.password')"
           orientation="vertical"
           :error="$v.loginData.password.$error"
@@ -39,7 +39,8 @@
             />
         </q-field>
         <div class="q-pt-md float-right">
-          <q-btn color="primary" :label="$t('layout.login.submit')"
+          <q-btn color="primary" icon="lock"
+            :label="$t('layout.login.submit')"
             @click="login" />
         </div>
       </div>
