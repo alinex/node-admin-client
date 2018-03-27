@@ -6,7 +6,38 @@
       <q-breadcrumbs-el :label="$t(`${$route.meta.module}.title`)" icon="info" />
     </q-breadcrumbs>
 
-    <q-table
+    <q-tabs inverted>
+      <q-tab default slot="title"
+        name="tab-about" icon="info outline" label="About" hide="label" />
+      <q-tab slot="title"
+        name="tab-2" icon="mdi-monitor" label="Client" hide="label" />
+      <q-tab slot="title" name="tab-3" icon="mdi-apps" label="Application" hide="label" />
+      <q-tab slot="title" name="tab-4" icon="mdi-server" label="Server" hide="label" />
+      <q-tab slot="title" name="tab-5" icon="mdi-package-variant" label="Dependency" hide="label" />
+
+      <!-- About -->
+      <q-tab-pane name="tab-about">
+        <div class="row items-center">
+          <img src="~assets/alinex.png" class="float-left q-ma-md" />
+          <h1 class="q-ma-none">{{ $t('title') }}</h1>
+        </div>
+        <div class="row q-mt-md">
+          <p>The administration panel is an easy and fast way to manage IT systems for technical and non technical staff.</p>
+          <p>It is a universal control interface which can become real powerful by adding modules for special tasks. This modules will interact with the real systems in a proper and safe way. The user has no direct control but the limited functionality like defined in the module.</p>
+        </div>
+        <hr />
+        <div class="row q-mt-md" v-if="info">
+          <p>Version: {{ info }}</p>
+        </div>
+      </q-tab-pane>
+
+      <q-tab-pane name="tab-2">Tab Two</q-tab-pane>
+      <q-tab-pane name="tab-3">Tab Three</q-tab-pane>
+      <q-tab-pane name="tab-4">Tab Four</q-tab-pane>
+      <q-tab-pane name="tab-5">Tab Five</q-tab-pane>
+    </q-tabs>
+
+    <q-table class="q-mt-xl"
       :data="tableData"
       :columns="columns"
       :filter="filter"
@@ -72,6 +103,7 @@ export default {
         align: 'left'
       }
     ],
+    info: {},
     tableData: [],
     loading: true,
     pagination: {
@@ -95,6 +127,10 @@ export default {
         }
         return e
       })
+      for (const row of this.tableData) {
+        if (!this.info[row.group]) this.info[row.group] = {}
+        this.info[row.group][row.name] = row.value
+      }
     } catch (error) {
       console.error(error.message)
       this.$q.notify('ERROR: ' + error.message + '. Check server connection.')

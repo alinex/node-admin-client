@@ -12,9 +12,9 @@ module.exports = function (ctx) {
     ],
     extras: [
       ctx.theme.mat ? 'roboto-font' : null,
-      'material-icons'
+      'material-icons',
       // 'ionicons',
-      // 'mdi',
+      'mdi'
       // 'fontawesome'
     ],
     supportIE: false,
@@ -80,8 +80,12 @@ module.exports = function (ctx) {
         'QModalLayout',
         'QPageContainer',
         'QPage',
+        'QRouteTab',
         'QSearch',
         'QSelect',
+        'QTab',
+        'QTabs',
+        'QTabPane',
         'QTable',
         'QTableColumns',
         'QToolbar',

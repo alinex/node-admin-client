@@ -19,7 +19,7 @@
           >
           <q-input v-model.trim="loginData.email"
             type="email"
-            placeholder="myname@gmail.com"
+            placeholder="demo@alinex.de"
             autofocus
             ref="loginEmail"
             @blur="$v.loginData.email.$touch"
@@ -34,6 +34,7 @@
           >
           <q-input v-model="loginData.password"
             type="password"
+            placeholder="demo"
             @blur="$v.loginData.password.$touch"
             @keyup.enter="login"
             />
