@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "quasar dev",
     "lint": "eslint --ext .js,.vue src --fix",
+    "play": "quasar dev -m cordova -T android",
     "build": "quasar build; quasar build -m electron -T all; tar -C dist/electron-mat -czvf dist/electron-mat/Administration-Panel-linux-x64.tgz Administration-Panel-linux-x64; tar -C dist/electron-mat -czvf dist/electron-mat/Administration-Panel-darwin-x64.tgz Administration-Panel-darwin-x64; cd dist/electron-mat; zip -r Administration-Panel-win32-x64.zip Administration-Panel-win32-x64/"
   },
   "dependencies": {
