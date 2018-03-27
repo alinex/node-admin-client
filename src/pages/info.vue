@@ -26,9 +26,13 @@
           <p>It is a universal control interface which can become real powerful by adding modules for special tasks. This modules will interact with the real systems in a proper and safe way. The user has no direct control but the limited functionality like defined in the module.</p>
         </div>
         <hr />
-        <div class="row q-mt-md" v-if="info">
-          <p>Version: {{ info }}</p>
+        <div class="col q-mt-md" v-if="!loading">
+          <p>Version: 0.1.0<br />
+          Server: {{ info.app.name }} {{ info.app.version }}</p>
         </div>
+        <q-inner-loading :visible="loading">
+          <q-spinner-gears size="50px" color="primary"></q-spinner-gears>
+        </q-inner-loading>
       </q-tab-pane>
 
       <q-tab-pane name="tab-2">Tab Two</q-tab-pane>
