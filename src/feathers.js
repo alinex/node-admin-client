@@ -17,8 +17,7 @@ const feathersClient = feathers()
   .configure(authentication({ storage: window.localStorage }))
 
 // login with stored token on start or reconnect
-feathersClient.authenticate()
-  .catch(() => {}) // ignore errors here
-socket.on('reconnect', () => { feathersClient.authenticate() })
+feathersClient.authenticate().catch(() => {})
+socket.on('reconnect', () => { feathersClient.authenticate().catch(() => {}) })
 
 export default feathersClient
