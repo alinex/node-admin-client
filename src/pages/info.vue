@@ -20,8 +20,8 @@
           <h1 class="q-ma-none">{{ $t('title') }}</h1>
         </div>
         <div class="row q-mt-md">
-          <p>The administration panel is an easy and fast way to manage IT systems for technical and non technical staff.</p>
-          <p>It is a universal control interface which can become real powerful by adding modules for special tasks. This modules will interact with the real systems in a proper and safe way. The user has no direct control but the limited functionality like defined in the module.</p>
+          <p>{{ $t('core.info.about1') }}</p>
+          <p>{{ $t('core.info.about2') }}</p>
         </div>
         <hr />
         <div class="col q-mt-md" v-if="!loading">
@@ -61,7 +61,7 @@
           <tr><td>Running as</td><td>{{ info.host.user }} ({{ info.host.userid }})</td></tr>
           <tr><td>Directory</td><td>{{ info.node.workingdirectory }}</td></tr>
           <tr><td>Process ID</td><td>{{ info.node.processid }}</td></tr>
-          <tr><td>Uptime</td><td>{{ processUptime }}</td></tr>
+          <tr><td>Uptime</td><td>since {{ processUptime }}</td></tr>
           <tr><td>CPU Usage</td><td>{{ Math.round(info.node.cpuusage*10)/10 }}%</td></tr>
           <tr><td>Memory RSS</td><td>{{ Math.round(info.node.memoryrss/1024/1024*10)/10 }} MB</td></tr>
           <!--<tr><td>Memory VIRT</td><td>{{ Math.round(info.node.memoryvirt/1024/1024*10)/10 }} MB</td></tr>-->
@@ -139,8 +139,6 @@
 </template>
 
 <style lang="stylus" scoped>
-<<<<<<< HEAD
-=======
 table.data
   th
     text-align: left
@@ -157,7 +155,6 @@ table.data-groups
     th
       padding-top: 0
 
->>>>>>> e3312374cd368fe4d4ae3577ce6432c55b733429
 .q-table tbody td
   white-space: pre-wrap
 </style>
