@@ -1,6 +1,6 @@
 {
   "name": "alinex-admin-client",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Fast and easy web administration panel for IT",
   "productName": "Administration-Panel",
   "cordovaId": "org.cordova.alinex.app",
@@ -15,6 +15,7 @@
   "dependencies": {
     "@feathersjs/client": "^3.4.4",
     "feathers-vuex": "^1.1.4",
+    "moment": "^2.21.0",
     "socket.io-client": "^2.0.4",
     "vue-i18n": "^7.6.0",
     "vuelidate": "^0.6.2"
