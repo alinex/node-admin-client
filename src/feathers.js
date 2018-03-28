@@ -18,6 +18,7 @@ const feathersClient = feathers()
 
 // login with stored token on start or reconnect
 feathersClient.authenticate()
+  .catch(() => {}) // ignore errors here
 socket.on('reconnect', () => { feathersClient.authenticate() })
 
 export default feathersClient
