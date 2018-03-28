@@ -46,6 +46,3 @@ export default {
   mixins: [AuthMixin]
 }
 </script>
-
-<style>
-</style>

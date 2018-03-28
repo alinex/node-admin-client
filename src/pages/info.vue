@@ -83,6 +83,11 @@
   </q-page>
 </template>
 
+<style lang="stylus" scoped>
+.q-table tbody td
+  white-space: pre-wrap
+</style>
+
 <script>
 export default {
   // name: 'PageName',
@@ -144,8 +149,3 @@ export default {
   }
 }
 </script>
-
-<style lang="stylus">
-.q-table tbody td
-  white-space: pre-wrap
-</style>

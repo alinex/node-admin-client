@@ -22,9 +22,6 @@
   </q-page>
 </template>
 
-<style>
-</style>
-
 <script>
 import { mapState, mapActions } from 'vuex'
 

@@ -45,8 +45,3 @@ export default {
   }
 }
 </script>
-
-<style lang="stylus">
-.q-table tbody td
-  white-space: pre-wrap
-</style>

@@ -15,6 +15,3 @@
     </q-btn>
   </div>
 </template>
-
-<script>
-</script>

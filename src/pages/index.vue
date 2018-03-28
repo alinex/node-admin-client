@@ -33,60 +33,58 @@
 </template>
 
 <style lang="stylus" scoped>
-  main {
-    background: url('~assets/background.jpg') no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-  }
-  .box {
-    display: table;
-    margin: 0 auto;
-    border: 3px solid #aaa;
-    border-radius: 40px;
-    background: #eee;
-    opacity: 0.8;
-    text-align: center;
-  }
-  .box.title {
-    margin-bottom: 40px;
-    max-width: 90%;
-  }
-  .icons {
-    justify-content: center;
-  }
-  .icons button {
-    background: #eee;
-    opacity: 0.6;
-    margin: 10px;
-    font-size: 32px;
-    height: 2.5em;
-    width: 2.5em;
-  }
-  .icons button.warning {
-    color: white;
-    background: #f0ad4e;
-    opacity: 0.8;
-  }
-  .title img {
-    max-width: 90%;
-  }
-  h1 {
-    margin: 0;
-    color: #f0ad4e;
-    font-size: 26px;
-    font-weight: 900;
-  }
-  @media (min-width: 420px) {
-    .title img { max-width: 90%; }
-    h1 { font-size: 32px; }
-   .icons button { font-size: 48px; }
-  }
-  @media (min-width: 767px) {
-    .title img { max-width: 100%; }
-    h1 { font-size: 36px; }
-  }
+  main
+    background: url('~assets/background.jpg') no-repeat center center fixed
+    background-size: cover
+
+  .box
+    display: table
+    margin: 0 auto
+    border: 3px solid #aaa
+    border-radius: 40px
+    background: #eee
+    opacity: 0.8
+    text-align: center
+    &.title
+      margin-bottom: 40px
+      max-width: 90%
+
+  .icons
+    justify-content: center
+    button
+      background: #eee
+      opacity: 0.6
+      margin: 10px
+      font-size: 32px
+      height: 2.5em
+      width: 2.5em
+      &.warning
+        color: white
+        background: #f0ad4e
+        opacity: 0.8
+
+  .title img
+    max-width: 90%
+
+  h1
+    margin: 0
+    color: #f0ad4e
+    font-size: 26px
+    font-weight: 900
+
+  @media (min-width: 420px)
+    .title img
+      max-width: 90%
+    h1
+      font-size: 32px
+    .icons button
+      font-size: 48px
+
+  @media (min-width: 767px)
+    .title img
+      max-width: 100%
+    h1
+      font-size: 36px
 </style>
 
 <script>
