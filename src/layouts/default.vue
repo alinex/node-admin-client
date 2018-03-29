@@ -70,9 +70,6 @@ export default {
   name: 'LayoutDefault',
   data () {
     return {
-      title: '',
-      label: '',
-      public: false,
       leftDrawerOpen: true,
       loginOpen: false,
       lang: this.$q.i18n.lang
