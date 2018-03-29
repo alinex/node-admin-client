@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout ref="layout" view="lHh Lpr lFf">
     <q-layout-header>
       <q-toolbar color="primary" glossy>
         <q-btn flat dense round
@@ -29,7 +29,7 @@
           <q-list link>
             <q-item v-close-overlay
               :class="notAuthenticatedClass()"
-              @click.native="loginOpen = true">
+              @click.native="$store.commit('loginOpened')">
               <q-item-side icon="vpn key" />
               <q-item-main :label="$t('layout.menu.login')" />
             </q-item>
@@ -54,7 +54,7 @@
     </q-layout-drawer>
 
     <q-page-container>
-      <router-view />
+      <router-view ref="nooo" />
       <login-dialog v-model="loginOpen" />
     </q-page-container>
 
@@ -75,6 +75,7 @@ export default {
       lang: this.$q.i18n.lang
     }
   },
+
   computed: {
     subtitle () {
       return this.$route.meta.module

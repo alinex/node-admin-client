@@ -28,11 +28,9 @@ import { mapState, mapActions } from 'vuex'
 export default {
   name: 'PageIndex',
   computed: {
-    ...mapState('auth', ['user']),
-    ...mapState('test', ['count'])
+    ...mapState('auth', ['user'])
   },
   methods: {
-    ...mapActions('test', ['increment']),
     ...mapActions('auth', ['authenticate']),
     test () {
       console.log(this.$store.state.auth.user)
