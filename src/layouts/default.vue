@@ -1,5 +1,5 @@
 <template>
-  <q-layout ref="layout" view="lHh Lpr lFf">
+  <q-layout view="lHh Lpr lFf">
     <q-layout-header>
       <q-toolbar color="primary" glossy>
         <q-btn flat dense round
@@ -29,7 +29,7 @@
           <q-list link>
             <q-item v-close-overlay
               :class="notAuthenticatedClass()"
-              @click.native="$store.commit('loginOpened')">
+              @click.native="$store.commit('layout/login')">
               <q-item-side icon="vpn key" />
               <q-item-main :label="$t('layout.menu.login')" />
             </q-item>
@@ -54,8 +54,8 @@
     </q-layout-drawer>
 
     <q-page-container>
-      <router-view ref="nooo" />
-      <login-dialog v-model="loginOpen" />
+      <router-view />
+      <login-dialog />
     </q-page-container>
 
   </q-layout>
@@ -71,7 +71,6 @@ export default {
   data () {
     return {
       leftDrawerOpen: true,
-      loginOpen: false,
       lang: this.$q.i18n.lang
     }
   },
@@ -85,12 +84,12 @@ export default {
   },
   mounted () {
     this.checkAuthentication()
-    this.loginOpen = this.$route.path === '/login'
+    this.$store.commit('layout/login', this.$route.path === '/login')
   },
   watch: {
     '$route' () {
       this.checkAuthentication()
-      this.loginOpen = this.$route.path === '/login'
+      this.$store.commit('layout/login', this.$route.path === '/login')
     },
     lang (lang) {
       // Update application specific i18n (only use major language part)

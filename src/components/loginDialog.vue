@@ -86,7 +86,7 @@ export default {
       }
       this.$store.dispatch('auth/authenticate', this.loginData)
         .then(() => {
-          this.$store.commit('layout/login')
+          this.$store.commit('layout/login', false)
           if (window.history.length && this.$route.path === '/login') {
             // go back after login on login page
             window.history.back()
@@ -105,6 +105,7 @@ export default {
             message: this.$t('layout.login.fail'),
             detail: this.$store.state.auth.errorOnAuthenticate.message
           })
+          this.$store.commit('layout/login', this.$route.path === '/login')
         })
     }
   }

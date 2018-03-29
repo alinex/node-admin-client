@@ -97,9 +97,6 @@ export default {
       this.$store.commit('layout/login', true)
     }
   },
-  created () {
-    this.$store.commit('layout/login', true)
-  },
   mixins: [AuthMixin]
 }
 </script>
