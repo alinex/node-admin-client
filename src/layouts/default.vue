@@ -25,22 +25,20 @@
             </q-item>
           </q-list>
         </q-btn-dropdown>
-        <q-btn-dropdown flat round dense icon="account circle" :title="$t('layout.menu.settings')">
+        <q-btn flat icon="vpn key"
+          :class="notAuthenticatedClass()"
+          :title="$t('layout.menu.login')"
+          @click="$store.commit('layout/login')">
+        </q-btn>
+        <q-btn-dropdown flat round dense icon="account circle"
+          :class="authenticatedClass()"
+          :title="$t('layout.menu.settings')">
           <q-list link>
-            <q-item v-close-overlay
-              :class="notAuthenticatedClass()"
-              @click.native="$store.commit('layout/login')">
-              <q-item-side icon="vpn key" />
-              <q-item-main :label="$t('layout.menu.login')" />
-            </q-item>
-            <q-item to="/user"
-              class="hidden" :rclass="authenticatedClass()">
+            <q-item to="/user" class="hidden">
               <q-item-side icon="account circle" />
               <q-item-main :label="$t('layout.menu.profile')" />
             </q-item>
-            <q-item v-close-overlay
-              :class="authenticatedClass()"
-              @click.native="logout">
+            <q-item v-close-overlay @click.native="logout">
               <q-item-side icon="exit to app" />
               <q-item-main :label="$t('layout.menu.logout')" />
             </q-item>
