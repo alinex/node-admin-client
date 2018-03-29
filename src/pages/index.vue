@@ -16,6 +16,7 @@
       </q-btn>
       <q-btn flat round wait-for-ripple :class="notAuthenticatedClass() + ' warning'"
         @click="$router.push('/login')" icon="vpn key">
+        <!--@click="$refs.layout.loginOpen = true" icon="vpn key">-->
         <q-tooltip anchor="bottom middle" self="top middle" :delay="500" class="q-mt-sm">
           <b>{{ $t('layout.menu.login') }}</b><br />
           {{ $t('layout.menu.loginSub') }}
