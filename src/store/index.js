@@ -4,7 +4,7 @@ import feathersVuex from 'feathers-vuex'
 import feathersClient from '../feathers'
 
 // import auth from './auth'
-import test from './test'
+import layout from './layout'
 
 const { service, auth } = feathersVuex(feathersClient, { idField: '_id' })
 
@@ -16,22 +16,8 @@ const store = new Vuex.Store({
     auth({ userService: 'users' })
   ],
   modules: {
-    test
+    layout
   }
-  //  state: {
-  //    count: 2
-  //  },
-  //  mutations: {
-  //    increment (state) {
-  //      // mutate state
-  //      state.count++
-  //    }
-  //  },
-  //  actions: {
-  //    increment (context) {
-  //      context.commit('increment')
-  //    }
-  //  }
 })
 
 export default store

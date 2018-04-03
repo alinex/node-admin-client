@@ -1,5 +1,5 @@
 <template>
-  <q-modal v-model="opened" @show="focusLogin"
+  <q-modal v-model="$store.state.layout.login" @show="focusLogin"
     :content-css="{minWidth: '400px', minHeight: '330px'}"
     >
     <q-modal-layout>
@@ -63,16 +63,6 @@ export default {
       }
     }
   },
-  computed: {
-    opened: {
-      get: function () {
-        return this.value
-      },
-      set: function (val) {
-        this.$emit('input', val)
-      }
-    }
-  },
   validations: {
     loginData: {
       email: { required, email },
@@ -96,7 +86,7 @@ export default {
       }
       this.$store.dispatch('auth/authenticate', this.loginData)
         .then(() => {
-          this.opened = false
+          this.$store.commit('layout/login', false)
           if (window.history.length && this.$route.path === '/login') {
             // go back after login on login page
             window.history.back()
@@ -115,6 +105,7 @@ export default {
             message: this.$t('layout.login.fail'),
             detail: this.$store.state.auth.errorOnAuthenticate.message
           })
+          this.$store.commit('layout/login', this.$route.path === '/login')
         })
     }
   }
