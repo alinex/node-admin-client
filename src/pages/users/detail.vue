@@ -9,7 +9,7 @@
 
     <div class="data">
 
-      <h5>Login Data</h5>
+      <h4>Login Data</h4>
 
       <q-field class="q-pb-md"
         icon="email"
@@ -36,7 +36,7 @@
           placeholder="retype password to confirm" />
       </q-field>
 
-      <h5>Personal Information</h5>
+      <h4>Personal Information</h4>
 
       <q-field class="q-pb-md"
         icon="mdi-account-outline"
@@ -62,7 +62,7 @@
           @blur="$v.user.position.$touch" />
       </q-field>
 
-      <h5>Access Control</h5>
+      <h4>Access Control</h4>
 
       <q-field class="q-pb-md"
         icon="mdi-sync-off"
