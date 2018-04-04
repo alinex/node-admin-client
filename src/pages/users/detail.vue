@@ -7,30 +7,89 @@
       <q-breadcrumbs-el label="Detail" icon="edit" />
     </q-breadcrumbs>
 
-    <q-field class="q-pb-md"
-      icon="email"
-      label="Email">
-      <q-input v-model.trim="user.email"
-        type="email"
-        placeholder="myname@gmail.com"
-        autofocus
-        ref="email" />
-    </q-field>
+    <div class="data">
 
-    <div class="q-pt-md float-right">
-      <q-btn icon="delete" label="Delete"
-        color="secondary"
-        style="width:200px" />
-      <q-btn icon="check circle" label="Save"
-        color="primary"
-        style="width:200px" />
+      <h5>Login Data</h5>
+
+      <q-field class="q-pb-md"
+        icon="email"
+        label="Email"
+        :error="$v.user.email.$error"
+        error-label="A valid email address is needed to login">
+        <q-input v-model.trim="user.email"
+          type="email"
+          placeholder="myname@gmail.com"
+          autofocus
+          ref="email"
+          @blur="$v.user.email.$touch" />
+      </q-field>
+
+      <q-field class="q-pb-md"
+        icon="vpn key"
+        label="New Password"
+        :error="$v.user.password.$error || $v.user.passwordRepeat.$error"
+        error-label="The new password should be two times exactly same with at least 6 characters">
+        <q-input v-model.trim="user.password" type="password"
+          @blur="$v.user.password.$touch(); $v.user.passwordRepeat.$touch()" /><br />
+        <q-input v-model.trim="user.passwordRepeat" type="password"
+          @blur="$v.user.password.$touch(); $v.user.passwordRepeat.$touch()"
+          placeholder="retype password to confirm" />
+      </q-field>
+
+      <h5>Personal Information</h5>
+
+      <q-field class="q-pb-md"
+        icon="mdi-account-outline"
+        label="Nickname"
+        :error="$v.user.nickname.$error"
+        error-label="The nickname should have at least 4 characters">
+        <q-input v-model.trim="user.nickname" type="text"
+          @blur="$v.user.nickname.$touch" />
+      </q-field>
+
+      <q-field class="q-pb-md"
+        icon="mdi-account"
+        label="Full Name">
+        <q-input v-model.trim="user.name" type="text" />
+      </q-field>
+
+      <q-field class="q-pb-md"
+        icon="mdi-domain"
+        label="Position"
+        :error="$v.user.position.$error"
+        error-label="The position should have at least 3 characters">
+        <q-input v-model.trim="user.position" type="text"
+          @blur="$v.user.position.$touch" />
+      </q-field>
+
+      <h5>Access Control</h5>
+
+      <q-field class="q-pb-md"
+        icon="mdi-sync-off"
+        label="Disabled">
+        <q-checkbox v-model="user.disabled" label="user is no longer able to login" />
+      </q-field>
+
+      <div class="q-mt-lg q-pt-md float-right">
+        <q-btn icon="delete" label="Delete"
+          color="secondary"
+          style="width:200px" />
+        <q-btn icon="check circle" label="Save"
+          color="primary"
+          style="width:200px" />
+      </div>
     </div>
 
   </q-page>
 </template>
 
+<style lang="stylus" scoped>
+div.data
+  max-width: 600px
+</style>
+
 <script>
-import { required, email } from 'vuelidate/lib/validators'
+import { required, email, sameAs, minLength } from 'vuelidate/lib/validators'
 
 export default {
   // name: 'PageName',
@@ -40,7 +99,11 @@ export default {
   }),
   validations: {
     user: {
-      email: { required, email }
+      email: { required, email },
+      password: { minLength: minLength(6) },
+      passwordRepeat: { sameAsPassword: sameAs('password') },
+      nickname: { minLength: minLength(4) },
+      position: { minLength: minLength(3) }
     }
   },
   async created () {

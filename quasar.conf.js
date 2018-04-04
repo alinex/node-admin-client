@@ -63,6 +63,7 @@ module.exports = function (ctx) {
         'QBreadcrumbsEl',
         'QBtn',
         'QBtnDropdown',
+        'QCheckbox',
         'QCollapsible',
         'QField',
         'QIcon',
