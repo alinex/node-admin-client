@@ -7,12 +7,14 @@
       <q-breadcrumbs-el label="Detail" icon="edit" />
     </q-breadcrumbs>
 
+    <div v-if="!loading">
+
     <div class="row q-mb-lg">
       <div class="col-md-4 col-lg-5 col-xl-4">
         <h4 class="q-mt-none">Login Data</h4>
       </div>
 
-      <div class="col-xs-12 col-md-8 col-lg-5 col-xl-4">
+      <div class="col-xs-12 col-md-8 col-lg-6 col-xl-5">
         <q-field class="q-pb-md"
           icon="email"
           label="Email"
@@ -45,7 +47,7 @@
         <h4 class="q-mt-none">Personal Information</h4>
       </div>
 
-      <div class="col-xs-12 col-md-8 col-lg-5 col-xl-4">
+      <div class="col-xs-12 col-md-8 col-lg-6 col-xl-5">
         <q-field class="q-pb-md"
           icon="mdi-account-outline"
           label="Nickname"
@@ -77,7 +79,7 @@
         <h4 class="q-mt-none">Access Control</h4>
       </div>
 
-      <div class="col-xs-12 col-md-8 col-lg-5 col-xl-4">
+      <div class="col-xs-12 col-md-8 col-lg-6 col-xl-5">
         <q-field class="q-pb-md"
           icon="mdi-sync-off"
           label="Disabled">
@@ -86,24 +88,27 @@
       </div>
     </div>
 
-    <div class="row q-mb-lg justify-end">
-      <div class="col-xs-12 col-md-8 col-lg-5 col-xl-4">
+    <div class="row q-mb-lg">
+      <div class="offset-md-4 offset-lg-5 offset-xl-4 col-xs-12 col-md-8 col-lg-6 col-xl-5">
         <div style="text-align: center">
           <q-btn icon="delete" label="Delete"
-            color="secondary"
-            style="width:200px" />
+            color="secondary" style="width:200px" />
           <q-btn icon="check circle" label="Save"
-            color="primary"
-            style="width:200px" />
+            color="primary" style="width:200px"
+            @click="send" />
         </div>
       </div>
     </div>
+
+    </div>
+    <spinner :visible="loading" />
 
   </q-page>
 </template>
 
 <script>
 import { required, email, sameAs, minLength } from 'vuelidate/lib/validators'
+import Spinner from '../../components/spinner'
 
 export default {
   // name: 'PageName',
@@ -120,6 +125,22 @@ export default {
       position: { minLength: minLength(3) }
     }
   },
+  methods: {
+    send () {
+      this.$v.user.$touch()
+      console.log('-----------------------')
+      if (this.$v.user.$error) {
+        console.log(this.$v.user.$error)
+        this.$q.notify({
+          icon: 'error outline',
+          message: this.$t('formError'),
+          detail: this.$t('formErrorDetail')
+        })
+        return
+      }
+      console.log('SEND')
+    }
+  },
   async created () {
     try {
       this.user = await this.$feathers.service('users').get(this.$route.params.id)
@@ -129,6 +150,7 @@ export default {
     } finally {
       this.loading = false
     }
-  }
+  },
+  components: { Spinner }
 }
 </script>
