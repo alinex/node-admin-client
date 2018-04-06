@@ -126,9 +126,9 @@ export default {
     }
   },
   methods: {
-    send () {
+    async send () {
+      // validate
       this.$v.user.$touch()
-      console.log('-----------------------')
       if (this.$v.user.$error) {
         console.log(this.$v.user.$error)
         this.$q.notify({
@@ -138,7 +138,27 @@ export default {
         })
         return
       }
-      console.log('SEND')
+      // collect data to store
+      const user = {}
+      user.email = this.user.email
+      if (this.user.password) {
+        user.password = this.user.password
+      }
+      user.nickname = this.user.nickname
+      user.name = this.user.name
+      user.position = this.user.position
+      // send to server
+      try {
+        this.user = await this.$feathers.service('users').patch(this.user._id, user)
+        this.$q.notify({
+          color: 'positive',
+          icon: 'check circle',
+          message: 'Data stored successfully'
+        })
+      } catch (error) {
+        console.error(error.message)
+        this.$q.notify('ERROR: ' + error.message + '. Check server connection.')
+      }
     }
   },
   async created () {
