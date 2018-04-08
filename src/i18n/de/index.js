@@ -11,5 +11,9 @@ export default {
   formErrorDetail: 'Bitte prüfen sie die Angaben in den rot markierten Feldern',
   notFound: 'Ups, hier wurde nichts gefunden...',
   goBack: 'Gehe Zurück',
-  goHome: 'Start'
+  goHome: 'Start',
+  home: {
+    title: 'Start',
+    subtitle: 'Modul Auswahl'
+  }
 }

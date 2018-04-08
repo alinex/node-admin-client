@@ -1,5 +1,11 @@
 <template>
   <q-list no-border link inset-delimiter>
+    <q-item to="/?h">
+      <q-item-side icon="home" />
+      <q-item-main
+        :label="$t('home.title')"
+        :sublabel="$t('home.subtitle')" />
+    </q-item>
     <q-collapsible :label="$t('core.title')">
       <q-item to="/info">
         <q-item-side icon="info" />
