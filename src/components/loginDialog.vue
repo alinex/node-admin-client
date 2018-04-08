@@ -99,11 +99,12 @@ export default {
           }
           return Promise.resolve()
         })
-        .catch((e) => {
+        .catch(() => {
           this.$q.notify({
             icon: 'error outline',
             message: this.$t('layout.login.fail'),
-            detail: this.$store.state.auth.errorOnAuthenticate.message + process.env.API
+            detail: this.$store.state.auth.errorOnAuthenticate.message +
+            ' at ' + process.env.API
           })
           this.$store.commit('layout/login', this.$route.path === '/login')
         })
