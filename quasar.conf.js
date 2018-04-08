@@ -1,14 +1,13 @@
 // Configuration for your app
 
-var os = require('os')
-var ifaces = os.networkInterfaces()
+const os = require('os')
 
 function localeIP () {
+  const inet = os.networkInterfaces()
   let ip = null
-  Object.keys(ifaces).forEach(function (ifname) {
-    var alias = 0
-
-    ifaces[ifname].forEach(function (iface) {
+  Object.keys(inet).forEach(function (key) {
+    let alias = 0
+    inet[key].forEach(function (iface) {
       if (alias || iface.family !== 'IPv4' || iface.internal !== false) {
         // skip over internal (i.e. 127.0.0.1) and non-ipv4 addresses
         return
