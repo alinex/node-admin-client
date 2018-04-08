@@ -11,15 +11,14 @@
       <q-item v-for="user in users" :key="user._id"
         :to="'/users/' + user._id">
         <q-item-side :avatar="user.gravatar" />
-        <q-item-main :label="user.email" />
-        <q-item-side right icon="chat_bubble" />
+        <q-item-main :label="user.email"
+          :sublabel="user.name + ' (' + user.nickname + ')'" />
       </q-item>
     </q-list>
 
     <div class="q-pt-md float-right">
-      <q-btn icon="add" label="Add User"
-        color="positive"
-        style="width:200px" />
+      <q-btn class="submit" color="positive" icon="person add" label="Add User"
+        @click="$router.push('/users/new')" />
     </div>
 
   </q-page>

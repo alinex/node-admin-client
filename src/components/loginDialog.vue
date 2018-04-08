@@ -1,6 +1,6 @@
 <template>
   <q-modal v-model="$store.state.layout.login" @show="focusLogin"
-    :content-css="{minWidth: '400px', minHeight: '330px'}"
+    :content-css="{minWidth: '380px', minHeight: '330px'}"
     >
     <q-modal-layout>
       <q-toolbar slot="header">
@@ -99,11 +99,11 @@ export default {
           }
           return Promise.resolve()
         })
-        .catch(() => {
+        .catch((e) => {
           this.$q.notify({
             icon: 'error outline',
             message: this.$t('layout.login.fail'),
-            detail: this.$store.state.auth.errorOnAuthenticate.message
+            detail: this.$store.state.auth.errorOnAuthenticate.message + process.env.API
           })
           this.$store.commit('layout/login', this.$route.path === '/login')
         })

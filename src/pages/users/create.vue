@@ -4,10 +4,8 @@
     <q-breadcrumbs class="q-mb-lg">
       <q-breadcrumbs-el :label="$t('goHome')" icon="home" to="/" replace />
       <q-breadcrumbs-el :label="$t(`${$route.meta.module}.title`)" icon="account box" to="/users" />
-      <q-breadcrumbs-el label="Detail" icon="edit" />
+      <q-breadcrumbs-el label="New" icon="person add" />
     </q-breadcrumbs>
-
-    <div v-if="!loading">
 
     <div class="row q-mb-lg">
       <div class="col-md-4 col-lg-5 col-xl-4">
@@ -97,9 +95,6 @@
       </div>
     </div>
 
-    </div>
-    <spinner :visible="loading" />
-
   </q-page>
 </template>
 
@@ -110,13 +105,15 @@ import Spinner from '../../components/spinner'
 export default {
   // name: 'PageName',
   data: () => ({
-    user: null,
+    user: {
+      diabled: false
+    },
     loading: true
   }),
   validations: {
     user: {
       email: { required, email },
-      password: { minLength: minLength(6) },
+      password: { required, minLength: minLength(6) },
       passwordRepeat: { sameAsPassword: sameAs('password') },
       nickname: { required, minLength: minLength(4) },
       position: { minLength: minLength(3) }
@@ -156,16 +153,6 @@ export default {
         console.error(error.message)
         this.$q.notify('ERROR: ' + error.message + '. Check server connection.')
       }
-    }
-  },
-  async created () {
-    try {
-      this.user = await this.$feathers.service('users').get(this.$route.params.id)
-    } catch (error) {
-      console.error(error.message)
-      this.$q.notify('ERROR: ' + error.message + '. Check server connection.')
-    } finally {
-      this.loading = false
     }
   },
   components: { Spinner }

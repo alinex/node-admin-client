@@ -1,5 +1,25 @@
 // Configuration for your app
 
+var os = require('os')
+var ifaces = os.networkInterfaces()
+
+function localeIP () {
+  let ip = null
+  Object.keys(ifaces).forEach(function (ifname) {
+    var alias = 0
+
+    ifaces[ifname].forEach(function (iface) {
+      if (alias || iface.family !== 'IPv4' || iface.internal !== false) {
+        // skip over internal (i.e. 127.0.0.1) and non-ipv4 addresses
+        return
+      }
+      ip = iface.address
+      alias++
+    })
+  })
+  return ip
+}
+
 module.exports = function (ctx) {
   return {
     plugins: [
@@ -42,7 +62,7 @@ module.exports = function (ctx) {
       },
       env: ctx.dev
         ? { // so on dev we'll have
-          API: JSON.stringify('http://localhost:3030')
+          API: JSON.stringify(`http://${localeIP()}:3030`)
         }
         : { // and on build (production):
           API: JSON.stringify('http://192.168.5.194:3030') // admin.alinex.de
@@ -110,9 +130,9 @@ module.exports = function (ctx) {
     pwa: {
       cacheExt: 'js,html,css,ttf,eot,otf,woff,woff2,json,svg,gif,jpg,jpeg,png,wav,ogg,webm,flac,aac,mp4,mp3',
       manifest: {
-        // name: 'Quasar App',
-        // short_name: 'Quasar-PWA',
-        // description: 'Best PWA App in town!',
+        name: 'Alinex Administration Panel',
+        short_name: 'Admin Panel',
+        description: 'Administration tasks made easy and fast',
         display: 'standalone',
         orientation: 'portrait',
         background_color: '#ffffff',
