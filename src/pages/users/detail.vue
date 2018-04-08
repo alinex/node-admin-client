@@ -90,8 +90,8 @@
       <div class="row q-mb-lg">
         <div class="offset-md-4 offset-lg-5 offset-xl-4 col-xs-12 col-md-8 col-lg-6 col-xl-5">
           <div style="text-align: center">
-            <q-btn class="submit" color="secondary" icon="delete" label="Delete" />
-            <q-btn class="submit" color="primary" icon="check circle" label="Save" @click="send" />
+            <q-btn class="submit" color="secondary" icon="delete" label="Delete" @click="remove" />
+            <q-btn class="submit" color="primary" icon="check circle" label="Save" @click="store" />
           </div>
         </div>
       </div>
@@ -122,7 +122,7 @@ export default {
     }
   },
   methods: {
-    async send () {
+    async store () {
       // validate
       this.$v.user.$touch()
       if (this.$v.user.$error) {
@@ -150,8 +150,24 @@ export default {
         this.$q.notify({
           color: 'positive',
           icon: 'check circle',
-          message: 'Data stored successfully'
+          message: 'Changes stored successfully'
         })
+      } catch (error) {
+        console.error(error.message)
+        this.$q.notify('ERROR: ' + error.message + '. Check server connection.')
+      }
+      this.sending = false
+    },
+    async remove () {
+      try {
+        this.sending = true
+        this.user = await this.$feathers.service('users').remove(this.user._id)
+        this.$q.notify({
+          color: 'positive',
+          icon: 'check circle',
+          message: 'User deleted successfully'
+        })
+        this.$router.push('/users')
       } catch (error) {
         console.error(error.message)
         this.$q.notify('ERROR: ' + error.message + '. Check server connection.')

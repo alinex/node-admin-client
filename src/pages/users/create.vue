@@ -124,12 +124,13 @@ export default {
       }
       // send to server
       try {
-        this.user = await this.$feathers.service('users').put(user)
+        this.user = await this.$feathers.service('users').create(user)
         this.$q.notify({
           color: 'positive',
           icon: 'check circle',
-          message: 'Data stored successfully'
+          message: 'New user created successfully'
         })
+        this.$router.push('/users')
       } catch (error) {
         console.error(error.message)
         this.$q.notify('ERROR: ' + error.message + '. Check server connection.')
