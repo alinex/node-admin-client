@@ -19,6 +19,7 @@
     <q-btn label="Test" @click="test()" />
     <p>{{ $t('hello') }}</p>
     <p>{{ $t('goBack') }}</p>
+
   </q-page>
 </template>
 
@@ -27,6 +28,11 @@ import { mapState, mapActions } from 'vuex'
 
 export default {
   name: 'PageIndex',
+  data: function () {
+    return {
+      visible: true
+    }
+  },
   computed: {
     ...mapState('auth', ['user'])
   },
@@ -34,6 +40,7 @@ export default {
     ...mapActions('auth', ['authenticate']),
     test () {
       console.log(this.$store.state.auth.user)
+      this.visible = !this.visible
     }
   }
 }

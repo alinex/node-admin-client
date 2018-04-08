@@ -73,20 +73,6 @@
     </div>
 
     <div class="row q-mb-lg">
-      <div class="col-md-4 col-lg-5 col-xl-4">
-        <h4 class="q-mt-none">Access Control</h4>
-      </div>
-
-      <div class="col-xs-12 col-md-8 col-lg-6 col-xl-5">
-        <q-field class="q-pb-md"
-          icon="mdi-sync-off"
-          label="Disabled">
-          <q-checkbox v-model="user.disabled" label="user is no longer able to login" />
-        </q-field>
-      </div>
-    </div>
-
-    <div class="row q-mb-lg">
       <div class="offset-md-4 offset-lg-5 offset-xl-4 col-xs-12 col-md-8 col-lg-6 col-xl-5">
         <div style="text-align: center">
           <q-btn class="submit" color="secondary" icon="delete" label="Delete" />
@@ -100,15 +86,11 @@
 
 <script>
 import { required, email, sameAs, minLength } from 'vuelidate/lib/validators'
-import Spinner from '../../components/spinner'
 
 export default {
   // name: 'PageName',
   data: () => ({
-    user: {
-      diabled: false
-    },
-    loading: true
+    user: {}
   }),
   validations: {
     user: {
@@ -133,17 +115,16 @@ export default {
         return
       }
       // collect data to store
-      const user = {}
-      user.email = this.user.email
-      if (this.user.password) {
-        user.password = this.user.password
+      const user = {
+        email: this.user.email,
+        password: this.user.password,
+        nickname: this.user.nickname,
+        name: this.user.name,
+        position: this.user.position
       }
-      user.nickname = this.user.nickname
-      user.name = this.user.name
-      user.position = this.user.position
       // send to server
       try {
-        this.user = await this.$feathers.service('users').patch(this.user._id, user)
+        this.user = await this.$feathers.service('users').put(user)
         this.$q.notify({
           color: 'positive',
           icon: 'check circle',
@@ -154,7 +135,6 @@ export default {
         this.$q.notify('ERROR: ' + error.message + '. Check server connection.')
       }
     }
-  },
-  components: { Spinner }
+  }
 }
 </script>

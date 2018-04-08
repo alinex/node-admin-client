@@ -13,127 +13,126 @@
       <q-tab slot="title" name="tab-host" icon="mdi-server" label="Host" hide="label" />
       <q-tab slot="title" name="tab-detail" icon="mdi-package-variant" label="Details" hide="label" />
 
-      <!-- About -->
-      <q-tab-pane name="tab-about">
-        <div class="row items-center">
-          <img src="~assets/alinex.png" class="float-left q-ma-md" />
-          <h1 class="q-ma-none">{{ $t('title') }}</h1>
-        </div>
-        <div class="row q-mt-md">
-          <p>{{ $t('core.info.about1') }}</p>
-          <p>{{ $t('core.info.about2') }}</p>
-        </div>
-        <hr />
-        <div class="col q-mt-md" v-if="!loading">
-          <table class="data">
-            <tr><th>Version:</th><td>0.1.0</td></tr>
-            <tr><th>Server:</th><td>{{ info.server.name }} {{ info.server.version }}</td></tr>
-            <tr><th>Author:</th><td>{{ info.server.author }}</td></tr>
-            <tr><th>Copyright:</th><td>{{ info.server.copyright }}</td></tr>
-          </table>
-        </div>
-        <spinner :visible="loading" />
-      </q-tab-pane>
-
-      <!-- Client -->
-      <q-tab-pane name="tab-client">
-        <table class="data-groups">
-          <tr><th colspan="2">Browser</th></tr>
-          <tr><td>Name</td><td>{{ $q.platform.is.name }}</td></tr>
-          <tr><td>Version</td><td>{{ $q.platform.is.version }}</td></tr>
-          <tr><td>Platform</td><td>{{ $q.platform.is.platform }}</td></tr>
-          <tr><td>Touch</td><td>{{ $q.platform.has.touch }}</td></tr>
-          <tr><th colspan="2">Application</th></tr>
-          <tr><td>Quasar Version</td><td>{{ $q.version }}</td></tr>
-          <tr><td>Theme</td><td>{{ $q.theme }}</td></tr>
-        </table>
-      </q-tab-pane>
-
-      <!-- Server -->
-      <q-tab-pane name="tab-server">
-        <table class="data-groups" v-if="!loading">
-          <tr><th colspan="2">Connection</th></tr>
-          <tr><td>API</td><td>{{ api }}</td></tr>
-          <tr><td>Name</td><td>{{ info.server.name }}</td></tr>
-          <tr><td>Version</td><td>{{ info.server.version }}</td></tr>
-          <tr><th colspan="2">Process</th></tr>
-          <tr><td>Process ID</td><td>{{ info.node.processid }}</td></tr>
-          <tr><td>Running as</td><td>{{ info.host.user }} ({{ info.host.userid }})</td></tr>
-          <tr><td>Directory</td><td>{{ info.node.workingdirectory }}</td></tr>
-          <tr><td>Process ID</td><td>{{ info.node.processid }}</td></tr>
-          <tr><td>Uptime</td><td>since {{ processUptime }}</td></tr>
-          <tr><td>CPU Usage</td><td>{{ Math.round(info.node.cpuusage*10)/10 }}%</td></tr>
-          <tr><td>Memory RSS</td><td>{{ Math.round(info.node.memoryrss/1024/1024*10)/10 }} MB</td></tr>
-          <!--<tr><td>Memory VIRT</td><td>{{ Math.round(info.node.memoryvirt/1024/1024*10)/10 }} MB</td></tr>-->
-          <tr><td>Event Loop Lag</td><td>{{ info.node.eventlooplag }}</td></tr>
-        </table>
-        <spinner :visible="loading" />
-      </q-tab-pane>
-
-      <!-- Host -->
-      <q-tab-pane name="tab-host">
-        <table class="data-groups" v-if="!loading">
-          <tr><th colspan="2">Hardware</th></tr>
-          <tr><td>CPU</td><td>{{ info.host.cputype }}<br />
-            {{ info.host.cpucores }} cores {{ info.host.architecture }} running at {{ info.host.cpuspeed/1000 }}GHz</td></tr>
-          <tr><td>Load</td><td>{{ cpuload[0] }} short<br />
-            {{ cpuload[1] }} medium<br />
-            {{ cpuload[2] }} long</td></tr>
-          <tr><td>Memory</td><td>{{ memory[1] }} / {{ memory[0] }} GB free</td></tr>
-          <tr><td>Uptime</td><td>since {{ uptime }}</td></tr>
-          <tr><td>Network</td><td><span v-for="net in info.host.network.split(/\n/)" :key="net">{{net}}<br /></span></td></tr>
-          <tr><th colspan="2">Setup</th></tr>
-          <tr><td>Hostname</td><td>{{ info.host.hostname }}</td></tr>
-          <tr><td>Platform</td><td>{{ info.host.platform }}</td></tr>
-          <tr><td>Release</td><td>{{ info.host.release }}</td></tr>
-          <tr><td>Node Version</td><td>{{ info.node.nodeversion }}</td></tr>
-          <tr><td>V8 Version</td><td>{{ info.node.v8version }}</td></tr>
-        </table>
-        <spinner :visible="loading" />
-      </q-tab-pane>
-
-      <!-- Dependencies -->
-      <q-tab-pane name="tab-detail">
-        <q-table class="q-mt-xl"
-          :data="tableData"
-          :columns="columns"
-          :filter="filter"
-          row-key="name"
-          :loading="loading"
-          :pagination.sync="pagination"
-        >
-          <template slot="top-left" slot-scope="props">
-            <q-search
-              hide-underline
-              color="secondary"
-              v-model="filter"
-              class="col-6"
-            />
-          </template>
-          <template slot="top-right" slot-scope="props">
-            <q-btn
-              flat round dense
-              :icon="props.inFullscreen ? 'fullscreen_exit' : 'fullscreen'"
-              @click="props.toggleFullscreen"
-            />
-          </template>
-          <div slot="pagination" slot-scope="props" class="row flex-center q-py-sm">
-            <q-btn
-              round dense size="sm" icon="undo" color="secondary" class="q-mr-sm"
-              :disable="props.isFirstPage"
-              @click="props.prevPage"
-            />
-            <div class="q-mr-sm" style="font-size: small">
-              Page {{ props.pagination.page }} / {{ props.pagesNumber }}
-            </div>
-            <q-btn
-              round dense size="sm" icon="redo" color="secondary"
-              :disable="props.isLastPage"
-              @click="props.nextPage"
-            />
+      <ax-loader :loading="loading">
+        <!-- About -->
+        <q-tab-pane name="tab-about">
+          <div class="row items-center">
+            <img src="~assets/alinex.png" class="float-left q-ma-md" />
+            <h1 class="q-ma-none">{{ $t('title') }}</h1>
           </div>
-        </q-table>
-      </q-tab-pane>
+          <div class="row q-mt-md">
+            <p>{{ $t('core.info.about1') }}</p>
+            <p>{{ $t('core.info.about2') }}</p>
+          </div>
+          <hr />
+          <div class="col q-mt-md" v-if="!loading">
+            <table class="data">
+              <tr><th>Version:</th><td>0.1.0</td></tr>
+              <tr><th>Server:</th><td>{{ info.server.name }} {{ info.server.version }}</td></tr>
+              <tr><th>Author:</th><td>{{ info.server.author }}</td></tr>
+              <tr><th>Copyright:</th><td>{{ info.server.copyright }}</td></tr>
+            </table>
+          </div>
+        </q-tab-pane>
+
+        <!-- Client -->
+        <q-tab-pane name="tab-client">
+          <table class="data-groups">
+            <tr><th colspan="2">Browser</th></tr>
+            <tr><td>Name</td><td>{{ $q.platform.is.name }}</td></tr>
+            <tr><td>Version</td><td>{{ $q.platform.is.version }}</td></tr>
+            <tr><td>Platform</td><td>{{ $q.platform.is.platform }}</td></tr>
+            <tr><td>Touch</td><td>{{ $q.platform.has.touch }}</td></tr>
+            <tr><th colspan="2">Application</th></tr>
+            <tr><td>Quasar Version</td><td>{{ $q.version }}</td></tr>
+            <tr><td>Theme</td><td>{{ $q.theme }}</td></tr>
+          </table>
+        </q-tab-pane>
+
+        <!-- Server -->
+        <q-tab-pane name="tab-server">
+          <table class="data-groups" v-if="!loading">
+            <tr><th colspan="2">Connection</th></tr>
+            <tr><td>API</td><td>{{ api }}</td></tr>
+            <tr><td>Name</td><td>{{ info.server.name }}</td></tr>
+            <tr><td>Version</td><td>{{ info.server.version }}</td></tr>
+            <tr><th colspan="2">Process</th></tr>
+            <tr><td>Process ID</td><td>{{ info.node.processid }}</td></tr>
+            <tr><td>Running as</td><td>{{ info.host.user }} ({{ info.host.userid }})</td></tr>
+            <tr><td>Directory</td><td>{{ info.node.workingdirectory }}</td></tr>
+            <tr><td>Process ID</td><td>{{ info.node.processid }}</td></tr>
+            <tr><td>Uptime</td><td>since {{ processUptime }}</td></tr>
+            <tr><td>CPU Usage</td><td>{{ Math.round(info.node.cpuusage*10)/10 }}%</td></tr>
+            <tr><td>Memory RSS</td><td>{{ Math.round(info.node.memoryrss/1024/1024*10)/10 }} MB</td></tr>
+            <!--<tr><td>Memory VIRT</td><td>{{ Math.round(info.node.memoryvirt/1024/1024*10)/10 }} MB</td></tr>-->
+            <tr><td>Event Loop Lag</td><td>{{ info.node.eventlooplag }}</td></tr>
+          </table>
+        </q-tab-pane>
+
+        <!-- Host -->
+        <q-tab-pane name="tab-host">
+          <table class="data-groups" v-if="!loading">
+            <tr><th colspan="2">Hardware</th></tr>
+            <tr><td>CPU</td><td>{{ info.host.cputype }}<br />
+              {{ info.host.cpucores }} cores {{ info.host.architecture }} running at {{ info.host.cpuspeed/1000 }}GHz</td></tr>
+            <tr><td>Load</td><td>{{ cpuload[0] }} short<br />
+              {{ cpuload[1] }} medium<br />
+              {{ cpuload[2] }} long</td></tr>
+            <tr><td>Memory</td><td>{{ memory[1] }} / {{ memory[0] }} GB free</td></tr>
+            <tr><td>Uptime</td><td>since {{ uptime }}</td></tr>
+            <tr><td>Network</td><td><span v-for="net in info.host.network.split(/\n/)" :key="net">{{net}}<br /></span></td></tr>
+            <tr><th colspan="2">Setup</th></tr>
+            <tr><td>Hostname</td><td>{{ info.host.hostname }}</td></tr>
+            <tr><td>Platform</td><td>{{ info.host.platform }}</td></tr>
+            <tr><td>Release</td><td>{{ info.host.release }}</td></tr>
+            <tr><td>Node Version</td><td>{{ info.node.nodeversion }}</td></tr>
+            <tr><td>V8 Version</td><td>{{ info.node.v8version }}</td></tr>
+          </table>
+        </q-tab-pane>
+
+        <!-- Dependencies -->
+        <q-tab-pane name="tab-detail">
+          <q-table class="q-mt-xl"
+            :data="tableData"
+            :columns="columns"
+            :filter="filter"
+            row-key="name"
+            :loading="loading"
+            :pagination.sync="pagination"
+          >
+            <template slot="top-left" slot-scope="props">
+              <q-search
+                hide-underline
+                color="secondary"
+                v-model="filter"
+                class="col-6"
+              />
+            </template>
+            <template slot="top-right" slot-scope="props">
+              <q-btn
+                flat round dense
+                :icon="props.inFullscreen ? 'fullscreen_exit' : 'fullscreen'"
+                @click="props.toggleFullscreen"
+              />
+            </template>
+            <div slot="pagination" slot-scope="props" class="row flex-center q-py-sm">
+              <q-btn
+                round dense size="sm" icon="undo" color="secondary" class="q-mr-sm"
+                :disable="props.isFirstPage"
+                @click="props.prevPage"
+              />
+              <div class="q-mr-sm" style="font-size: small">
+                Page {{ props.pagination.page }} / {{ props.pagesNumber }}
+              </div>
+              <q-btn
+                round dense size="sm" icon="redo" color="secondary"
+                :disable="props.isLastPage"
+                @click="props.nextPage"
+              />
+            </div>
+          </q-table>
+        </q-tab-pane>
+      </ax-loader>
     </q-tabs>
   </q-page>
 </template>
@@ -161,7 +160,7 @@ table.data-groups
 
 <script>
 import moment from 'moment'
-import Spinner from '../components/spinner'
+import axLoader from '../components/axLoader'
 
 export default {
   // name: 'PageName',
@@ -241,6 +240,6 @@ export default {
       this.loading = false
     }
   },
-  components: { Spinner }
+  components: { axLoader }
 }
 </script>
