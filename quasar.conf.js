@@ -63,8 +63,8 @@ module.exports = function (ctx) {
         ? { // so on dev we'll have
           API: JSON.stringify(`http://${localeIP()}:3030`)
         }
-        : { // and on build (production):
-          API: JSON.stringify('http://192.168.5.194:3030') // admin.alinex.de
+        : { // and on build (production)
+          API: JSON.stringify(process.env.API || 'http://192.168.5.194:3030') // admin.alinex.de
         }
     },
     devServer: {

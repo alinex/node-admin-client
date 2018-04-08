@@ -34,7 +34,7 @@
             error-label="The new password should be two times exactly same with at least 6 characters">
             <q-input v-model.trim="user.password" type="password"
               @blur="$v.user.password.$touch(); $v.user.passwordRepeat.$touch()" /><br />
-            <q-input v-model.trim="user.passwordRepeat" type="password"
+            <q-input v-if="user.password" v-model.trim="user.passwordRepeat" type="password"
               @blur="$v.user.password.$touch(); $v.user.passwordRepeat.$touch()"
               placeholder="retype password to confirm" />
           </q-field>
@@ -162,6 +162,7 @@ export default {
   async created () {
     try {
       this.user = await this.$feathers.service('users').get(this.$route.params.id)
+      this.user.passwordRepeat = ''
     } catch (error) {
       console.error(error.message)
       this.$q.notify('ERROR: ' + error.message + '. Check server connection.')
