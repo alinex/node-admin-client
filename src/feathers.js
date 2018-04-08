@@ -15,7 +15,7 @@ socket.on('reconnect_attempt', () => {
 
 const feathersClient = feathers()
   .configure(socketio(socket, {
-    timeout: 2000
+    timeout: 10000
   })) // you could use Primus or REST instead
   .configure(authentication({ storage: window.localStorage }))
 
