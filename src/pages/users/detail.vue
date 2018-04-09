@@ -181,7 +181,8 @@ export default {
       this.user.passwordRepeat = ''
     } catch (error) {
       console.error(error.message)
-      this.$q.notify('ERROR: ' + error.message + '. Check server connection.')
+      this.$q.notify('ERROR: Retrieving data from server: ' + error.message + '.')
+      this.$router.push('/users')
     }
     this.loading = false
   },
