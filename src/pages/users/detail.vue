@@ -108,7 +108,7 @@ import axLoader from '../../components/axLoader'
 export default {
   // name: 'PageName',
   data: () => ({
-    user: null,
+    user: {},
     loading: true,
     sending: false
   }),
@@ -126,7 +126,7 @@ export default {
       // validate
       this.$v.user.$touch()
       if (this.$v.user.$error) {
-        console.log(this.$v.user.$error)
+        console.error(this.$v.user.$error)
         this.$q.notify({
           icon: 'error outline',
           message: this.$t('formError'),
@@ -178,6 +178,7 @@ export default {
   async created () {
     try {
       this.user = await this.$feathers.service('users').get(this.$route.params.id)
+      this.user.password = ''
       this.user.passwordRepeat = ''
     } catch (error) {
       console.error(error.message)

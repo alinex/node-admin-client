@@ -20,5 +20,9 @@ export default {
   logout: {
     success: 'Erfolgreich vom System abgemeldet'
   },
-  sidebarHide: 'Verstecken oder einblenden der linken Seitenleiste'
+  sidebarHide: 'Verstecken oder einblenden der linken Seitenleiste',
+  loader: {
+    loading: 'Lade Daten...',
+    sending: 'Warten auf Antwort vom Server...'
+  }
 }

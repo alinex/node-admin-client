@@ -8,6 +8,8 @@ export default {
   },
   users: {
     title: 'Benutzer',
-    subtitle: 'Konto Verwaltung'
+    subtitle: 'Konto Verwaltung',
+    list: 'Keine Benutzer | Ein Benutzer | {count} Benutzer',
+    create: 'Neuer Benutzer'
   }
 }

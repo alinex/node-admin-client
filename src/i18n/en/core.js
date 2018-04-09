@@ -7,7 +7,9 @@ export default {
     about2: 'It is a universal control interface which can become real powerful by adding modules for special tasks. This modules will interact with the real systems in a proper and safe way. The user has no direct control but the limited functionality like defined in the module.'
   },
   users: {
-    title: 'Users',
-    subtitle: 'Account Administration'
+    title: 'User',
+    subtitle: 'Account Administration',
+    list: 'No users | One User | {count} Users',
+    create: 'Add New User'
   }
 }

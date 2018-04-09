@@ -20,5 +20,9 @@ export default {
   logout: {
     success: 'Successfully logged out'
   },
-  sidebarHide: 'Hide or display left side menu'
+  sidebarHide: 'Hide or display left side menu',
+  loader: {
+    loading: 'Loading data...',
+    sending: 'Waiting for server response...'
+  }
 }
