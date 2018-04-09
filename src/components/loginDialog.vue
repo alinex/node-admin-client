@@ -34,7 +34,7 @@
           >
           <q-input v-model="loginData.password"
             type="password"
-            placeholder="demo"
+            placeholder="demo123"
             @blur="$v.loginData.password.$touch"
             @keyup.enter="login"
             />
