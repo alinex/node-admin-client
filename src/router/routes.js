@@ -22,14 +22,7 @@ export default [
         meta: { module: 'core.users' } },
       { path: 'users/:id',
         component: () => import('pages/users/detail'),
-        meta: { module: 'core.users' } },
-
-      { path: 'test/public',
-        component: () => import('pages/test/public'),
-        meta: { title: 'Public Test Page', public: true } },
-      { path: 'test/secure',
-        component: () => import('pages/test/secure'),
-        meta: { title: 'Secure Test Page' } }
+        meta: { module: 'core.users' } }
     ]
   },
 

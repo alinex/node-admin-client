@@ -27,7 +27,8 @@
           :label="$t('core.users.password.titleNew')"
           :error="$v.user.password.$error || $v.user.passwordRepeat.$error"
           :error-label="$t('core.users.password.error')">
-          <q-input v-model.trim="user.password" type="password" clearable
+          <q-input v-model.trim="user.password" type="password"
+            @input="test"
             @blur="$v.user.password.$touch(); $v.user.passwordRepeat.$touch()" /><br />
           <q-input v-model.trim="user.passwordRepeat" type="password"
             @blur="$v.user.password.$touch(); $v.user.passwordRepeat.$touch()"
@@ -103,6 +104,9 @@ export default {
     }
   },
   methods: {
+    test () {
+      console.log(this.user.password)
+    },
     async store () {
       // validate
       this.$v.user.$touch()

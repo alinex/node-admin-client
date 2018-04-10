@@ -27,10 +27,10 @@
           <hr />
           <div class="col q-mt-md" v-if="!loading">
             <table class="data">
-              <tr><th>Version:</th><td>0.1.0</td></tr>
-              <tr><th>Server:</th><td>{{ info.server.name }} {{ info.server.version }}</td></tr>
-              <tr><th>Author:</th><td>{{ info.server.author }}</td></tr>
-              <tr><th>Copyright:</th><td>{{ info.server.copyright }}</td></tr>
+              <tr><th>Version</th><td>0.1.0</td></tr>
+              <tr><th>Server</th><td>{{ info.server.name }} {{ info.server.version }}</td></tr>
+              <tr><th>Author</th><td>{{ info.server.author }}</td></tr>
+              <tr><th>Copyright</th><td>{{ info.server.copyright }}</td></tr>
             </table>
           </div>
         </q-tab-pane>

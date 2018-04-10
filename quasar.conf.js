@@ -78,6 +78,7 @@ module.exports = function (ctx) {
     framework: {
       i18n: 'de',
       components: [
+        'AddressbarColor',
         'QBreadcrumbs',
         'QBreadcrumbsEl',
         'QBtn',

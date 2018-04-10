@@ -33,7 +33,7 @@
           :error-label="$t('layout.login.passwordError')"
           >
           <q-input v-model="loginData.password"
-            type="password"
+            type="password" clearable
             placeholder="demo123"
             @blur="$v.loginData.password.$touch"
             @keyup.enter="login"

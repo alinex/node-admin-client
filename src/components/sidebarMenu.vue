@@ -21,18 +21,6 @@
       </q-item>
     </q-collapsible>
 
-    <q-collapsible label="Test">
-      <q-item to="/test/public">
-        <q-item-side icon="lock open" />
-        <q-item-main label="Public Page" />
-      </q-item>
-      <q-item to="/test/secure">
-<!--        :class="authenticatedClass()"-->
-        <q-item-side icon="lock" />
-        <q-item-main label="Secure Page" />
-      </q-item>
-    </q-collapsible>
-
     <q-collapsible label="Colaborative Tools" class="hidden">
       <!-- chat -->
     </q-collapsible>
