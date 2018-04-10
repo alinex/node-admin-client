@@ -8,102 +8,81 @@
     </q-breadcrumbs>
 
     <ax-loader :loading="loading" :sending="sending">
-      <div class="row q-mb-lg">
-        <div class="col-md-4 col-lg-5 col-xl-4">
-          <h4 class="q-mt-none">Login Data</h4>
+      <ax-form-group title="Login Data">
+        <q-field class="q-pb-md"
+          icon="email"
+          label="Email"
+          :error="$v.user.email.$error"
+          error-label="A valid email address is needed to login">
+          <q-input v-model.trim="user.email"
+            type="email"
+            placeholder="myname@gmail.com"
+            autofocus
+            ref="email"
+            @blur="$v.user.email.$touch" />
+        </q-field>
+
+        <q-field class="q-pb-md"
+          icon="vpn key"
+          label="New Password"
+          :error="$v.user.password.$error || $v.user.passwordRepeat.$error"
+          error-label="The new password should be two times exactly same with at least 6 characters">
+          <q-input v-model.trim="user.password" type="password"
+            @blur="$v.user.password.$touch(); $v.user.passwordRepeat.$touch()" /><br />
+          <q-input v-if="user.password" v-model.trim="user.passwordRepeat" type="password"
+            @blur="$v.user.password.$touch(); $v.user.passwordRepeat.$touch()"
+            placeholder="retype password to confirm" />
+        </q-field>
+      </ax-form-group>
+
+      <ax-form-group title="Personal Information">
+        <q-field class="q-pb-md"
+          icon="mdi-account-outline"
+          label="Nickname"
+          :error="$v.user.nickname.$error"
+          error-label="The nickname should have at least 4 characters">
+          <q-input v-model.trim="user.nickname" type="text"
+            @blur="$v.user.nickname.$touch" />
+        </q-field>
+
+        <q-field class="q-pb-md"
+          icon="mdi-account"
+          label="Full Name">
+          <q-input v-model.trim="user.name" type="text" />
+        </q-field>
+
+        <q-field class="q-pb-md"
+          icon="mdi-domain"
+          label="Position"
+          :error="$v.user.position.$error"
+          error-label="The position should have at least 3 characters">
+          <q-input v-model.trim="user.position" type="text"
+            @blur="$v.user.position.$touch" />
+        </q-field>
+      </ax-form-group>
+
+      <ax-form-group title="AccessControl">
+        <q-field class="q-pb-md"
+          icon="mdi-sync-off"
+          label="Disabled">
+          <q-checkbox v-model="user.disabled" label="user is no longer able to login" />
+        </q-field>
+      </ax-form-group>
+
+      <ax-form-group>
+        <div style="text-align: center">
+          <q-btn class="submit" color="secondary" icon="delete" label="Delete" @click="remove" />
+          <q-btn class="submit" color="primary" icon="check circle" label="Save" @click="store" />
         </div>
-
-        <div class="col-xs-12 col-md-8 col-lg-6 col-xl-5">
-          <q-field class="q-pb-md"
-            icon="email"
-            label="Email"
-            :error="$v.user.email.$error"
-            error-label="A valid email address is needed to login">
-            <q-input v-model.trim="user.email"
-              type="email"
-              placeholder="myname@gmail.com"
-              autofocus
-              ref="email"
-              @blur="$v.user.email.$touch" />
-          </q-field>
-
-          <q-field class="q-pb-md"
-            icon="vpn key"
-            label="New Password"
-            :error="$v.user.password.$error || $v.user.passwordRepeat.$error"
-            error-label="The new password should be two times exactly same with at least 6 characters">
-            <q-input v-model.trim="user.password" type="password"
-              @blur="$v.user.password.$touch(); $v.user.passwordRepeat.$touch()" /><br />
-            <q-input v-if="user.password" v-model.trim="user.passwordRepeat" type="password"
-              @blur="$v.user.password.$touch(); $v.user.passwordRepeat.$touch()"
-              placeholder="retype password to confirm" />
-          </q-field>
-        </div>
-      </div>
-
-      <div class="row q-mb-lg">
-        <div class="col-md-4 col-lg-5 col-xl-4">
-          <h4 class="q-mt-none">Personal Information</h4>
-        </div>
-
-        <div class="col-xs-12 col-md-8 col-lg-6 col-xl-5">
-          <q-field class="q-pb-md"
-            icon="mdi-account-outline"
-            label="Nickname"
-            :error="$v.user.nickname.$error"
-            error-label="The nickname should have at least 4 characters">
-            <q-input v-model.trim="user.nickname" type="text"
-              @blur="$v.user.nickname.$touch" />
-          </q-field>
-
-          <q-field class="q-pb-md"
-            icon="mdi-account"
-            label="Full Name">
-            <q-input v-model.trim="user.name" type="text" />
-          </q-field>
-
-          <q-field class="q-pb-md"
-            icon="mdi-domain"
-            label="Position"
-            :error="$v.user.position.$error"
-            error-label="The position should have at least 3 characters">
-            <q-input v-model.trim="user.position" type="text"
-              @blur="$v.user.position.$touch" />
-          </q-field>
-        </div>
-      </div>
-
-      <div class="row q-mb-lg">
-        <div class="col-md-4 col-lg-5 col-xl-4">
-          <h4 class="q-mt-none">Access Control</h4>
-        </div>
-
-        <div class="col-xs-12 col-md-8 col-lg-6 col-xl-5">
-          <q-field class="q-pb-md"
-            icon="mdi-sync-off"
-            label="Disabled">
-            <q-checkbox v-model="user.disabled" label="user is no longer able to login" />
-          </q-field>
-        </div>
-      </div>
-
-      <div class="row q-mb-lg">
-        <div class="offset-md-4 offset-lg-5 offset-xl-4 col-xs-12 col-md-8 col-lg-6 col-xl-5">
-          <div style="text-align: center">
-            <q-btn class="submit" color="secondary" icon="delete" label="Delete" @click="remove" />
-            <q-btn class="submit" color="primary" icon="check circle" label="Save" @click="store" />
-          </div>
-        </div>
-      </div>
-
+      </ax-form-group>
     </ax-loader>
-
   </q-page>
 </template>
 
 <script>
 import { required, email, sameAs, minLength } from 'vuelidate/lib/validators'
 import axLoader from '../../components/axLoader'
+import axFormGroup from '../../components/axFormGroup'
 
 export default {
   // name: 'PageName',
@@ -187,6 +166,6 @@ export default {
     }
     this.loading = false
   },
-  components: { axLoader }
+  components: { axLoader, axFormGroup }
 }
 </script>
