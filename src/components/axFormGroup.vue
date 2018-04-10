@@ -1,6 +1,6 @@
 <template>
   <div class="ax-form-group row q-mb-lg">
-    <div class="col-md-4 col-lg-5 col-xl-4">
+    <div class="col-md-4 col-lg-5 col-xl-4 q-pr-md">
       <h4 v-if="title" class="q-mt-none">{{ title }}</h4>
       <p v-if="subtitle">{{ subtitle }}</p>
     </div>
