@@ -2,18 +2,18 @@
   <q-page class="q-pa-lg">
 
     <q-breadcrumbs class="q-mb-lg relative-position">
-      <q-breadcrumbs-el :label="$t('goHome')" icon="home" to="/" replace />
+      <q-breadcrumbs-el :label="$t('home.title')" icon="home" to="/" replace />
       <q-breadcrumbs-el :label="$t(`${$route.meta.module}.title`)" icon="account box" to="/users" />
-      <q-breadcrumbs-el label="Detail" icon="edit" />
+      <q-breadcrumbs-el :label="$t('core.users.detail')" icon="edit" />
     </q-breadcrumbs>
 
     <ax-loader :loading="loading" :sending="sending">
-      <ax-form-group title="Login Data">
+      <ax-form-group :title="$t('core.users.formLogin')" :subtitle="$t('core.users.formLoginDesc')">
         <q-field class="q-pb-md"
           icon="email"
-          label="Email"
+          :label="$t('core.users.email.title')"
           :error="$v.user.email.$error"
-          error-label="A valid email address is needed to login">
+          :error-label="$t('core.users.email.error')">
           <q-input v-model.trim="user.email"
             type="email"
             placeholder="myname@gmail.com"
@@ -24,55 +24,57 @@
 
         <q-field class="q-pb-md"
           icon="vpn key"
-          label="New Password"
+          :label="$t('core.users.password.titleNew')"
           :error="$v.user.password.$error || $v.user.passwordRepeat.$error"
-          error-label="The new password should be two times exactly same with at least 6 characters">
-          <q-input v-model.trim="user.password" type="password"
+          :error-label="$t('core.users.password.error')">
+          <q-input v-model.trim="user.password" type="password" clearable
             @blur="$v.user.password.$touch(); $v.user.passwordRepeat.$touch()" /><br />
-          <q-input v-if="user.password" v-model.trim="user.passwordRepeat" type="password"
+          <q-input v-model.trim="user.passwordRepeat" type="password"
             @blur="$v.user.password.$touch(); $v.user.passwordRepeat.$touch()"
-            placeholder="retype password to confirm" />
+            :placeholder="$t('core.users.password.retype')" />
         </q-field>
       </ax-form-group>
 
-      <ax-form-group title="Personal Information">
+      <ax-form-group :title="$t('core.users.formPersonal')">
         <q-field class="q-pb-md"
           icon="mdi-account-outline"
-          label="Nickname"
+          :label="$t('core.users.nickname.title')"
           :error="$v.user.nickname.$error"
-          error-label="The nickname should have at least 4 characters">
+          :error-label="$t('core.users.nickname.error')">
           <q-input v-model.trim="user.nickname" type="text"
             @blur="$v.user.nickname.$touch" />
         </q-field>
 
         <q-field class="q-pb-md"
           icon="mdi-account"
-          label="Full Name">
+          :label="$t('core.users.name.title')">
           <q-input v-model.trim="user.name" type="text" />
         </q-field>
 
         <q-field class="q-pb-md"
           icon="mdi-domain"
-          label="Position"
+          :label="$t('core.users.position.title')"
           :error="$v.user.position.$error"
-          error-label="The position should have at least 3 characters">
+          :error-label="$t('core.users.position.error')">
           <q-input v-model.trim="user.position" type="text"
             @blur="$v.user.position.$touch" />
         </q-field>
       </ax-form-group>
 
-      <ax-form-group title="AccessControl">
+      <ax-form-group :title="$t('core.users.formAccess')">
         <q-field class="q-pb-md"
           icon="mdi-sync-off"
-          label="Disabled">
-          <q-checkbox v-model="user.disabled" label="user is no longer able to login" />
+          :label="$t('core.users.disabled.title')">
+          <q-checkbox v-model="user.disabled" :label="$t('core.users.disabled.desc')" />
         </q-field>
       </ax-form-group>
 
       <ax-form-group>
         <div style="text-align: center">
-          <q-btn class="submit" color="secondary" icon="delete" label="Delete" @click="remove" />
-          <q-btn class="submit" color="primary" icon="check circle" label="Save" @click="store" />
+          <q-btn class="submit" color="secondary" icon="delete"
+            :label="$t('layout.form.delete')" @click="remove" />
+          <q-btn class="submit" color="primary" icon="check circle"
+            :label="$t('layout.form.save')" @click="store" />
         </div>
       </ax-form-group>
     </ax-loader>
@@ -81,8 +83,8 @@
 
 <script>
 import { required, email, sameAs, minLength } from 'vuelidate/lib/validators'
-import axLoader from '../../components/axLoader'
-import axFormGroup from '../../components/axFormGroup'
+import axLoader from 'components/axLoader'
+import axFormGroup from 'components/axFormGroup'
 
 export default {
   // name: 'PageName',
@@ -129,11 +131,11 @@ export default {
         this.$q.notify({
           color: 'positive',
           icon: 'check circle',
-          message: 'Changes stored successfully'
+          message: this.$t('layout.form.saveSuccess', { type: this.$t('core.users.type') })
         })
       } catch (error) {
         console.error(error.message)
-        this.$q.notify('ERROR: ' + error.message + '. Check server connection.')
+        this.$q.notify('ERROR: Saving data to server:' + error.message)
       }
       this.sending = false
     },
@@ -144,12 +146,12 @@ export default {
         this.$q.notify({
           color: 'positive',
           icon: 'check circle',
-          message: 'User deleted successfully'
+          message: this.$t('layout.form.deleteSuccess', { type: this.$t('core.users.type') })
         })
         this.$router.push('/users')
       } catch (error) {
         console.error(error.message)
-        this.$q.notify('ERROR: ' + error.message + '. Check server connection.')
+        this.$q.notify('ERROR: Retrieving response from server: ' + error.message)
       }
       this.sending = false
     }
@@ -161,7 +163,7 @@ export default {
       this.user.passwordRepeat = ''
     } catch (error) {
       console.error(error.message)
-      this.$q.notify('ERROR: Retrieving data from server: ' + error.message + '.')
+      this.$q.notify('ERROR: Retrieving data from server: ' + error.message)
       this.$router.push('/users')
     }
     this.loading = false

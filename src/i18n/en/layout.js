@@ -7,6 +7,7 @@ export default {
     logout: 'Logout',
     profile: 'Profile'
   },
+  sidebarHide: 'Hide or display left side menu',
   login: {
     title: 'Login',
     email: 'Email',
@@ -20,9 +21,20 @@ export default {
   logout: {
     success: 'Successfully logged out'
   },
-  sidebarHide: 'Hide or display left side menu',
   loader: {
     loading: 'Loading data...',
     sending: 'Waiting for server response...'
-  }
+  },
+  form: {
+    save: 'Save',
+    saveSuccess: 'Changes to {type} śaved successfully',
+    create: 'New',
+    createSuccess: 'New {type} created successfully',
+    delete: 'Delete',
+    deleteSuccess: 'Deleted {type} successfully',
+    error: 'Could not send Form',
+    errorDetail: 'Please review the red marked fields again.'
+  },
+  notFound: 'Sorry, nothing here...',
+  goBack: 'Go Back'
 }

@@ -8,8 +8,39 @@ export default {
   },
   users: {
     title: 'Benutzer',
+    type: 'Benutzer',
     subtitle: 'Konto Verwaltung',
     list: 'Keine Benutzer | Ein Benutzer | {count} Benutzer',
-    create: 'Neuer Benutzer'
+    detail: 'Detail',
+    createButton: 'Neuer Benutzer',
+    formLogin: 'Login Daten',
+    formLoginDesc: 'Das aktuelle Passwort wird nicht angezeigt, gebe ein neues ein um es zu ändern.',
+    email: {
+      title: 'Email',
+      error: 'Eine güötige Email Addresse wird zum Login benötigt'
+    },
+    password: {
+      title: 'Passwort',
+      titleNew: 'Neues Passwort',
+      error: 'Das Passwort sollte zweimal identisch angegeben werden und muss mindestend 6 Zeichen lang sein',
+      retype: 'Passwort zur Bestätigung wiederholen'
+    },
+    formPersonal: 'Persönliche Daten',
+    nickname: {
+      title: 'Pseudonym',
+      error: 'Dein Pseudonym muss mindestens 4 Zeichen lang sein'
+    },
+    name: {
+      title: 'Voller Name'
+    },
+    position: {
+      title: 'Position',
+      error: 'Deine Position sollte mindestens 3 Zeichen lang sein'
+    },
+    formAccess: 'Zugangskontrolle',
+    disabled: {
+      title: 'Gesperrt',
+      desc: 'der Benutzer kann sich nicht mehr anmelden'
+    }
   }
 }

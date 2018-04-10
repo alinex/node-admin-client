@@ -7,6 +7,7 @@ export default {
     logout: 'Abmelden',
     profile: 'Profil'
   },
+  sidebarHide: 'Verstecken oder einblenden der linken Seitenleiste',
   login: {
     title: 'Anmeldung',
     email: 'Email',
@@ -20,9 +21,20 @@ export default {
   logout: {
     success: 'Erfolgreich vom System abgemeldet'
   },
-  sidebarHide: 'Verstecken oder einblenden der linken Seitenleiste',
   loader: {
     loading: 'Lade Daten...',
     sending: 'Warten auf Antwort vom Server...'
-  }
+  },
+  form: {
+    save: 'Speichern',
+    saveSuccess: 'Änderungen am {type} erfolgreich gespeichert',
+    create: 'Neu',
+    createSuccess: 'Neuer {type} Datensatz gespeichert',
+    delete: 'Löschen',
+    deleteSuccess: '{type} Datensatz gelöscht',
+    error: 'Formular konnte nicht versendet werden',
+    errorDetail: 'Bitte prüfen sie die Angaben in den rot markierten Feldern'
+  },
+  notFound: 'Ups, hier wurde nichts gefunden...',
+  goBack: 'Gehe Zurück'
 }

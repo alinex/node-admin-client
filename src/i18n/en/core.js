@@ -8,8 +8,39 @@ export default {
   },
   users: {
     title: 'User',
+    type: 'user',
     subtitle: 'Account Administration',
     list: 'No users | One User | {count} Users',
-    create: 'Add New User'
+    detail: 'Detail',
+    createButton: 'Add New User',
+    formLogin: 'Login Data',
+    formLoginDesc: 'The current password will not be shown, set it if you want to change it.',
+    email: {
+      title: 'Email',
+      error: 'A valid email address is needed to login'
+    },
+    password: {
+      title: 'Password',
+      titleNew: 'New Password',
+      error: 'The password should be two times exactly the same with at least 6 characters',
+      retype: 'retype password to confirm'
+    },
+    formPersonal: 'Personal Information',
+    nickname: {
+      title: 'Nickname',
+      error: 'The nickname should have at least 4 characters'
+    },
+    name: {
+      title: 'Full Name'
+    },
+    position: {
+      title: 'Position',
+      error: 'The position should have at least 3 characters'
+    },
+    formAccess: 'Access Control',
+    disabled: {
+      title: 'Disabled',
+      desc: 'user will no longer be able to login'
+    }
   }
 }

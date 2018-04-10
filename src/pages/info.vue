@@ -2,7 +2,7 @@
   <q-page class="q-pa-lg">
 
     <q-breadcrumbs class="q-mb-lg">
-      <q-breadcrumbs-el :label="$t('goHome')" icon="home" to="/" />
+      <q-breadcrumbs-el :label="$t('home.title')" icon="home" to="/" />
       <q-breadcrumbs-el :label="$t(`${$route.meta.module}.title`)" icon="info" />
     </q-breadcrumbs>
 

@@ -6,7 +6,7 @@
       <q-toolbar slot="header">
         <q-btn flat round dense v-close-overlay
           icon="keyboard_arrow_left"
-          :title="$t('goBack')" />
+          :title="$t('layout.goBack')" />
         <q-toolbar-title>{{ $t('layout.login.title') }}</q-toolbar-title>
       </q-toolbar>
       <div class="q-pa-md">
@@ -79,8 +79,8 @@ export default {
         console.log(this.$v.loginData.$error)
         this.$q.notify({
           icon: 'error outline',
-          message: this.$t('formError'),
-          detail: this.$t('formErrorDetail')
+          message: this.$t('layout.form.error'),
+          detail: this.$t('layout.form.errorDetail')
         })
         return
       }

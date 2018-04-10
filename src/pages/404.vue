@@ -6,12 +6,12 @@
         style="width:30vw;max-width:150px;"
       >
     </p>
-    <p class="text-faded">{{ $t('notFound') }}<strong>(404)</strong></p>
+    <p class="text-faded">{{ $t('layout.notFound') }}<strong>(404)</strong></p>
     <q-btn
       color="primary"
       style="width:200px;"
       @click="$router.push('/')" replace>
-      {{$t('goBack')}}
+      {{$t('layout.goBack')}}
     </q-btn>
   </div>
 </template>
