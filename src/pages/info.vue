@@ -66,6 +66,9 @@
             <tr><td>Memory RSS</td><td>{{ Math.round(info.node.memoryrss/1024/1024*10)/10 }} MB</td></tr>
             <!--<tr><td>Memory VIRT</td><td>{{ Math.round(info.node.memoryvirt/1024/1024*10)/10 }} MB</td></tr>-->
             <tr><td>Event Loop Lag</td><td>{{ info.node.eventlooplag }}</td></tr>
+            <tr><th colspan="2">Storage</th></tr>
+            <tr><td>Mongo DB</td><td>{{ info.mongo.server }}</td></tr>
+            <tr><td>Version</td><td>{{ info.mongo.version }}</td></tr>
           </table>
         </q-tab-pane>
 
@@ -90,7 +93,7 @@
           </table>
         </q-tab-pane>
 
-        <!-- Dependencies -->
+        <!-- Detail -->
         <q-tab-pane name="tab-detail">
           <q-table class="q-mt-xl"
             :data="tableData"
