@@ -11,7 +11,7 @@
         <q-list-header>{{ $tc('core.users.list', users.length, { count: users.length }) }}</q-list-header>
         <q-item v-for="user in users" :key="user._id"
           :to="'/users/' + user._id">
-          <q-item-side :avatar="user.gravatar" />
+          <q-item-side :avatar="user.avatar" />
           <q-item-main :label="user.email"
             :sublabel="user.name + ' (' + user.nickname + ')'" />
         </q-item>
