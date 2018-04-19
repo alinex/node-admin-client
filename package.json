@@ -3,15 +3,15 @@
   "version": "0.1.0",
   "description": "Fast and easy web administration panel for IT",
   "productName": "Administration-Panel",
-  "cordovaId": "org.cordova.alinex.app",
+  "cordovaId": "org.cordova.alinex.app",  
   "author": "Alexander Schilling <info@alinex.de>",
   "private": true,
   "scripts": {
     "dev": "quasar dev -m pwa",
     "lint": "eslint --ext .js,.vue src --fix",
     "play": "quasar dev -m cordova -T android",
-    "build": "quasar build; quasar build -m pwa; quasar build -m electron -T all; tar -C dist/electron-mat -czvf dist/electron-mat/Administration-Panel-linux-x64.tgz Administration-Panel-linux-x64 >/dev/null; tar -C dist/electron-mat -czvf dist/electron-mat/Administration-Panel-darwin-x64.tgz Administration-Panel-darwin-x64 >/dev/null; cd dist/electron-mat; zip -r Administration-Panel-win32-x64.zip Administration-Panel-win32-x64/ >/dev/null",
-    "deploy": "echo rsync -av dist/pwa-mat/* $DEPLOY/web && echo rsync -av dist/pwa-mat/* $DEPLOY/web"
+    "build": "quasar build && quasar build -m pwa && quasar build -m electron -T all && tar -C dist/electron-mat -czvf dist/electron-mat/Administration-Panel-linux-x64.tgz Administration-Panel-linux-x64 >/dev/null && tar -C dist/electron-mat -czvf dist/electron-mat/Administration-Panel-darwin-x64.tgz Administration-Panel-darwin-x64 >/dev/null && cd dist/electron-mat && zip -r Administration-Panel-win32-x64.zip Administration-Panel-win32-x64/ >/dev/null",
+    "deploy": "cp -r dist/pwa-mat dist/web && rsync -av dist/web $DEPLOY && rm -r dist/web && rsync -av dist/pwa-mat/* $DEPLOY/web"
   },
   "dependencies": {
     "@feathersjs/client": "^3.4.4",
