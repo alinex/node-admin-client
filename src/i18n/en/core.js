@@ -1,5 +1,5 @@
 export default {
-  title: 'Core System',
+  title: 'System Administration',
   info: {
     title: 'Info',
     subtitle: 'System Information',

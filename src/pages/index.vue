@@ -28,6 +28,13 @@
           {{$t('core.users.subtitle')}}
         </q-tooltip>
       </q-btn>
+      <q-btn flat round wait-for-ripple :class="authenticatedClass()"
+        @click="$router.push('/chat')" icon="chat" >
+        <q-tooltip anchor="bottom middle" self="top middle" :delay="500" class="q-mt-sm">
+          <b>{{ $t('colab.chat.title')}}</b><br />
+          {{$t('colab.chat.subtitle')}}
+        </q-tooltip>
+      </q-btn>
     </div>
   </q-page>
 </template>

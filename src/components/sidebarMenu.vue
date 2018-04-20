@@ -6,6 +6,7 @@
         :label="$t('home.title')"
         :sublabel="$t('home.subtitle')" />
     </q-item>
+
     <q-collapsible :label="$t('core.title')">
       <q-item to="/info">
         <q-item-side icon="info" />
@@ -21,8 +22,13 @@
       </q-item>
     </q-collapsible>
 
-    <q-collapsible label="Colaborative Tools" class="hidden">
-      <!-- chat -->
+    <q-collapsible :label="$t('colab.title')" :class="authenticatedClass()">
+      <q-item to="/chat">
+        <q-item-side icon="chat" />
+        <q-item-main
+          :label="$t('colab.chat.title')"
+          :sublabel="$t('colab.chat.subtitle')" />
+      </q-item>
     </q-collapsible>
 
     <q-collapsible label="Server Management" class="hidden">

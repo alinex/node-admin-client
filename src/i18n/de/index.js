@@ -1,10 +1,12 @@
 import layout from './layout'
 import core from './core'
+import colab from './colab'
 
 export default {
-  layout,
   // modules
+  layout,
   core,
+  colab,
   // general parts
   title: 'Administrations Panel',
   home: {

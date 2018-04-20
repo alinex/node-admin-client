@@ -22,7 +22,11 @@ export default [
         meta: { module: 'core.users' } },
       { path: 'users/:id',
         component: () => import('pages/users/detail'),
-        meta: { module: 'core.users' } }
+        meta: { module: 'core.users' } },
+
+      { path: 'chat',
+        component: () => import('pages/chat/index'),
+        meta: { module: 'colab.chat' } }
     ]
   },
 

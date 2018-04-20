@@ -1,5 +1,5 @@
 export default {
-  title: 'Basis System',
+  title: 'System Verwaltung',
   info: {
     title: 'Info',
     subtitle: 'System Informationen',

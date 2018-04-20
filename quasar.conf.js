@@ -84,6 +84,7 @@ module.exports = function (ctx) {
         'QBreadcrumbsEl',
         'QBtn',
         'QBtnDropdown',
+        'QChatMessage',
         'QCheckbox',
         'QCollapsible',
         'QField',
