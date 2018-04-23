@@ -7,7 +7,7 @@
       <q-breadcrumbs-el :label="$t('layout.form.create')" icon="person add" />
     </q-breadcrumbs>
 
-    <ax-form-group :title="$t('core.users.formLogin')">
+    <ax-form-group :title="$t('core.users.formLogin')" :subtitle="$t('core.users.formLoginDesc')">
       <q-field class="q-pb-md"
         icon="email"
         :label="$t('core.users.email.title')"
@@ -34,7 +34,13 @@
       </q-field>
     </ax-form-group>
 
-    <ax-form-group :title="$t('core.users.formPersonal')">
+    <ax-form-group :title="$t('core.users.formPersonal')" :subtitle="$t('core.users.formPersonalDesc')">
+      <q-field class="q-pb-md"
+        icon="photo camera"
+        :label="$t('core.users.avatar.title')">
+        <a href="https://wordpress.com/log-in?client_id=1854&redirect_to=https%3A%2F%2Fpublic-api.wordpress.com%2Foauth2%2Fauthorize%3Fclient_id%3D1854%26response_type%3Dcode%26blog_id%3D0%26state%3Dc3db1375b43998734d23a67ad8fd13b43867f1c4689ffb78004e1591086dc7e7%26redirect_uri%3Dhttps%253A%252F%252Fen.gravatar.com%252Fconnect%252F%253Faction%253Drequest_access_token" target="_blank"><img :src="user.avatar" /></a>
+      </q-field>
+
       <q-field class="q-pb-md"
         icon="mdi-account-outline"
         :label="$t('core.users.nickname.title')"
@@ -76,7 +82,9 @@ import axFormGroup from 'components/axFormGroup'
 export default {
   // name: 'PageName',
   data: () => ({
-    user: {}
+    user: {
+      avatar: 'https://www.gravatar.com/avatar/dc23461c186acbggacd8eg637543fdec?s=60&d=mm'
+    }
   }),
   validations: {
     user: {

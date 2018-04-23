@@ -36,7 +36,13 @@
         </q-field>
       </ax-form-group>
 
-      <ax-form-group :title="$t('core.users.formPersonal')" :subtitle="$t('core.users.formPersonalDesc', {gravatar})">
+      <ax-form-group :title="$t('core.users.formPersonal')" :subtitle="$t('core.users.formPersonalDesc')">
+        <q-field class="q-pb-md"
+          icon="photo camera"
+          :label="$t('core.users.avatar.title')">
+          <a href="https://wordpress.com/log-in?client_id=1854&redirect_to=https%3A%2F%2Fpublic-api.wordpress.com%2Foauth2%2Fauthorize%3Fclient_id%3D1854%26response_type%3Dcode%26blog_id%3D0%26state%3Dc3db1375b43998734d23a67ad8fd13b43867f1c4689ffb78004e1591086dc7e7%26redirect_uri%3Dhttps%253A%252F%252Fen.gravatar.com%252Fconnect%252F%253Faction%253Drequest_access_token" target="_blank"><img :src="user.avatar" /></a>
+        </q-field>
+
         <q-field class="q-pb-md"
           icon="mdi-account-outline"
           :label="$t('core.users.nickname.title')"
@@ -92,8 +98,7 @@ export default {
   data: () => ({
     user: {},
     loading: true,
-    sending: false,
-    gravatar: '<a href="https://wordpress.com/log-in?client_id=1854&redirect_to=https%3A%2F%2Fpublic-api.wordpress.com%2Foauth2%2Fauthorize%3Fclient_id%3D1854%26response_type%3Dcode%26blog_id%3D0%26state%3Dc3db1375b43998734d23a67ad8fd13b43867f1c4689ffb78004e1591086dc7e7%26redirect_uri%3Dhttps%253A%252F%252Fen.gravatar.com%252Fconnect%252F%253Faction%253Drequest_access_token" target="_blank">Gravatar</a>'
+    sending: false
   }),
   validations: {
     user: {
@@ -115,8 +120,8 @@ export default {
         console.error(this.$v.user.$error)
         this.$q.notify({
           icon: 'error outline',
-          message: this.$t('formError'),
-          detail: this.$t('formErrorDetail')
+          message: this.$t('layout.form.error'),
+          detail: this.$t('layout.form.errorDetail')
         })
         return
       }

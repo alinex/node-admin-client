@@ -26,6 +26,10 @@ export default {
       retype: 'Passwort zur Bestätigung wiederholen'
     },
     formPersonal: 'Persönliche Daten',
+    formPersonalDesc: 'Der Gravatar Dienst wird benutzt um das Avatar Bild zu deiner Email Adresse abzurufen. Mit einem klick auf das Bild lässt sich dies einstellen.',
+    avatar: {
+      title: 'Avatar'
+    },
     nickname: {
       title: 'Pseudonym',
       error: 'Dein Pseudonym muss mindestens 4 Zeichen lang sein'

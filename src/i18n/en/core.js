@@ -26,7 +26,10 @@ export default {
       retype: 'retype password to confirm'
     },
     formPersonal: 'Personal Information',
-    formPersonalDesc: 'To set your avatar icon use the free to use {gravatar}.',
+    formPersonalDesc: 'To set your avatar icon linked with the email address use the free to use gravatar service by clicking on the image link.',
+    avatar: {
+      title: 'Avatar'
+    },
     nickname: {
       title: 'Nickname',
       error: 'The nickname should have at least 4 characters'
