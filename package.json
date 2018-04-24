@@ -11,7 +11,7 @@
     "lint": "eslint --ext .js,.vue src --fix",
     "play": "quasar dev -m cordova -T android",
     "build": "quasar build && quasar build -m pwa && quasar build -m electron -T all && tar -C dist/electron-mat -czvf dist/electron-mat/Administration-Panel-linux-x64.tgz Administration-Panel-linux-x64 >/dev/null && tar -C dist/electron-mat -czvf dist/electron-mat/Administration-Panel-darwin-x64.tgz Administration-Panel-darwin-x64 >/dev/null && cd dist/electron-mat && zip -r Administration-Panel-win32-x64.zip Administration-Panel-win32-x64/ >/dev/null",
-    "deploy": "cp -r dist/pwa-mat dist/web && rsync -av dist/web $DEPLOY && rm -r dist/web && rsync -av dist/pwa-mat/* $DEPLOY/web"
+    "deploy": "cp -r dist/spa-mat dist/web && rsync -av dist/web $DEPLOY/public && rm -r dist/web && rsync -av dist/electron-mat/*.zip dist/electron-mat/*.tgz $DEPLOY/public/desktop"
   },
   "dependencies": {
     "@feathersjs/client": "^3.4.4",
