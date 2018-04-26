@@ -9,6 +9,9 @@
 
     <ax-loader :loading="loading" :sending="sending">
       <ax-form-group :title="$t('core.users.formLogin')" :subtitle="$t('core.users.formLoginDesc')">
+        <input type="text" style="display:none">
+        <input type="password" style="display:none">
+
         <q-field class="q-pb-md"
           icon="email"
           :label="$t('core.users.email.title')"
@@ -92,6 +95,7 @@ import { required, email, sameAs, minLength } from 'vuelidate/lib/validators'
 import axLoader from 'components/axLoader'
 import axFormGroup from 'components/axFormGroup'
 import crypto from 'crypto'
+// import util from 'util'
 
 export default {
   // name: 'PageName',
@@ -122,6 +126,9 @@ export default {
   methods: {
     gravatar () {
       // update gravatar url
+      if (this.$v.user.email.$error) {
+        return
+      }
       const gravatarUrl = 'https://www.gravatar.com/avatar'
       const query = 's=60&d=mm&' + Date.now()
       const hash = crypto.createHash('md5').update(this.user.email.toLowerCase()).digest('hex')
