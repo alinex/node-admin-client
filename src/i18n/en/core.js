@@ -26,9 +26,10 @@ export default {
       retype: 'retype password to confirm'
     },
     formPersonal: 'Personal Information',
-    formPersonalDesc: 'To set your avatar icon linked with the email address use the free to use gravatar service by clicking on the image link.',
+    formPersonalDesc: 'The Gravatar service from WordPress is used to get the avatar icon linked to your email address.',
     avatar: {
-      title: 'Avatar'
+      title: 'Avatar',
+      link: 'Link to WordPress to change Gravatar image'
     },
     nickname: {
       title: 'Nickname',

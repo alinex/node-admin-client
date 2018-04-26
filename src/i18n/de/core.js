@@ -26,9 +26,10 @@ export default {
       retype: 'Passwort zur Bestätigung wiederholen'
     },
     formPersonal: 'Persönliche Daten',
-    formPersonalDesc: 'Der Gravatar Dienst wird benutzt um das Avatar Bild zu deiner Email Adresse abzurufen. Mit einem klick auf das Bild lässt sich dies einstellen.',
+    formPersonalDesc: 'Der Gravatar Dienst von WordPress wird benutzt um das Avatar Bild zu deiner Email Adresse abzurufen.',
     avatar: {
-      title: 'Avatar'
+      title: 'Avatar',
+      link: 'Link zu WordPress um deinen Avatar anzupassen'
     },
     nickname: {
       title: 'Pseudonym',
