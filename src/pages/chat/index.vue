@@ -10,27 +10,22 @@
       label='Sunday, 19th'
     />
 
-    <q-chat-message
-      name="me"
-      avatar="statics/boy-avatar.png"
-      :text="['hunter2']"
-      stamp="4 minutes ago"
-      sent
-    />
+    <!--
+    <ul>
+        <li v-for="message in messages" :key="message._id">
+          <label>{{ message.name }}:</label> {{ message.text }}
+        </li>
+    </ul>
+    -->
+    <q-chat-message v-for="message in messages"
+      :key="message._id"
+      :name="message.name" :text="[message.text]" :sent="message.sent" />
 
-    <q-chat-message
-      name="Jane"
-      avatar="statics/linux-avatar.png"
-      :text="['hey, if you type in your pw', 'it will show as stars']"
-      stamp="7 minutes ago"
-    />
-
-    <q-chat-message
-      name="Anton"
-      avatar="statics/linux-avatar.png"
-      :text="['hey, if you type in your pw']"
-      stamp="3 minutes ago"
-    />
+    <q-input v-model.trim="add"
+      type="text"
+      autofocus clearable
+      ref="add"
+      @keyup.enter="sendMessage" />
 
   </q-page>
 </template>
@@ -41,9 +36,42 @@ import axLoader from 'components/axLoader'
 export default {
   // name: 'PageName',
   data: () => ({
-    users: [],
+    add: '',
+    messages: [
+      { _id: 1,
+        name: 'me',
+        text: 'hunter2',
+        sent: true
+      },
+      { _id: 2,
+        name: 'Jane',
+        text: 'hey, if you type in your pw'
+      },
+      { _id: 3,
+        name: 'Jane',
+        text: 'it will show as stars'
+      },
+      { _id: 4,
+        name: 'Anton',
+        text: "hello, I'm there, too"
+      }
+    ],
     loading: true
   }),
+  methods: {
+    sendMessage () {
+      this.messages.push({
+        _id: 5,
+        text: this.add,
+        name: 'me',
+        sent: true
+      })
+      this.resetMessage()
+    },
+    resetMessage () {
+      this.add = ''
+    }
+  },
   async created () {
     try {
       const response = await this.$feathers.service('users').find()
