@@ -122,6 +122,7 @@ module.exports = function (ctx) {
         'CloseOverlay'
       ],
       plugins: [
+        'AppVisibility',
         'Dialog',
         'Notify'
       ]

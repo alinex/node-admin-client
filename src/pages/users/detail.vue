@@ -28,7 +28,6 @@
           :error="$v.user.password.$error || $v.user.passwordRepeat.$error"
           :error-label="$t('core.users.password.error')">
           <q-input v-model.trim="user.password" type="password"
-            @input="test"
             @blur="$v.user.password.$touch(); $v.user.passwordRepeat.$touch()" /><br />
           <q-input v-model.trim="user.passwordRepeat" type="password"
             @blur="$v.user.password.$touch(); $v.user.passwordRepeat.$touch()"
@@ -92,6 +91,7 @@
 import { required, email, sameAs, minLength } from 'vuelidate/lib/validators'
 import axLoader from 'components/axLoader'
 import axFormGroup from 'components/axFormGroup'
+import crypto from 'crypto'
 
 export default {
   // name: 'PageName',
@@ -109,9 +109,23 @@ export default {
       position: { minLength: minLength(3) }
     }
   },
+  watch: {
+    'user.email' () {
+      this.gravatar()
+    },
+    '$q.appVisible' (val) {
+      if (val) {
+        this.gravatar()
+      }
+    }
+  },
   methods: {
-    test () {
-      console.log(this.user.password)
+    gravatar () {
+      // update gravatar url
+      const gravatarUrl = 'https://www.gravatar.com/avatar'
+      const query = 's=60&d=mm&' + Date.now()
+      const hash = crypto.createHash('md5').update(this.user.email.toLowerCase()).digest('hex')
+      this.user.avatar = `${gravatarUrl}/${hash}?${query}`
     },
     async store () {
       // validate

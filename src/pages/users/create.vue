@@ -78,6 +78,7 @@
 <script>
 import { required, email, sameAs, minLength } from 'vuelidate/lib/validators'
 import axFormGroup from 'components/axFormGroup'
+import crypto from 'crypto'
 
 export default {
   // name: 'PageName',
@@ -95,7 +96,24 @@ export default {
       position: { minLength: minLength(3) }
     }
   },
+  watch: {
+    'user.email' () {
+      this.gravatar()
+    },
+    '$q.appVisible' (val) {
+      if (val) {
+        this.gravatar()
+      }
+    }
+  },
   methods: {
+    gravatar () {
+      // update gravatar url
+      const gravatarUrl = 'https://www.gravatar.com/avatar'
+      const query = 's=60&d=mm&' + Date.now()
+      const hash = crypto.createHash('md5').update(this.user.email.toLowerCase()).digest('hex')
+      this.user.avatar = `${gravatarUrl}/${hash}?${query}`
+    },
     async send () {
       // validate
       this.$v.user.$touch()
