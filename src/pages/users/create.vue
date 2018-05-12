@@ -84,6 +84,8 @@ import { required, email, sameAs, minLength } from 'vuelidate/lib/validators'
 import axFormGroup from 'components/axFormGroup'
 import crypto from 'crypto'
 
+const users = this.$feathers.service('users')
+
 export default {
   // name: 'PageName',
   data: () => ({
@@ -143,7 +145,7 @@ export default {
       }
       // send to server
       try {
-        this.user = await this.$feathers.service('users').create(user)
+        this.user = await users.create(user)
         this.$q.notify({
           color: 'positive',
           icon: 'check circle',

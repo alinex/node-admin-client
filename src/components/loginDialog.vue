@@ -1,7 +1,7 @@
 <template>
   <q-modal v-model="$store.state.layout.login" @show="focusLogin"
-    :content-css="{minWidth: '380px', minHeight: '330px'}"
-    >
+    :content-css="{minWidth: '380px', minHeight: '330px'}">
+    <!-- won't work: :content-css="{height: 'auto', width: 'auto'}">  -->
     <q-modal-layout>
       <q-toolbar slot="header">
         <q-btn flat round dense v-close-overlay
