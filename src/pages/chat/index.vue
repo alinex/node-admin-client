@@ -33,8 +33,6 @@
 <script>
 import axLoader from 'components/axLoader'
 
-const messages = this.$feathers.service('messages')
-
 export default {
   // name: 'PageName',
   data: () => ({
@@ -76,7 +74,7 @@ export default {
   },
   async created () {
     try {
-      const response = await messages.find()
+      const response = await this.$feathers.service('messages').find()
       this.messages = response.data
     } catch (error) {
       console.error(error.message)

@@ -28,8 +28,6 @@
 <script>
 import axLoader from 'components/axLoader'
 
-const users = this.$feathers.service('users')
-
 export default {
   // name: 'PageName',
   data: () => ({
@@ -38,7 +36,7 @@ export default {
   }),
   async created () {
     try {
-      const response = await users.find()
+      const response = await this.$feathers.service('users').find()
       this.users = response.data
     } catch (error) {
       console.error(error.message)

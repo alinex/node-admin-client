@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Fast and easy web administration panel for IT",
   "productName": "Administration-Panel",
-  "cordovaId": "org.cordova.alinex.app",  
+  "cordovaId": "org.cordova.alinex.app",
   "author": "Alexander Schilling <info@alinex.de>",
   "private": true,
   "scripts": {
@@ -14,8 +14,8 @@
     "deploy": "cp -r dist/spa-mat dist/web && rsync -av dist/web $DEPLOY/public && rm -r dist/web && rsync -av dist/electron-mat/*.zip dist/electron-mat/*.tgz $DEPLOY/public/desktop"
   },
   "dependencies": {
-    "@feathersjs/client": "^3.4.4",
-    "feathers-vuex": "^1.1.4",
+    "@feathersjs/client": "^3.4.5",
+    "feathers-vuex": "^1.3.0",
     "moment": "^2.22.1",
     "socket.io-client": "^2.1.0",
     "vue-i18n": "^7.6.0",
@@ -25,12 +25,12 @@
     "@kazupon/vue-i18n-loader": "^0.3.0",
     "babel-eslint": "^8.2.3",
     "bindings": "^1.3.0",
-    "bufferutil": "^3.0.4",
+    "bufferutil": "^3.0.5",
     "devtron": "1.4.0",
-    "electron": "^1.8.4",
+    "electron": "^2.0.0",
     "electron-debug": "^1.5.0",
-    "electron-devtools-installer": "^2.2.3",
-    "electron-packager": "^12.0.1",
+    "electron-devtools-installer": "^2.2.4",
+    "electron-packager": "^12.0.2",
     "eslint": "^4.19.1",
     "eslint-config-standard": "^11.0.0",
     "eslint-friendly-formatter": "^4.0.1",
@@ -38,10 +38,10 @@
     "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-promise": "^3.7.0",
-    "eslint-plugin-standard": "3.0.1",
+    "eslint-plugin-standard": "^3.1.0",
     "eslint-plugin-vue": "^4.5.0",
     "quasar-cli": "^0.15.14",
-    "utf-8-validate": "^4.0.1"
+    "utf-8-validate": "^4.0.2"
   },
   "engines": {
     "node": ">= 8.9.0",

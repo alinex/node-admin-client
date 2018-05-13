@@ -98,8 +98,6 @@ import axFormGroup from 'components/axFormGroup'
 import crypto from 'crypto'
 // import util from 'util'
 
-const users = this.$feathers.service('users')
-
 export default {
   // name: 'PageName',
   data: () => ({
@@ -161,7 +159,7 @@ export default {
       // send to server
       try {
         this.sending = true
-        this.user = await users.patch(this.user._id, user)
+        this.user = await this.$feathers.service('users').patch(this.user._id, user)
         this.$q.notify({
           color: 'positive',
           icon: 'check circle',
@@ -176,7 +174,7 @@ export default {
     async remove () {
       try {
         this.sending = true
-        this.user = await users.remove(this.user._id)
+        this.user = await this.$feathers.service('users').remove(this.user._id)
         this.$q.notify({
           color: 'positive',
           icon: 'check circle',
@@ -192,7 +190,7 @@ export default {
   },
   async created () {
     try {
-      this.user = await users.get(this.$route.params.id)
+      this.user = await this.$feathers.service('users').get(this.$route.params.id)
       this.user.password = ''
       this.user.passwordRepeat = ''
     } catch (error) {
