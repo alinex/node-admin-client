@@ -6,81 +6,90 @@
       <q-breadcrumbs-el :label="$t(`${$route.meta.module}.title`)" icon="chat" />
     </q-breadcrumbs>
 
-    <q-chat-message
-      label='Sunday, 19th'
+    <q-chat-message v-for="message in messages" :key="message._id"
+      :name="message.user.nickname"
+      :text="[message.text]"
+      :avatar="message.user.avatar"
+      :sent="isSent(message) ? true : false"
+      :stamp="messageDate(message)"
     />
 
-    <!--
-    <ul>
-        <li v-for="message in messages" :key="message._id">
-          <label>{{ message.name }}:</label> {{ message.text }}
-        </li>
-    </ul>
-    -->
-    <q-chat-message v-for="message in messages"
-      :key="message._id"
-      :name="message.name" :text="[message.text]" :sent="message.sent" />
-
-    <q-input v-model.trim="add"
-      type="text"
-      autofocus clearable
-      ref="add"
-      @keyup.enter="sendMessage" />
+    <ax-loader :loading="loading" :sending="sending">
+      <q-input
+        class="row col-12 fixed-bottom chat-message q-pa-md"
+        style="z-index: 1001"
+        v-model.trim="message"
+        @keyup.enter="send"
+        type="textarea"
+        float-label="Enter your message"
+        :min-rows="1"
+      />
+    </ax-loader>
 
   </q-page>
 </template>
 
+<style lang="stylus" scoped>
+  .chat-message
+    background: white
+</style>
+
 <script>
 import axLoader from 'components/axLoader'
+import moment from 'moment'
 
 export default {
   // name: 'PageName',
   data: () => ({
-    add: '',
-    messages: [
-      { _id: 1,
-        name: 'me',
-        text: 'hunter2',
-        sent: true
-      },
-      { _id: 2,
-        name: 'Jane',
-        text: 'hey, if you type in your pw'
-      },
-      { _id: 3,
-        name: 'Jane',
-        text: 'it will show as stars'
-      },
-      { _id: 4,
-        name: 'Anton',
-        text: "hello, I'm there, too"
-      }
-    ],
-    loading: true
+    message: '',
+    messages: [],
+    loading: true,
+    sending: false
   }),
   methods: {
-    sendMessage () {
-      this.messages.push({
-        _id: 5,
-        text: this.add,
-        name: 'me',
-        sent: true
-      })
-      this.resetMessage()
+    isSent (message) {
+      return (message.userId === this.$store.state.auth.user._id)
     },
-    resetMessage () {
-      this.add = ''
+    messageDate (message) {
+      return moment(message.createdAt).format('LLL')
+    },
+    send () {
+      if (this.message) {
+        this.sending = true
+        this.$feathers.service('messages').create({ text: this.message }).then(() => {
+          this.message = ''
+          this.sending = false
+        })
+      }
     }
   },
-  async created () {
+  async mounted () {
+    moment.locale(this.$i18n.locale)
+    const messages = this.$feathers.service('messages')
+    // get all messages
     try {
-      const response = await this.$feathers.service('messages').find()
-      this.messages = response.data
+      const response = await messages.find({
+        query: {
+          $sort: { createdAt: -1 },
+          $limit: 25
+        }
+      })
+      this.messages = response.data.reverse()
     } catch (error) {
       console.error(error.message)
       this.$q.notify('ERROR: Retrieving data from server: ' + error.message + '.')
     } finally {
       this.loading = false
+    }
+    // add new messages to the message list
+    messages.on('created', message => {
+      console.log('message received')
+      this.messages.push(message)
+    })
+  },
+  watch: {
+    lang (lang) {
+      moment.locale(lang)
     }
   },
   components: { axLoader }
