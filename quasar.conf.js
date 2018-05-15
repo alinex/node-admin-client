@@ -23,6 +23,7 @@ module.exports = function (ctx) {
   return {
     plugins: [
       'i18n',
+      'google-analytics',
       'feathers',
       'vuelidate'
     ],
