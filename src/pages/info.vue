@@ -33,6 +33,43 @@
               <tr><th>Copyright</th><td>{{ info.server.copyright }}</td></tr>
             </table>
           </div>
+          <hr />
+
+          <h3>{{ $t('policy.title') }}</h3>
+          <p>{{ $t('policy.privacy.intro') }}</p>
+
+          <h4>{{ $t('policy.privacy.responsible') }}</h4>
+          <blockquote>Schilling, Alexander
+          <br />Mühlstraße 13
+          <br />D-72805 Lichtenstein
+          <br />info@alinex.de</blockquote>
+
+          <h4>{{ $t('policy.data.title') }}</h4>
+          <p>{{ $t('policy.data.intro') }}</p>
+          <ul>
+            <li>{{ $t('policy.data.list.0') }}</li>
+            <li>{{ $t('policy.data.list.1') }}</li>
+            <li>{{ $t('policy.data.list.2') }}</li>
+            <li>{{ $t('policy.data.list.3') }}</li>
+            <li>{{ $t('policy.data.list.4') }}</li>
+          </ul>
+
+          <h4>{{ $t('policy.purpose.title') }}</h4>
+          <ul>
+            <li>{{ $t('policy.purpose.list.0') }}</li>
+            <li>{{ $t('policy.purpose.list.1') }}</li>
+            <li>{{ $t('policy.purpose.list.2') }}</li>
+            <li>{{ $t('policy.purpose.list.3') }}</li>
+          </ul>
+
+          <h4>{{ $t('policy.terms.title') }}</h4>
+          <p>{{ $t('policy.terms.list.0') }}</p>
+          <p>{{ $t('policy.terms.list.1') }}</p>
+          <p>{{ $t('policy.terms.list.2') }}</p>
+
+          <h4>{{ $t('policy.legal.title') }}</h4>
+          <p>{{ $t('policy.legal.intro') }}</p>
+
         </q-tab-pane>
 
         <!-- Client -->
@@ -159,6 +196,10 @@ table.data-groups
 
 .q-table tbody td
   white-space: pre-wrap
+
+h4
+  font-size: 18px
+  margin-bottom: 6px
 </style>
 
 <script>
