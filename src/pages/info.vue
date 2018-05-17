@@ -68,7 +68,30 @@
           <p>{{ $t('policy.terms.list.2') }}</p>
 
           <h4>{{ $t('policy.legal.title') }}</h4>
-          <p>{{ $t('policy.legal.intro') }}</p>
+          <p>{{ $t('policy.legal.text') }}</p>
+
+          <h4>{{ $t('policy.update.title') }}</h4>
+          <p>{{ $t('policy.update.text') }}</p>
+
+          <h4>{{ $t('policy.thirdparty.title') }}</h4>
+          <p>{{ $t('policy.thirdparty.text.0') }}</p>
+          <p>{{ $t('policy.thirdparty.text.1') }}</p>
+
+          <h4>{{ $t('policy.storage.title') }}</h4>
+          <p>{{ $t('policy.storage.text') }}</p>
+
+          <h4>{{ $t('policy.rights.title') }}</h4>
+          <p>{{ $t('policy.rights.text.0') }}</p>
+          <p>{{ $t('policy.rights.text.1') }}</p>
+          <p>{{ $t('policy.rights.text.2') }}</p>
+          <p>{{ $t('policy.rights.text.3') }}</p>
+
+          <h4>{{ $t('policy.cookies.title') }}</h4>
+          <p>{{ $t('policy.cookies.text.0') }}</p>
+          <p>{{ $t('policy.cookies.text.1') }}</p>
+
+          <h4>{{ $t('policy.delete.title') }}</h4>
+          <p>{{ $t('policy.delete.text') }}</p>
 
         </q-tab-pane>
 
