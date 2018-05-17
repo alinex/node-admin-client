@@ -77,9 +77,6 @@
           <p>{{ $t('policy.thirdparty.text.0') }}</p>
           <p>{{ $t('policy.thirdparty.text.1') }}</p>
 
-          <h4>{{ $t('policy.storage.title') }}</h4>
-          <p>{{ $t('policy.storage.text') }}</p>
-
           <h4>{{ $t('policy.rights.title') }}</h4>
           <p>{{ $t('policy.rights.text.0') }}</p>
           <p>{{ $t('policy.rights.text.1') }}</p>
@@ -90,8 +87,32 @@
           <p>{{ $t('policy.cookies.text.0') }}</p>
           <p>{{ $t('policy.cookies.text.1') }}</p>
 
+          <h4>{{ $t('policy.hosting.title') }}</h4>
+          <p>{{ $t('policy.hosting.text.0') }}</p>
+          <p>{{ $t('policy.hosting.text.1') }}</p>
+          <p>{{ $t('policy.hosting.text.2') }}</p>
+
+          <h4>{{ $t('policy.register.title') }}</h4>
+          <p>{{ $t('policy.register.text.0') }}</p>
+          <p>{{ $t('policy.register.text.1') }}</p>
+
+          <h4>{{ $t('policy.contact.title') }}</h4>
+          <p>{{ $t('policy.contact.text') }}</p>
+
+          <h4>{{ $t('policy.gravatar.title') }}</h4>
+          <p>{{ $t('policy.gravatar.text.0') }}</p>
+          <p>{{ $t('policy.gravatar.text.1') }}</p>
+          <p>{{ $t('policy.gravatar.text.2') }}</p>
+          <p>{{ $t('policy.gravatar.text.3') }}</p>
+          <p>{{ $t('policy.gravatar.text.4') }}</p>
+          <p>{{ $t('policy.gravatar.text.5') }}</p>
+
           <h4>{{ $t('policy.delete.title') }}</h4>
           <p>{{ $t('policy.delete.text') }}</p>
+
+          <h4>{{ $t('policy.logs.title') }}</h4>
+          <p>{{ $t('policy.logs.text.0') }}</p>
+          <p>{{ $t('policy.logs.text.1') }}</p>
 
         </q-tab-pane>
 
