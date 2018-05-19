@@ -128,8 +128,8 @@ export default {
         console.log(this.$v.user.$error)
         this.$q.notify({
           icon: 'error outline',
-          message: this.$t('formError'),
-          detail: this.$t('formErrorDetail')
+          message: this.$t('layout.form.error'),
+          detail: this.$t('layout.form.errorDetail')
         })
         return
       }

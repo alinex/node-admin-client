@@ -13,7 +13,7 @@
           :to="'/users/' + user._id">
           <q-item-side :avatar="user.avatar" />
           <q-item-main :label="user.email"
-            :sublabel="user.name + ' (' + user.nickname + ')'" />
+            :sublabel="(user.name + ' ' || '') + '(' + user.nickname + ')'" />
         </q-item>
       </q-list>
     </ax-loader>

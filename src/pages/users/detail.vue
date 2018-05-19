@@ -165,6 +165,7 @@ export default {
           icon: 'check circle',
           message: this.$t('layout.form.saveSuccess', { type: this.$t('core.users.type') })
         })
+        this.$router.push('/users')
       } catch (error) {
         console.error(error.message)
         this.$q.notify('ERROR: Saving data to server:' + error.message)
