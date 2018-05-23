@@ -24,12 +24,19 @@ export default {
       'Range measurement/marketing.'
     ]
   },
+  persons: {
+    title: 'Categories of affected persons',
+    list: [
+      'Visitors and users of the online offer (In the following, I also refer to these affected persons as "users").'
+    ]
+  },
   terms: {
     title: 'Terms used',
     list: [
       '"Personal data" means any information relating to an identified or identifiable natural person (hereinafter referred to as "data subject"); an identifiable natural person is one who can be identified, directly or indirectly, in particular by assignment to an identifier such as a name, an identification number, location data, an online identifier (e.g. cookie) or to one or more special features that express the physical, physiological, genetic, psychological, economic, cultural or social identity of that natural person.',
       '"processing" means any operation carried out with or without the aid of automated procedures or any such series of operations in connection with personal data. The term goes a long way and covers practically every handling of data.',
-      '"Responsible" means the natural or legal person, authority, institution or other body that alone or together with others decides on the purposes and means of processing personal data.'
+      '"Responsible" means the natural or legal person, authority, institution or other body that alone or together with others decides on the purposes and means of processing personal data.',
+      '"Processor" means a natural or legal person, public authority, agency or other body that processes personal data on behalf of the controller.'
     ]
   },
   legal: {
@@ -37,7 +44,7 @@ export default {
     text: 'In accordance with Art. 13 GDPR, we inform you of the legal basis of our data processing. If the legal basis is not mentioned in the data protection declaration, the following applies: The legal basis for obtaining consents is Art. 6 para. 1 lit. a and Art. 7 GDPR, the legal basis for processing for the performance of our services and performance of contractual measures as well as for answering inquiries is Art. 6 para. 1 lit. b GDPR, the legal basis for processing to fulfil our legal obligations is Art. 6 para. 1 lit. c GDPR, and the legal basis for processing to protect our legitimate interests is Art. 6 para. 1 lit. f GDPR. In the event that the vital interests of the data subject or another natural person require the processing of personal data, Art. 6 para. 1 lit. d GDPR serves as the legal basis.'
   },
   update: {
-    title: 'Updates',
+    title: 'Updates of the policy statement',
     text: 'We ask you to inform yourself regularly about the content of our privacy statement. We will adapt the privacy statement as soon as changes in the data processing carried out by us make this necessary. We will inform you as soon as the changes require your cooperation (e.g. consent) or other individual notification.'
   },
   thirdparty: {

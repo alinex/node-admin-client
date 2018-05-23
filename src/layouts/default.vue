@@ -44,6 +44,10 @@
             </q-item>
           </q-list>
         </q-btn-dropdown>
+        <q-btn flat icon="security"
+          :title="$t('policy.title')"
+          @click="$router.push('/info')">
+        </q-btn>
       </q-toolbar>
     </q-layout-header>
 

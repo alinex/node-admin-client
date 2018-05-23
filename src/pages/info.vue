@@ -42,6 +42,7 @@
           <blockquote>Schilling, Alexander
           <br />Mühlstraße 13
           <br />D-72805 Lichtenstein
+          <br />
           <br />info@alinex.de</blockquote>
 
           <h4>{{ $t('policy.data.title') }}</h4>
@@ -62,10 +63,16 @@
             <li>{{ $t('policy.purpose.list.3') }}</li>
           </ul>
 
+          <h4>{{ $t('policy.persons.title') }}</h4>
+          <ul>
+            <li>{{ $t('policy.persons.list.0') }}</li>
+          </ul>
+
           <h4>{{ $t('policy.terms.title') }}</h4>
           <p>{{ $t('policy.terms.list.0') }}</p>
           <p>{{ $t('policy.terms.list.1') }}</p>
           <p>{{ $t('policy.terms.list.2') }}</p>
+          <p>{{ $t('policy.terms.list.3') }}</p>
 
           <h4>{{ $t('policy.legal.title') }}</h4>
           <p>{{ $t('policy.legal.text') }}</p>
