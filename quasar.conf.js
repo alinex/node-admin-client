@@ -126,7 +126,6 @@ module.exports = function (ctx) {
     animations: [
     ],
     pwa: {
-      cacheExt: 'js,html,css,ttf,eot,otf,woff,woff2,json,svg,gif,jpg,jpeg,png,wav,ogg,webm,flac,aac,mp4,mp3',
       manifest: {
         name: 'Alinex Administration Panel',
         short_name: 'Admin Panel',
