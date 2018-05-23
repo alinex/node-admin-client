@@ -37,10 +37,6 @@ module.exports = function (ctx) {
       // 'fontawesome'
     ],
     supportIE: false,
-    vendor: {
-      add: [],
-      remove: []
-    },
     build: {
       scopeHoisting: true,
       // vueRouterMode: 'history',
@@ -50,14 +46,14 @@ module.exports = function (ctx) {
       // useNotifier: false,
       publicPath: ctx.mode.spa ? '/web/' : '/',
       extendWebpack (cfg) {
-        cfg.module.rules[0].options.loaders['i18n'] = '@kazupon/vue-i18n-loader'
-        cfg.module.rules.push({
-          enforce: 'pre',
-          test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          exclude: /(node_modules|quasar)/,
-          options: { fix: true }
-        })
+        // cfg.module.rules[0].options.loaders['i18n'] = '@kazupon/vue-i18n-loader'
+        // cfg.module.rules.push({
+        //   enforce: 'pre',
+        //   test: /\.(js|vue)$/,
+        //   loader: 'eslint-loader',
+        //   exclude: /(node_modules|quasar)/,
+        //   options: { fix: true }
+        // })
       },
       env: ctx.dev
         ? { // so on dev we'll have
