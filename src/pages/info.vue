@@ -28,9 +28,9 @@
           <div class="col q-mt-md" v-if="!loading">
             <table class="data">
               <tr><th>Version</th><td>0.1.0</td></tr>
-              <tr><th>Server</th><td>{{ info.server.name }} {{ info.server.version }}</td></tr>
-              <tr><th>Author</th><td>{{ info.server.author }}</td></tr>
-              <tr><th>Copyright</th><td>{{ info.server.copyright }}</td></tr>
+              <tr v-if="info.server"><th>Server</th><td>{{ info.server.name }} {{ info.server.version }}</td></tr>
+              <tr v-if="info.server"><th>Author</th><td>{{ info.server.author }}</td></tr>
+              <tr v-if="info.server"><th>Copyright</th><td>{{ info.server.copyright }}</td></tr>
             </table>
           </div>
           <hr />
@@ -120,7 +120,6 @@
           <h4>{{ $t('policy.logs.title') }}</h4>
           <p>{{ $t('policy.logs.text.0') }}</p>
           <p>{{ $t('policy.logs.text.1') }}</p>
-
         </q-tab-pane>
 
         <!-- Client -->
@@ -142,27 +141,28 @@
           <table class="data-groups" v-if="!loading">
             <tr><th colspan="2">Connection</th></tr>
             <tr><td>API</td><td>{{ api }}</td></tr>
-            <tr><td>Name</td><td>{{ info.server.name }}</td></tr>
-            <tr><td>Version</td><td>{{ info.server.version }}</td></tr>
-            <tr><th colspan="2">Process</th></tr>
-            <tr><td>Process ID</td><td>{{ info.node.processid }}</td></tr>
-            <tr><td>Running as</td><td>{{ info.host.user }} ({{ info.host.userid }})</td></tr>
-            <tr><td>Directory</td><td>{{ info.node.workingdirectory }}</td></tr>
-            <tr><td>Process ID</td><td>{{ info.node.processid }}</td></tr>
-            <tr><td>Uptime</td><td>since {{ processUptime }}</td></tr>
-            <tr><td>CPU Usage</td><td>{{ Math.round(info.node.cpuusage*10)/10 }}%</td></tr>
-            <tr><td>Memory RSS</td><td>{{ Math.round(info.node.memoryrss/1024/1024*10)/10 }} MB</td></tr>
+            <tr v-if="info.server"><td>Name</td><td>{{ info.server.name }}</td></tr>
+            <tr v-if="info.server"><td>Version</td><td>{{ info.server.version }}</td></tr>
+            <tr v-if="info.node"><th colspan="2">Process</th></tr>
+            <tr v-if="info.node"><td>Process ID</td><td>{{ info.node.processid }}</td></tr>
+            <tr v-if="info.host"><td>Running as</td><td>{{ info.host.user }} ({{ info.host.userid }})</td></tr>
+            <tr v-if="info.node"><td>Directory</td><td>{{ info.node.workingdirectory }}</td></tr>
+            <tr v-if="info.node"><td>Process ID</td><td>{{ info.node.processid }}</td></tr>
+            <tr v-if="info.node"><td>Uptime</td><td>since {{ processUptime }}</td></tr>
+            <tr v-if="info.ode"><td>CPU Usage</td><td>{{ Math.round(info.node.cpuusage*10)/10 }}%</td></tr>
+            <tr v-if="info.ode"><td>Memory RSS</td><td>{{ Math.round(info.node.memoryrss/1024/1024*10)/10 }} MB</td></tr>
             <!--<tr><td>Memory VIRT</td><td>{{ Math.round(info.node.memoryvirt/1024/1024*10)/10 }} MB</td></tr>-->
-            <tr><td>Event Loop Lag</td><td>{{ info.node.eventlooplag }}</td></tr>
-            <tr><th colspan="2">Storage</th></tr>
-            <tr><td>Mongo DB</td><td>{{ info.mongo.server }}</td></tr>
-            <tr><td>Version</td><td>{{ info.mongo.version }}</td></tr>
+            <tr v-if="info.node"><td>Event Loop Lag</td><td>{{ info.node.eventlooplag }}</td></tr>
+            <tr v-if="info.mongo"><th colspan="2">Storage</th></tr>
+            <tr v-if="info.mongo"><td>Mongo DB</td><td>{{ info.mongo.server }}</td></tr>
+            <tr v-if="info.mongo"><td>Version</td><td>{{ info.mongo.version }}</td></tr>
           </table>
+          <p v-if="!info.server">No more information without server connection!</p>
         </q-tab-pane>
 
         <!-- Host -->
         <q-tab-pane name="tab-host">
-          <table class="data-groups" v-if="!loading">
+          <table class="data-groups" v-if="!loading && info.host">
             <tr><th colspan="2">Hardware</th></tr>
             <tr><td>CPU</td><td>{{ info.host.cputype }}<br />
               {{ info.host.cpucores }} cores {{ info.host.architecture }} running at {{ info.host.cpuspeed/1000 }}GHz</td></tr>
@@ -179,11 +179,13 @@
             <tr><td>Node Version</td><td>{{ info.node.nodeversion }}</td></tr>
             <tr><td>V8 Version</td><td>{{ info.node.v8version }}</td></tr>
           </table>
+          <p v-if="!info.server">No more information without server connection!</p>
         </q-tab-pane>
 
         <!-- Detail -->
         <q-tab-pane name="tab-detail">
           <q-table class="q-mt-xl"
+            v-if="info.server"
             :data="tableData"
             :columns="columns"
             :filter="filter"
@@ -222,6 +224,7 @@
               />
             </div>
           </q-table>
+          <p v-if="!info.server">No more information without server connection!</p>
         </q-tab-pane>
       </ax-loader>
     </q-tabs>
