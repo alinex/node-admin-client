@@ -14,11 +14,11 @@
     "deploy": "cp -r dist/spa-mat dist/web && rsync -av dist/web $DEPLOY/public && rm -r dist/web && rsync -av dist/electron-mat/*.zip dist/electron-mat/*.tgz $DEPLOY/public/desktop"
   },
   "dependencies": {
-    "@feathersjs/client": "^3.5.0",
+    "@feathersjs/client": "^3.5.1",
     "feathers-vuex": "^1.4.2",
-    "moment": "^2.22.1",
+    "moment": "^2.22.2",
     "socket.io-client": "^2.1.1",
-    "vue-i18n": "^7.7.0",
+    "vue-i18n": "^7.8.0",
     "vuelidate": "^0.7.4"
   },
   "devDependencies": {
@@ -40,7 +40,7 @@
     "eslint-plugin-promise": "^3.8.0",
     "eslint-plugin-standard": "^3.1.0",
     "eslint-plugin-vue": "^4.5.0",
-    "quasar-cli": "^0.16.3",
+    "quasar-cli": "^0.16.4",
     "utf-8-validate": "^4.0.2"
   },
   "engines": {
