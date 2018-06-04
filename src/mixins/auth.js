@@ -15,6 +15,7 @@ export const AuthMixin = {
             icon: 'check circle',
             message: this.$t('layout.logout.success')
           })
+          this.$router.push('/')
           return Promise.resolve()
         })
     },
